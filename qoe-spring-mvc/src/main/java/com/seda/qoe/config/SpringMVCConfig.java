@@ -21,7 +21,7 @@ import com.seda.qoe.security.WebSecurityConfig;
 
 @EnableWebMvc
 @Configuration
-@Import({ WebSecurityConfig.class })
+@Import({ BeanMappingConfiguration.class, WebSecurityConfig.class })
 @ComponentScan(basePackages = { "com.seda.qoe.controllers", "com.seda.qoe.security" })
 public class SpringMVCConfig extends WebMvcConfigurerAdapter {
 
