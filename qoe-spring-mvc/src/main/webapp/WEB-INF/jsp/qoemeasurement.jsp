@@ -81,15 +81,30 @@ kde:
 \end{align*}
 	 
 	 Nejčastěji se používá pětiúrovňová stupnice hodnocení pro celkovou kvalitu. Tato stupnice je znázorněna v tabulce níže.
-    \begin{tabular}{|c|c|}
-        \hline
-        5 & Excellent (vynikající) \\\hline
-        4 & Good (dobrá) \\\hline
-        3 & Fair (průměrná) \\\hline
-        2 & Poor (špatná) \\\hline
-        1 & Bad (mizerná) \\
-         \hline
-    \end{tabular}
+	   <table class="table table-bordered">
+	    <tbody>
+	      <tr>
+	        	<td>5</td>
+				<td>Excellent (vynikající)</td>
+	       </tr>
+	       <tr>
+	       		<td>4</td>
+				<td>Good (dobrá)</td>
+			</tr>
+     	    <tr>
+	       		<td>3</td>
+				<td>Fair (průměrná)</td>
+			</tr>
+     	    <tr>
+	       		<td>2</td>
+				<td>Poor (špatná)</td>
+			</tr>
+     	    <tr>
+	       		<td>1</td>
+				<td>Bad (mizerná)</td>
+			</tr>
+	    </tbody>
+	  </table>
 	 Je-li požadováno vyšší rozlišení hodnocení, pak se používají 9 nebo 11úrovňové hodnocení.
 	 
 	 <h3>Absolute Category Rating with hidden reference (ACR-HR)</h3>
@@ -138,20 +153,30 @@ kde:
 	V podstatě lze pro toto hodnocení použít jakákoli stupnice použitá při metodě ACR, pouze je nutno zaměnit hodnotící parametry.
 	 Prezentační čas může být redukován nebo zvýšen v závislosti na obsahu testovaného materiálu stejně jako u metody ACR.
 	 
-	 \begin{table}[H]
-	    \centering
-	    \caption{Pětiúrovňová stupnice pro hodnocení zhoršení metodou DCR}
-	    \begin{tabular}{|c|c|}
-	        \hline
-	        5 & Imperceptible (nepatrné)\\\hline
-	        4 & Perceptible but no annoying (znatelné, ale ne nepříjemné)\\\hline
-	        3 & Slightly annoying (mírně nepříjemné)\\\hline
-	        2 & Annoying (nepříjemné)\\\hline
-	        1 & Very annoying (velmi nepříjemné)\\
-	         \hline
-	    \end{tabular}
-	    \label{tab:ratingTableDCR}
-	\end{table}
+	 	   <table class="table table-bordered">
+	    <tbody>
+	      <tr>
+	        	<td>5</td>
+				<td>Imperceptible (nepatrné)</td>
+	       </tr>
+	       <tr>
+	       		<td>4</td>
+				<td>Perceptible but no annoying (znatelné, ale ne nepříjemné)</td>
+			</tr>
+     	    <tr>
+	       		<td>3</td>
+				<td>Slightly annoying (mírně nepříjemné)</td>
+			</tr>
+     	    <tr>
+	       		<td>2</td>
+				<td>Annoying (nepříjemné)</td>
+			</tr>
+     	    <tr>
+	       		<td>1</td>
+				<td>Very annoying (velmi nepříjemné)</td>
+			</tr>
+	    </tbody>
+	  </table>
 
 	<h3>Pair comparison method (PC)</h3>
 	Metoda pair comparison zahrnuje, že testované sekvence jsou prezentovány v párech, 

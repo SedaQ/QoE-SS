@@ -29,5 +29,8 @@ Nevýhodou laboratorních testů je, že jsou zpravidla náročné na finanční
 Výhodou subjektivního QoE je, že pokud jsou dodrženy veškeré podmínky, tak je měření subjektivními metodami nejpřesnější ze všech současných způsobů měření, 
 to je důvodem, proč se tyto metody často používají jako referenční metody u nových zařízení, multimediálních kodeků.
 				
+	<div>
+		<br></br>
+	</div>
 	</jsp:attribute>
 </my:pagetemplate>
