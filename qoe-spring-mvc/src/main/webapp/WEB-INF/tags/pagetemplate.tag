@@ -64,7 +64,25 @@
 								href="${pageContext.request.contextPath}/videa/controlledBurn">controlled
 									burn</a></li>
 						</ul></li>
-					<li><a href="${pageContext.request.contextPath}/presentation">Presentation</a></li>
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Info<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a
+								href="${pageContext.request.contextPath}/presentation">Presentation</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/subjectiveqoe">Subjektivní
+									QoE </a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/objectiveqoe">Objektivní
+									QoE </a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/qoemeasurement">Měření
+									subjektivního QoE </a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/resultcorrelation">Korelace
+									výsledků</a></li>
+						</ul></li>
+					<!-- <li><a href="${pageContext.request.contextPath}/presentation">Presentation</a></li> -->
 					<li><a href="${pageContext.request.contextPath}/about">About</a></li>
 					<li><a href="${pageContext.request.contextPath}/contact">Contact</a></li>
 				</ul>
@@ -116,7 +134,15 @@
 		
 		
 		
+		
+		
+		
+		
 		 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+	
+	
+	
+	
 	
 	
 	

@@ -89,7 +89,6 @@
 						<version>2.5</version>
 						<configuration>
 							<outputDirectory>C:/Skola/Škola VUT FEKT/moje_Seda/diplomka/Appka/openshift pro appku/qoe/webapps</outputDirectory>
-							<failOnMissingWebXml>false</failOnMissingWebXml>
 							<warName>ROOT</warName>
 						</configuration>
 					</plugin>

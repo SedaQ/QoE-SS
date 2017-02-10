@@ -24,7 +24,7 @@
 				tak by se zkresloval výsledek v rámci procesu ("učení se"). Výhodou subjektivního QoE je, že pokud jsou dodrženy veškeré podmínky, 
 				tak je měření subjektivními metodami nejpřesnější ...
 				</p>
-				<a href="#" class="btn btn-primary" role="button">Přečtěte si více</a>
+				<a href="${pageContext.request.contextPath}/subjectiveqoe" class="btn btn-primary" role="button">Přečtěte si více</a>
 			</div>
 			<div class="col-md-3">
 				<h3>
@@ -44,7 +44,7 @@
 				Výpočty této degradace se pohybují od jednoduchých algoritmů typu odhadu chyb v signálu k velmi 
 				komplexním ...
 				</p>
-				<a href="#" class="btn btn-primary" role="button">Přečtěte si více</a>
+				<a href="${pageContext.request.contextPath}/objectiveqoe" class="btn btn-primary" role="button">Přečtěte si více</a>
 			</div>
 			<div class="col-md-3">
 				<h3>
@@ -60,9 +60,10 @@
 				kteří nejsou nuceni se účastnit laboratorních testů, jako je tomu v případě metod ACR, ACR-HR, DCR, 
 				PC, DSCQS ...
 				</p>
-				<a href="#" class="btn btn-primary" role="button">Přečtěte si více</a>
+				<a href="${pageContext.request.contextPath}/qoemeasurement" class="btn btn-primary" role="button">Přečtěte si více</a>
 			</div>
 		</article>
 	</section>
+    <div><br></br></div>
 	</jsp:attribute>
 </my:pagetemplate>
