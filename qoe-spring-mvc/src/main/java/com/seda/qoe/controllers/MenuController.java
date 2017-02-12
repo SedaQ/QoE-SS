@@ -26,6 +26,11 @@ public class MenuController {
 		return "presentation";
 	}
 
+	@RequestMapping(value = "/fullthesis")
+	public String fullthesis() {
+		return "fullthesis";
+	}
+	
 	@RequestMapping(value = "/contact")
 	public String contact() {
 		return "contact";

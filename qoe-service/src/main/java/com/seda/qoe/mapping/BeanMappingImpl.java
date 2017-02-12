@@ -28,7 +28,7 @@ public class BeanMappingImpl implements BeanMapping {
 
 	@Override
 	public <T> List<T> mapTo(Collection<?> objects, Class<T> mapToClass) {
-		List<T> mappedCollection = new ArrayList<>();
+		List<T> mappedCollection = new ArrayList<T>();
 		for (Object object : objects) {
 			mappedCollection.add(modelMapper.map(object, mapToClass));
 		}
@@ -37,7 +37,7 @@ public class BeanMappingImpl implements BeanMapping {
 
 	@Override
 	public <T> Set<T> mapToSet(Collection<?> objects, Class<T> mapToClass) {
-		Set<T> mappedCollection = new HashSet<>();
+		Set<T> mappedCollection = new HashSet<T>();
 		for (Object object : objects) {
 			mappedCollection.add(modelMapper.map(object, mapToClass));
 		}
