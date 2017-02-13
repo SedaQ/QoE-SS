@@ -16,6 +16,11 @@ public class MenuController {
 		return "videa/aspen";
 	}
 
+	@RequestMapping(value = "/videa/aspenvidea")
+	public String videaAspenVidea() {
+		return "videa/aspenvidea";
+	}
+
 	@RequestMapping(value = "/videa/controlledBurn")
 	public String videaControlledBurn() {
 		return "videa/controlledburn";
@@ -30,7 +35,7 @@ public class MenuController {
 	public String fullthesis() {
 		return "fullthesis";
 	}
-	
+
 	@RequestMapping(value = "/contact")
 	public String contact() {
 		return "contact";
@@ -39,6 +44,11 @@ public class MenuController {
 	@RequestMapping(value = "/about")
 	public String about() {
 		return "about";
+	}
+
+	@RequestMapping(value = "/statistics")
+	public String statistics() {
+		return "statistics";
 	}
 
 }

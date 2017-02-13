@@ -22,8 +22,8 @@ public class ScenarioParameters {
 	@Column(nullable = false)
 	private Long length;
 
-	@OneToOne(mappedBy = "values")
-	private Scenarions scenario;
+	@OneToOne(mappedBy = "value")
+	private Scenario scenario;
 
 	public ScenarioParameters() {
 	}
@@ -52,11 +52,11 @@ public class ScenarioParameters {
 		this.length = length;
 	}
 
-	public Scenarions getScenario() {
+	public Scenario getScenario() {
 		return scenario;
 	}
 
-	public void setScenario(Scenarions scenario) {
+	public void setScenario(Scenario scenario) {
 		this.scenario = scenario;
 	}
 

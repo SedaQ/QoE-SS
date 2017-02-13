@@ -13,11 +13,13 @@
 				data-toggle="dropdown" href="#">Videa <span class="caret"></span>
 			</a>
 				<ul class="dropdown-menu">
-					<li><a href="${pageContext.request.contextPath}/videa/aspen">aspen</a>
+					<!-- <li><a href="${pageContext.request.contextPath}/videa/aspen">aspen</a>
+					</li> -->
+					<li><a href="${pageContext.request.contextPath}/videa/aspenvidea">aspen videa</a>
 					</li>
-					<li><a
+					<!-- <li><a
 						href="${pageContext.request.contextPath}/videa/controlledBurn">controlled
-							burn</a></li>
+							burn</a></li> -->
 				</ul></li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">Info<span class="caret"></span>
@@ -42,6 +44,8 @@
 			<li><a href="${pageContext.request.contextPath}/about">About</a>
 			</li>
 			<li><a href="${pageContext.request.contextPath}/contact">Contact</a>
+			</li>
+			<li><a href="${pageContext.request.contextPath}/statistics">Statistics</a>
 			</li>
 		</ul>
 

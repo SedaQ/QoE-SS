@@ -1,10 +1,15 @@
 package com.seda.qoe.entity;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +17,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
+
+import com.seda.qoe.enums.UserRole;
 
 @Entity
 @Table(name = "user")
@@ -29,13 +36,19 @@ public class User {
 	private String email;
 
 	@Column(name = "password", nullable = false)
-	private String passwordHash;
+	private String password_hash;
 
-	@Column(name = "user_role")
-	private String userRole;
+	@ElementCollection(targetClass = UserRole.class)
+	@Enumerated(EnumType.STRING)
+	@CollectionTable(name = "user_role")
+	@Column(name = "role")
+	private Collection<UserRole> roles;
+
+	// @Column(name = "role")
+	// private String roles;
 
 	@OneToMany(mappedBy = "id_user")
-	private Set<Dotaznik> dotaznik = new HashSet<Dotaznik>();
+	private Set<Questionary> questionary = new HashSet<Questionary>();
 
 	public User() {
 	}
@@ -57,27 +70,43 @@ public class User {
 	}
 
 	public String getPasswordHash() {
-		return passwordHash;
+		return password_hash;
 	}
 
 	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
+		this.password_hash = passwordHash;
 	}
 
-	public String getUserRole() {
-		return userRole;
+	public String getPassword_hash() {
+		return password_hash;
 	}
 
-	public void setUserRole(String userRole) {
-		this.userRole = userRole;
+	public void setPassword_hash(String password_hash) {
+		this.password_hash = password_hash;
 	}
 
-	public Set<Dotaznik> getDotaznik() {
-		return dotaznik;
+	public Collection<UserRole> getRoles() {
+		return roles;
 	}
 
-	public void setDotaznik(Set<Dotaznik> dotaznik) {
-		this.dotaznik = dotaznik;
+	public void setRoles(Collection<UserRole> roles) {
+		this.roles = roles;
+	}
+
+	public Set<Questionary> getQuestionary() {
+		return questionary;
+	}
+
+	public void setQuestionary(Set<Questionary> questionary) {
+		this.questionary = questionary;
+	}
+
+	public Set<Questionary> getDotaznik() {
+		return questionary;
+	}
+
+	public void setDotaznik(Set<Questionary> dotaznik) {
+		this.questionary = dotaznik;
 	}
 
 	@Override
@@ -85,13 +114,12 @@ public class User {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((dotaznik == null) ? 0 : dotaznik.hashCode());
+				+ ((questionary == null) ? 0 : questionary.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
-				+ ((passwordHash == null) ? 0 : passwordHash.hashCode());
-		result = prime * result
-				+ ((userRole == null) ? 0 : userRole.hashCode());
+				+ ((password_hash == null) ? 0 : password_hash.hashCode());
+		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
 		return result;
 	}
 
@@ -104,10 +132,10 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		if (dotaznik == null) {
-			if (other.dotaznik != null)
+		if (questionary == null) {
+			if (other.questionary != null)
 				return false;
-		} else if (!dotaznik.equals(other.dotaznik))
+		} else if (!questionary.equals(other.questionary))
 			return false;
 		if (email == null) {
 			if (other.email != null)
@@ -119,15 +147,15 @@ public class User {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (passwordHash == null) {
-			if (other.passwordHash != null)
+		if (password_hash == null) {
+			if (other.password_hash != null)
 				return false;
-		} else if (!passwordHash.equals(other.passwordHash))
+		} else if (!password_hash.equals(other.password_hash))
 			return false;
-		if (userRole == null) {
-			if (other.userRole != null)
+		if (roles == null) {
+			if (other.roles != null)
 				return false;
-		} else if (!userRole.equals(other.userRole))
+		} else if (!roles.equals(other.roles))
 			return false;
 		return true;
 	}

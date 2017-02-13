@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -17,16 +16,14 @@ public class Mos {
 	@Column(name = "id_mos")
 	protected Long id;
 
-	@Column(nullable = false, name = "mos_value")
-	private String mosValue;
+	@Column(nullable = false)
+	private String mos_value;
 
 	@OneToOne
-	//@JoinColumn(name = "mos")
-	private Dotaznik id_dotaznik;
+	private Questionary id_questionary;
 
 	@OneToOne
-	//@JoinColumn(name = "mos")
-	private Videos id_video;
+	private Video id_video;
 
 	public Mos() {
 	}
@@ -40,26 +37,26 @@ public class Mos {
 	}
 
 	public String getMosValue() {
-		return mosValue;
+		return mos_value;
 	}
 
 	public void setMosValue(String mosValue) {
-		this.mosValue = mosValue;
+		this.mos_value = mosValue;
 	}
 
-	public Dotaznik getId_dotaznik() {
-		return id_dotaznik;
+	public Questionary getId_questionary() {
+		return id_questionary;
 	}
 
-	public void setId_dotaznik(Dotaznik id_dotaznik) {
-		this.id_dotaznik = id_dotaznik;
+	public void setId_questionary(Questionary id_questionary) {
+		this.id_questionary = id_questionary;
 	}
 
-	public Videos getId_video() {
+	public Video getId_video() {
 		return id_video;
 	}
 
-	public void setId_video(Videos id_video) {
+	public void setId_video(Video id_video) {
 		this.id_video = id_video;
 	}
 
@@ -69,11 +66,11 @@ public class Mos {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
-				+ ((id_dotaznik == null) ? 0 : id_dotaznik.hashCode());
+				+ ((id_questionary == null) ? 0 : id_questionary.hashCode());
 		result = prime * result
 				+ ((id_video == null) ? 0 : id_video.hashCode());
 		result = prime * result
-				+ ((mosValue == null) ? 0 : mosValue.hashCode());
+				+ ((mos_value == null) ? 0 : mos_value.hashCode());
 		return result;
 	}
 
@@ -91,20 +88,20 @@ public class Mos {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (id_dotaznik == null) {
-			if (other.id_dotaznik != null)
+		if (id_questionary == null) {
+			if (other.id_questionary != null)
 				return false;
-		} else if (!id_dotaznik.equals(other.id_dotaznik))
+		} else if (!id_questionary.equals(other.id_questionary))
 			return false;
 		if (id_video == null) {
 			if (other.id_video != null)
 				return false;
 		} else if (!id_video.equals(other.id_video))
 			return false;
-		if (mosValue == null) {
-			if (other.mosValue != null)
+		if (mos_value == null) {
+			if (other.mos_value != null)
 				return false;
-		} else if (!mosValue.equals(other.mosValue))
+		} else if (!mos_value.equals(other.mos_value))
 			return false;
 		return true;
 	}
