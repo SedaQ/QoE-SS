@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.dozer.Mapper;
 import org.modelmapper.ModelMapper;
 
 /**
@@ -19,10 +20,10 @@ import org.modelmapper.ModelMapper;
 @Named
 public class BeanMappingImpl implements BeanMapping {
 
-	private ModelMapper modelMapper;
+	private Mapper modelMapper;
 
 	@Inject
-	public BeanMappingImpl(ModelMapper modelMapper) {
+	public BeanMappingImpl(Mapper modelMapper) {
 		this.modelMapper = modelMapper;
 	}
 

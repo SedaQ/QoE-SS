@@ -2,7 +2,6 @@ package com.seda.qoe.facade;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -36,7 +35,7 @@ public class UserFacadeImpl implements UserFacade {
 		try {
 			User user = userService.findById(id);
 			return user != null ? beanMapping.mapTo(user, UserDTO.class) : null;
-		} catch (ServiceLayerException | NoSuchElementException ex) {
+		} catch (Exception ex) {
 			return null;
 		}
 	}
@@ -44,11 +43,12 @@ public class UserFacadeImpl implements UserFacade {
 	@Override
 	public UserDTO update(Long userId) {
 		if (userId == null)
-			throw new IllegalArgumentException("userId parameter is null in update method");
+			throw new IllegalArgumentException(
+					"userId parameter is null in update method");
 		try {
 			User user = userService.update(userService.findById(userId));
 			return user != null ? beanMapping.mapTo(user, UserDTO.class) : null;
-		} catch (ServiceLayerException | NoSuchElementException ex) {
+		} catch (ServiceLayerException ex) {
 			return null;
 		}
 	}
@@ -56,12 +56,13 @@ public class UserFacadeImpl implements UserFacade {
 	@Override
 	public Boolean deleteUser(Long userId) {
 		if (userId == null)
-			throw new IllegalArgumentException("userId parameter is null in deleteUser method");
+			throw new IllegalArgumentException(
+					"userId parameter is null in deleteUser method");
 		try {
 			userService.remove(userService.findById(userId));
 			return true;
-		} catch (ServiceLayerException | NoSuchElementException ex) {
-			return true;
+		} catch (ServiceLayerException ex) {
+			return false;
 		}
 	}
 
@@ -69,7 +70,7 @@ public class UserFacadeImpl implements UserFacade {
 	public List<UserDTO> getAllUsers() {
 		try {
 			return beanMapping.mapTo(userService.findAll(), UserDTO.class);
-		} catch (ServiceLayerException | NoSuchElementException ex) {
+		} catch (ServiceLayerException ex) {
 			return Collections.emptyList();
 		}
 	}
@@ -77,7 +78,8 @@ public class UserFacadeImpl implements UserFacade {
 	@Override
 	public UserDTO getUserByEmail(String email) {
 		if (email == null || email.isEmpty())
-			throw new IllegalArgumentException("email parameter is null or empty");
+			throw new IllegalArgumentException(
+					"email parameter is null or empty");
 		try {
 			User user = userService.findByEmail(email);
 			if (user != null)
@@ -85,14 +87,15 @@ public class UserFacadeImpl implements UserFacade {
 			else
 				return null;
 
-		} catch (ServiceLayerException | NoSuchElementException ex) {
+		} catch (ServiceLayerException ex) {
 			return null;
 		}
 	}
 
 	@Override
 	public Boolean registerUser(UserCreateDTO u, String unencryptedPassword) {
-		if (u == null || unencryptedPassword == null || unencryptedPassword.isEmpty())
+		if (u == null || unencryptedPassword == null
+				|| unencryptedPassword.isEmpty())
 			throw new IllegalArgumentException(
 					"u parameter is null or unencryptedPassword is null or unencryptedPassword is empty in registerUser method");
 		try {
@@ -100,7 +103,7 @@ public class UserFacadeImpl implements UserFacade {
 			userService.registerUser(userEntity, unencryptedPassword);
 			u.setId(userEntity.getId());
 			return true;
-		} catch (ServiceLayerException | NoSuchElementException ex) {
+		} catch (ServiceLayerException ex) {
 			return false;
 		}
 	}
@@ -108,10 +111,12 @@ public class UserFacadeImpl implements UserFacade {
 	@Override
 	public Boolean authenticate(UserDTO u) {
 		if (u == null)
-			throw new IllegalArgumentException("UserDTO u parametr is null in authenticate method");
+			throw new IllegalArgumentException(
+					"UserDTO u parametr is null in authenticate method");
 		try {
-			return userService.authenticate(userService.findById(u.getId()), u.getPasswordHash());
-		} catch (ServiceLayerException | NoSuchElementException ex) {
+			return userService.authenticate(userService.findById(u.getId()),
+					u.getPasswordHash());
+		} catch (ServiceLayerException ex) {
 			return false;
 		}
 	}
@@ -119,11 +124,13 @@ public class UserFacadeImpl implements UserFacade {
 	@Override
 	public boolean isAdmin(UserDTO u) {
 		if (u == null)
-			throw new IllegalArgumentException("UserDTO u parametr is null in isAdmin method");
+			throw new IllegalArgumentException(
+					"UserDTO u parametr is null in isAdmin method");
 		try {
-			Boolean isAdminBool = userService.isAdmin(beanMapping.mapTo(u, User.class));
+			Boolean isAdminBool = userService.isAdmin(beanMapping.mapTo(u,
+					User.class));
 			return isAdminBool != null ? isAdminBool.booleanValue() : false;
-		} catch (ServiceLayerException | NoSuchElementException ex) {
+		} catch (ServiceLayerException ex) {
 			return false;
 		}
 	}

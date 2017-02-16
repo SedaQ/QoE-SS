@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,28 +13,32 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.dozer.Mapping;
+
 @Entity
 @Table(name = "video")
 public class Video {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_video")
-	protected Long id;
+	private Long id;
 
 	@Column
 	private String name;
 
 	@Column(nullable = false, name = "video_src")
-	private String video_source;
+	private String videoSource;
 
-	@OneToOne(mappedBy = "id_video")
+	@OneToOne(mappedBy = "video", fetch = FetchType.EAGER)
 	private Mos mos;
 
-	@ManyToMany(mappedBy = "video")
+	@ManyToMany(mappedBy = "video", fetch = FetchType.EAGER)
+	@Mapping("scenario")
 	private Set<Scenario> scenario = new HashSet<Scenario>();
 
-	public Video(){}
-	
+	public Video() {
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -51,11 +56,11 @@ public class Video {
 	}
 
 	public String getVideoSource() {
-		return video_source;
+		return videoSource;
 	}
 
 	public void setVideoSource(String videoSource) {
-		this.video_source = videoSource;
+		this.videoSource = videoSource;
 	}
 
 	public Mos getMos() {
@@ -74,6 +79,10 @@ public class Video {
 		this.scenario = scenarions;
 	}
 
+	public void addScenarion(Scenario scenario) {
+		this.scenario.add(scenario);
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,7 +93,7 @@ public class Video {
 		result = prime * result
 				+ ((scenario == null) ? 0 : scenario.hashCode());
 		result = prime * result
-				+ ((video_source == null) ? 0 : video_source.hashCode());
+				+ ((videoSource == null) ? 0 : videoSource.hashCode());
 		return result;
 	}
 
@@ -117,10 +126,10 @@ public class Video {
 				return false;
 		} else if (!scenario.equals(other.scenario))
 			return false;
-		if (video_source == null) {
-			if (other.video_source != null)
+		if (videoSource == null) {
+			if (other.videoSource != null)
 				return false;
-		} else if (!video_source.equals(other.video_source))
+		} else if (!videoSource.equals(other.videoSource))
 			return false;
 		return true;
 	}

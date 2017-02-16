@@ -4,6 +4,10 @@ import java.util.List;
 
 import com.seda.qoe.entity.User;
 
+/**
+ * @author Pavel Šeda
+ *
+ */
 public interface UserService {
 	
 	/**

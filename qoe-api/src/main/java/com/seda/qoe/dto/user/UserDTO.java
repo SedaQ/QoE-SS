@@ -1,12 +1,11 @@
 package com.seda.qoe.dto.user;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class UserDTO {
 
 	protected Long id;
-	@Email
+	//@Email(regexp = )
 	@NotEmpty
 	private String email;
 	@NotEmpty

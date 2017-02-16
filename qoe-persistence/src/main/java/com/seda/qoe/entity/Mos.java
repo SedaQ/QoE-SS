@@ -2,6 +2,7 @@ package com.seda.qoe.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,16 +15,16 @@ public class Mos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_mos")
-	protected Long id;
+	private Long id;
 
-	@Column(nullable = false)
-	private String mos_value;
+	@Column(nullable = false, name = "mos_value")
+	private String mosValue;
 
-	@OneToOne
-	private Questionary id_questionary;
+	@OneToOne(fetch = FetchType.EAGER)
+	private Questionary questionary;
 
-	@OneToOne
-	private Video id_video;
+	@OneToOne(fetch = FetchType.EAGER)
+	private Video video;
 
 	public Mos() {
 	}
@@ -37,27 +38,27 @@ public class Mos {
 	}
 
 	public String getMosValue() {
-		return mos_value;
+		return mosValue;
 	}
 
 	public void setMosValue(String mosValue) {
-		this.mos_value = mosValue;
+		this.mosValue = mosValue;
 	}
 
-	public Questionary getId_questionary() {
-		return id_questionary;
+	public Questionary getQuestionary() {
+		return questionary;
 	}
 
-	public void setId_questionary(Questionary id_questionary) {
-		this.id_questionary = id_questionary;
+	public void setQuestionary(Questionary questionary) {
+		this.questionary = questionary;
 	}
 
-	public Video getId_video() {
-		return id_video;
+	public Video getVideo() {
+		return video;
 	}
 
-	public void setId_video(Video id_video) {
-		this.id_video = id_video;
+	public void setVideo(Video video) {
+		this.video = video;
 	}
 
 	@Override
@@ -66,11 +67,10 @@ public class Mos {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
-				+ ((id_questionary == null) ? 0 : id_questionary.hashCode());
+				+ ((mosValue == null) ? 0 : mosValue.hashCode());
 		result = prime * result
-				+ ((id_video == null) ? 0 : id_video.hashCode());
-		result = prime * result
-				+ ((mos_value == null) ? 0 : mos_value.hashCode());
+				+ ((questionary == null) ? 0 : questionary.hashCode());
+		result = prime * result + ((video == null) ? 0 : video.hashCode());
 		return result;
 	}
 
@@ -88,20 +88,20 @@ public class Mos {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (id_questionary == null) {
-			if (other.id_questionary != null)
+		if (mosValue == null) {
+			if (other.mosValue != null)
 				return false;
-		} else if (!id_questionary.equals(other.id_questionary))
+		} else if (!mosValue.equals(other.mosValue))
 			return false;
-		if (id_video == null) {
-			if (other.id_video != null)
+		if (questionary == null) {
+			if (other.questionary != null)
 				return false;
-		} else if (!id_video.equals(other.id_video))
+		} else if (!questionary.equals(other.questionary))
 			return false;
-		if (mos_value == null) {
-			if (other.mos_value != null)
+		if (video == null) {
+			if (other.video != null)
 				return false;
-		} else if (!mos_value.equals(other.mos_value))
+		} else if (!video.equals(other.video))
 			return false;
 		return true;
 	}

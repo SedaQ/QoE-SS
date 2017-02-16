@@ -7,7 +7,6 @@ import javax.servlet.Filter;
 
 public class StartInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
-
 	@Override
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
@@ -16,18 +15,18 @@ public class StartInitializer extends AbstractAnnotationConfigDispatcherServletI
 	}
 
 	@Override
-	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[] { SpringMVCConfig.class };
-	}
-
-	@Override
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
 
 	@Override
+	protected Class<?>[] getRootConfigClasses() {
+		return new Class<?>[] { SpringMVCConfig.class};
+	}
+	
+	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return null;
+		return null; //new Class<?>[] { RestServletInitializer.class};
 	}
 
 }

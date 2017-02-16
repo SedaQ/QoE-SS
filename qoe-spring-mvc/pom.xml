@@ -18,6 +18,35 @@
 			<artifactId>qoe-service</artifactId>
 			<version>${project.parent.version}</version>
 		</dependency>
+		<!-- 
+		<dependency>
+			<groupId>${project.parent.groupId}</groupId>
+			<artifactId>qoe-rest</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		 -->
+		 <!-- REST dependencies start -->
+		 		<dependency>
+			<groupId>org.springframework.hateoas</groupId>
+			<artifactId>spring-hateoas</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+		<!--  REST dependencies end -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
@@ -25,7 +54,6 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-api</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -91,18 +119,11 @@
 				<finalName>qoe</finalName>
 				<plugins>
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<configuration>
-							<source>${java.version}</source>
-							<target>${java.version}</target>
-						</configuration>
-					</plugin>
-					<plugin>
 						<artifactId>maven-war-plugin</artifactId>
 						<version>2.5</version>
 						<configuration>
-							<outputDirectory>C:/Skola/Škola VUT FEKT/moje_Seda/diplomka/Appka/openshift pro appku/qoe/webapps</outputDirectory>
+							<outputDirectory>C:/Skola/Škola VUT
+								FEKT/moje_Seda/diplomka/Appka/openshift pro appku/qoe/webapps</outputDirectory>
 							<warName>ROOT</warName>
 						</configuration>
 					</plugin>
@@ -117,18 +138,17 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
+				<artifactId>maven-war-plugin</artifactId>
 				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.5</version>
+				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 			<!-- embedded tomcat -->

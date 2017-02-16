@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,21 +13,24 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.dozer.Mapping;
+
 @Entity
 @Table(name = "scenario")
 public class Scenario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_scenarion")
-	protected Long id;
+	private Long id;
 
 	@Column(nullable = false)
 	private String scenario;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
+	@Mapping("video")
 	private Set<Video> video = new HashSet<Video>();
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private ScenarioParameters value;
 
 	public Scenario() {
@@ -40,12 +44,12 @@ public class Scenario {
 		this.id = id;
 	}
 
-	public String getScenarions() {
+	public String getScenario() {
 		return scenario;
 	}
 
-	public void setScenarions(String scenarions) {
-		this.scenario = scenarions;
+	public void setScenario(String scenario) {
+		this.scenario = scenario;
 	}
 
 	public Set<Video> getVideos() {
@@ -54,6 +58,10 @@ public class Scenario {
 
 	public void setVideos(Set<Video> videos) {
 		this.video = videos;
+	}
+
+	public void addVideo(Video video) {
+		this.video.add(video);
 	}
 
 	public ScenarioParameters getValues() {

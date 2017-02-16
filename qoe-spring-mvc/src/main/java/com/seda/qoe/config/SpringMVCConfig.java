@@ -17,12 +17,13 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+//import com.seda.qoe.RestRootWebContext;
 import com.seda.qoe.security.WebSecurityConfig;
 
 @EnableWebMvc
 @Configuration
-@Import({ BeanMappingConfiguration.class, WebSecurityConfig.class })
-@ComponentScan(basePackages = { "com.seda.qoe.controllers", "com.seda.qoe.security" })
+@Import({BeanMappingConfiguration.class, WebSecurityConfig.class/*, RestRootWebContext.class*/})
+@ComponentScan(basePackages = { "com.seda.qoe.controllers", "com.seda.qoe.security"})
 public class SpringMVCConfig extends WebMvcConfigurerAdapter {
 
 	public static final String TEXTS = "Texts";

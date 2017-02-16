@@ -18,6 +18,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Pattern;
 
+import org.dozer.Mapping;
+
 import com.seda.qoe.enums.UserRole;
 
 @Entity
@@ -28,26 +30,25 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_user")
-	protected Long id;
+	private Long id;
 
-	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
 	@Column(unique = true, nullable = false)
 	private String email;
 
 	@Column(name = "password", nullable = false)
-	private String password_hash;
+	private String passwordHash;
 
 	@ElementCollection(targetClass = UserRole.class)
 	@Enumerated(EnumType.STRING)
 	@CollectionTable(name = "user_role")
 	@Column(name = "role")
+	@Mapping("roles")
 	private Collection<UserRole> roles;
 
 	// @Column(name = "role")
 	// private String roles;
 
-	@OneToMany(mappedBy = "id_user")
+	@OneToMany(mappedBy = "user")
 	private Set<Questionary> questionary = new HashSet<Questionary>();
 
 	public User() {
@@ -70,19 +71,11 @@ public class User {
 	}
 
 	public String getPasswordHash() {
-		return password_hash;
+		return passwordHash;
 	}
 
 	public void setPasswordHash(String passwordHash) {
-		this.password_hash = passwordHash;
-	}
-
-	public String getPassword_hash() {
-		return password_hash;
-	}
-
-	public void setPassword_hash(String password_hash) {
-		this.password_hash = password_hash;
+		this.passwordHash = passwordHash;
 	}
 
 	public Collection<UserRole> getRoles() {
@@ -92,6 +85,10 @@ public class User {
 	public void setRoles(Collection<UserRole> roles) {
 		this.roles = roles;
 	}
+	
+	public void addRole(UserRole role){
+		this.roles.add(role);
+	}
 
 	public Set<Questionary> getQuestionary() {
 		return questionary;
@@ -99,10 +96,6 @@ public class User {
 
 	public void setQuestionary(Set<Questionary> questionary) {
 		this.questionary = questionary;
-	}
-
-	public Set<Questionary> getDotaznik() {
-		return questionary;
 	}
 
 	public void setDotaznik(Set<Questionary> dotaznik) {
@@ -118,7 +111,7 @@ public class User {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
-				+ ((password_hash == null) ? 0 : password_hash.hashCode());
+				+ ((passwordHash == null) ? 0 : passwordHash.hashCode());
 		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
 		return result;
 	}
@@ -147,10 +140,10 @@ public class User {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (password_hash == null) {
-			if (other.password_hash != null)
+		if (passwordHash == null) {
+			if (other.passwordHash != null)
 				return false;
-		} else if (!password_hash.equals(other.password_hash))
+		} else if (!passwordHash.equals(other.passwordHash))
 			return false;
 		if (roles == null) {
 			if (other.roles != null)

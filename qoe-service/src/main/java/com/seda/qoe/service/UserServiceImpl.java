@@ -3,10 +3,6 @@ package com.seda.qoe.service;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.PersistenceException;
-import javax.validation.ConstraintViolationException;
-
-import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.UserRepository;
@@ -15,6 +11,10 @@ import com.seda.qoe.enums.UserRoles;
 import com.seda.qoe.exceptions.ServiceLayerException;
 import com.seda.qoe.security.UserPasswordEncryption;
 
+/**
+ * @author Pavel Šeda
+ *
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
 
 		try {
 			return userDao.findOne(id);
-		} catch (DataAccessException | ConstraintViolationException ex) {
+		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with finding User, see inner exception.", ex);
 		}
 	}
@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService {
 
 		try {
 			return userDao.save(c);
-		} catch (DataAccessException | ConstraintViolationException ex) {
+		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with updating User, see inner exception.", ex);
 		}
 	}
@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
 			throw new IllegalArgumentException("User c parameter is null");
 		try {
 			userDao.delete(c);
-		} catch (DataAccessException | ConstraintViolationException ex) {
+		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with deleting User, see inner exception.", ex);
 		}
 	}
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService {
 	public List<User> findAll() {
 		try {
 			return userDao.findAll();
-		} catch (DataAccessException | ConstraintViolationException ex) {
+		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with finding User, see inner exception.", ex);
 		}
 	}
@@ -108,7 +108,7 @@ public class UserServiceImpl implements UserService {
 
 		try {
 			return userDao.findByEmail(email);
-		} catch (DataAccessException | PersistenceException | ConstraintViolationException ex) {
+		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with finding User, see inner exception.", ex);
 		}
 	}
@@ -118,8 +118,8 @@ public class UserServiceImpl implements UserService {
 		if (u == null)
 			throw new IllegalArgumentException("User u parameter is null");
 		try {
-			return userDao.findByEmail(u.getEmail()).getUserRole().equals(UserRoles.ROLE_ADMIN.name());
-		} catch (DataAccessException | PersistenceException | ConstraintViolationException ex) {
+			return userDao.findByEmail(u.getEmail()).getRoles().equals(UserRoles.ROLE_ADMIN.name());
+		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with finding User, see inner exception.", ex);
 		}
 	}

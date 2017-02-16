@@ -6,6 +6,7 @@ import com.seda.qoe.dto.user.UserCreateDTO;
 import com.seda.qoe.dto.user.UserDTO;
 
 public interface UserFacade {
+
 	/**
 	 * finds specific user by id
 	 * 

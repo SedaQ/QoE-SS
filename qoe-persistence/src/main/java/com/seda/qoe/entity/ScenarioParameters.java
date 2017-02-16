@@ -14,7 +14,7 @@ public class ScenarioParameters {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_value")
-	protected Long id;
+	private Long id;
 
 	@Column(nullable = false)
 	private Long time;
