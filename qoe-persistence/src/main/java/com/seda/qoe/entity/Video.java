@@ -29,10 +29,10 @@ public class Video {
 	@Column(nullable = false, name = "video_src")
 	private String videoSource;
 
-	@OneToOne(mappedBy = "video", fetch = FetchType.EAGER)
+	@OneToOne(mappedBy = "video")
 	private Mos mos;
 
-	@ManyToMany(mappedBy = "video", fetch = FetchType.EAGER)
+	@ManyToMany(mappedBy = "video")
 	@Mapping("scenario")
 	private Set<Scenario> scenario = new HashSet<Scenario>();
 

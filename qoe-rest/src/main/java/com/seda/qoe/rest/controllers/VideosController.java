@@ -38,4 +38,5 @@ public class VideosController {
 		// logger.debug("rest getUsers()");
 		return videoFacade.getAllVideo();
 	}
+	
 }

@@ -20,10 +20,10 @@ public class Mos {
 	@Column(nullable = false, name = "mos_value")
 	private String mosValue;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne
 	private Questionary questionary;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne
 	private Video video;
 
 	public Mos() {

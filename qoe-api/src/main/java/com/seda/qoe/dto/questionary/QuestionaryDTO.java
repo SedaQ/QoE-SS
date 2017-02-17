@@ -12,6 +12,8 @@ public class QuestionaryDTO {
 	private String age;
 
 	private String school;
+	
+	private String userConnection;
 
 	private UserDTO user;
 
@@ -51,6 +53,14 @@ public class QuestionaryDTO {
 		this.school = school;
 	}
 
+	public String getUserConnection() {
+		return userConnection;
+	}
+
+	public void setUserConnection(String userConnection) {
+		this.userConnection = userConnection;
+	}
+
 	public UserDTO getUser() {
 		return user;
 	}
@@ -77,6 +87,8 @@ public class QuestionaryDTO {
 		result = prime * result + ((mos == null) ? 0 : mos.hashCode());
 		result = prime * result + ((school == null) ? 0 : school.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result
+				+ ((userConnection == null) ? 0 : userConnection.hashCode());
 		return result;
 	}
 
@@ -118,6 +130,11 @@ public class QuestionaryDTO {
 			if (other.user != null)
 				return false;
 		} else if (!user.equals(other.user))
+			return false;
+		if (userConnection == null) {
+			if (other.userConnection != null)
+				return false;
+		} else if (!userConnection.equals(other.userConnection))
 			return false;
 		return true;
 	}

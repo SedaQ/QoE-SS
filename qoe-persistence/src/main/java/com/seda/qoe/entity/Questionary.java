@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -27,6 +26,9 @@ public class Questionary {
 	@Column(nullable = false)
 	private String school;
 
+	@Column(nullable = false, name="user_connection")
+	private String userConnection;
+	
 	@ManyToOne
 	private User user;
 
@@ -84,6 +86,14 @@ public class Questionary {
 		this.mos = mos;
 	}
 
+	public String getUserConnection() {
+		return userConnection;
+	}
+
+	public void setUserConnection(String userConnection) {
+		this.userConnection = userConnection;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -94,6 +104,8 @@ public class Questionary {
 		result = prime * result + ((mos == null) ? 0 : mos.hashCode());
 		result = prime * result + ((school == null) ? 0 : school.hashCode());
 		result = prime * result + ((user == null) ? 0 : user.hashCode());
+		result = prime * result
+				+ ((userConnection == null) ? 0 : userConnection.hashCode());
 		return result;
 	}
 
@@ -135,6 +147,11 @@ public class Questionary {
 			if (other.user != null)
 				return false;
 		} else if (!user.equals(other.user))
+			return false;
+		if (userConnection == null) {
+			if (other.userConnection != null)
+				return false;
+		} else if (!userConnection.equals(other.userConnection))
 			return false;
 		return true;
 	}

@@ -26,11 +26,11 @@ public class Scenario {
 	@Column(nullable = false)
 	private String scenario;
 
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@Mapping("video")
 	private Set<Video> video = new HashSet<Video>();
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne
 	private ScenarioParameters value;
 
 	public Scenario() {
