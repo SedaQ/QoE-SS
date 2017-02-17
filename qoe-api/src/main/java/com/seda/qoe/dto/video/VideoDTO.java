@@ -1,20 +1,19 @@
 package com.seda.qoe.dto.video;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 
 public class VideoDTO {
 	private Long id;
-
 	private String name;
-
-	private String videoSource;
-
-	private MosDTO mos;
-
+	private List<String> videoSource = new ArrayList<String>();
+	private Set<MosDTO> mos = new HashSet<MosDTO>();
 	private Set<ScenarioDTO> scenario = new HashSet<ScenarioDTO>();
 
 	public VideoDTO() {
@@ -36,20 +35,28 @@ public class VideoDTO {
 		this.name = name;
 	}
 
-	public String getVideoSource() {
+	public List<String> getVideoSource() {
 		return videoSource;
 	}
 
-	public void setVideoSource(String videoSource) {
+	public void setVideoSource(List<String> videoSource) {
 		this.videoSource = videoSource;
 	}
 
-	public MosDTO getMos() {
+	public void addVideoSource(String videoSource) {
+		this.videoSource.add(videoSource);
+	}
+
+	public Set<MosDTO> getMos() {
 		return mos;
 	}
 
-	public void setMos(MosDTO mos) {
+	public void setMos(Set<MosDTO> mos) {
 		this.mos = mos;
+	}
+
+	public void addMos(MosDTO mos) {
+		this.mos.add(mos);
 	}
 
 	public Set<ScenarioDTO> getScenario() {
@@ -68,11 +75,7 @@ public class VideoDTO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((mos == null) ? 0 : mos.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((scenario == null) ? 0 : scenario.hashCode());
 		result = prime * result
 				+ ((videoSource == null) ? 0 : videoSource.hashCode());
 		return result;
@@ -84,28 +87,13 @@ public class VideoDTO {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof VideoDTO))
 			return false;
 		VideoDTO other = (VideoDTO) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (mos == null) {
-			if (other.mos != null)
-				return false;
-		} else if (!mos.equals(other.mos))
-			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
-			return false;
-		if (scenario == null) {
-			if (other.scenario != null)
-				return false;
-		} else if (!scenario.equals(other.scenario))
 			return false;
 		if (videoSource == null) {
 			if (other.videoSource != null)

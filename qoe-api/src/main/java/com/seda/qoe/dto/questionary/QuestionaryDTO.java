@@ -1,8 +1,8 @@
 package com.seda.qoe.dto.questionary;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.user.UserDTO;
-
 
 public class QuestionaryDTO {
 	private Long id;
@@ -16,7 +16,6 @@ public class QuestionaryDTO {
 	private String userConnection;
 
 	private UserDTO user;
-
 	private MosDTO mos;
 	
 	public QuestionaryDTO(){}
@@ -84,9 +83,7 @@ public class QuestionaryDTO {
 		result = prime * result + ((age == null) ? 0 : age.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((mos == null) ? 0 : mos.hashCode());
 		result = prime * result + ((school == null) ? 0 : school.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		result = prime * result
 				+ ((userConnection == null) ? 0 : userConnection.hashCode());
 		return result;
@@ -98,7 +95,7 @@ public class QuestionaryDTO {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof QuestionaryDTO))
 			return false;
 		QuestionaryDTO other = (QuestionaryDTO) obj;
 		if (age == null) {
@@ -116,20 +113,10 @@ public class QuestionaryDTO {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (mos == null) {
-			if (other.mos != null)
-				return false;
-		} else if (!mos.equals(other.mos))
-			return false;
 		if (school == null) {
 			if (other.school != null)
 				return false;
 		} else if (!school.equals(other.school))
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
 			return false;
 		if (userConnection == null) {
 			if (other.userConnection != null)
@@ -138,5 +125,6 @@ public class QuestionaryDTO {
 			return false;
 		return true;
 	}
+
 
 }

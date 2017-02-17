@@ -6,6 +6,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -14,16 +15,18 @@ import javax.persistence.Table;
 public class Mos {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_mos")
+	@Column(name = "id_mos", nullable = false, unique = true)
 	private Long id;
 
 	@Column(nullable = false, name = "mos_value")
 	private String mosValue;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
+	// @JsonBackReference
 	private Questionary questionary;
 
-	@OneToOne
+	@ManyToOne(fetch = FetchType.LAZY)
+	// @JsonBackReference
 	private Video video;
 
 	public Mos() {
@@ -70,7 +73,6 @@ public class Mos {
 				+ ((mosValue == null) ? 0 : mosValue.hashCode());
 		result = prime * result
 				+ ((questionary == null) ? 0 : questionary.hashCode());
-		result = prime * result + ((video == null) ? 0 : video.hashCode());
 		return result;
 	}
 
@@ -80,7 +82,7 @@ public class Mos {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Mos))
 			return false;
 		Mos other = (Mos) obj;
 		if (id == null) {
@@ -97,11 +99,6 @@ public class Mos {
 			if (other.questionary != null)
 				return false;
 		} else if (!questionary.equals(other.questionary))
-			return false;
-		if (video == null) {
-			if (other.video != null)
-				return false;
-		} else if (!video.equals(other.video))
 			return false;
 		return true;
 	}

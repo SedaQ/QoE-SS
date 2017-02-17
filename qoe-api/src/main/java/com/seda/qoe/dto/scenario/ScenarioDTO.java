@@ -9,12 +9,9 @@ import com.seda.qoe.dto.video.VideoDTO;
 
 public class ScenarioDTO {
 	private Long id;
-
 	private String scenario;
-
 	private Set<VideoDTO> video = new HashSet<VideoDTO>();
-
-	private ScenarioParametersDTO value;
+	private ScenarioParametersDTO scenarioParameters;
 	
 	public ScenarioDTO(){}
 
@@ -45,13 +42,13 @@ public class ScenarioDTO {
 	public void addVideo(VideoDTO video){
 		this.video.add(video);
 	}
-
-	public ScenarioParametersDTO getValue() {
-		return value;
+	
+	public ScenarioParametersDTO getScenarioParameters() {
+		return scenarioParameters;
 	}
 
-	public void setValue(ScenarioParametersDTO value) {
-		this.value = value;
+	public void setScenarioParameters(ScenarioParametersDTO scenarioParameters) {
+		this.scenarioParameters = scenarioParameters;
 	}
 
 	@Override
@@ -61,8 +58,6 @@ public class ScenarioDTO {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((scenario == null) ? 0 : scenario.hashCode());
-		result = prime * result + ((value == null) ? 0 : value.hashCode());
-		result = prime * result + ((video == null) ? 0 : video.hashCode());
 		return result;
 	}
 
@@ -72,7 +67,7 @@ public class ScenarioDTO {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof ScenarioDTO))
 			return false;
 		ScenarioDTO other = (ScenarioDTO) obj;
 		if (id == null) {
@@ -85,16 +80,7 @@ public class ScenarioDTO {
 				return false;
 		} else if (!scenario.equals(other.scenario))
 			return false;
-		if (value == null) {
-			if (other.value != null)
-				return false;
-		} else if (!value.equals(other.value))
-			return false;
-		if (video == null) {
-			if (other.video != null)
-				return false;
-		} else if (!video.equals(other.video))
-			return false;
 		return true;
 	}
+
 }

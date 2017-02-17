@@ -1,39 +1,46 @@
 package com.seda.qoe.entity;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.dozer.Mapping;
+
+import com.seda.qoe.enums.UserRole;
 
 @Entity
 @Table(name = "video")
 public class Video {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_video")
+	@Column(name = "id_video", nullable = false, unique = true)
 	private Long id;
 
-	@Column
+	@Column(nullable = false)
 	private String name;
 
+	@ElementCollection(targetClass = String.class, fetch = FetchType.LAZY)
 	@Column(nullable = false, name = "video_src")
-	private String videoSource;
+	private Collection<String> videoSource;
 
-	@OneToOne(mappedBy = "video")
-	private Mos mos;
+	@OneToMany(mappedBy = "video", fetch = FetchType.LAZY)
+	// @JsonManagedReference
+	private Set<Mos> mos = new HashSet<Mos>();
 
-	@ManyToMany(mappedBy = "video")
+	@ManyToMany(mappedBy = "video", fetch = FetchType.LAZY)
 	@Mapping("scenario")
+	// @JsonManagedReference
 	private Set<Scenario> scenario = new HashSet<Scenario>();
 
 	public Video() {
@@ -55,28 +62,36 @@ public class Video {
 		this.name = name;
 	}
 
-	public String getVideoSource() {
+	public Collection<String> getVideoSource() {
 		return videoSource;
 	}
 
-	public void setVideoSource(String videoSource) {
+	public void setVideoSource(Collection<String> videoSource) {
 		this.videoSource = videoSource;
 	}
+	
+	public void addVideoSource(String videoSource){
+		this.videoSource.add(videoSource);
+	}
 
-	public Mos getMos() {
+	public Set<Mos> getMos() {
 		return mos;
 	}
 
-	public void setMos(Mos mos) {
+	public void setMos(Set<Mos> mos) {
 		this.mos = mos;
 	}
 
-	public Set<Scenario> getScenarions() {
+	public void addMos(Mos mos) {
+		this.mos.add(mos);
+	}
+
+	public Set<Scenario> getScenario() {
 		return scenario;
 	}
 
-	public void setScenarions(Set<Scenario> scenarions) {
-		this.scenario = scenarions;
+	public void setScenario(Set<Scenario> scenario) {
+		this.scenario = scenario;
 	}
 
 	public void addScenarion(Scenario scenario) {
@@ -87,11 +102,7 @@ public class Video {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((mos == null) ? 0 : mos.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((scenario == null) ? 0 : scenario.hashCode());
 		result = prime * result
 				+ ((videoSource == null) ? 0 : videoSource.hashCode());
 		return result;
@@ -103,28 +114,13 @@ public class Video {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Video))
 			return false;
 		Video other = (Video) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (mos == null) {
-			if (other.mos != null)
-				return false;
-		} else if (!mos.equals(other.mos))
-			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
 		} else if (!name.equals(other.name))
-			return false;
-		if (scenario == null) {
-			if (other.scenario != null)
-				return false;
-		} else if (!scenario.equals(other.scenario))
 			return false;
 		if (videoSource == null) {
 			if (other.videoSource != null)

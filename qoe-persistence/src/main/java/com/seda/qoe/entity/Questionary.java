@@ -2,6 +2,7 @@ package com.seda.qoe.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,12 +10,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+
 @Entity
 @Table(name = "questionary")
 public class Questionary {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_questionary")
+	@Column(name = "id_questionary", nullable = false, unique = true)
 	private Long id;
 
 	@Column(nullable = false)
@@ -26,13 +28,15 @@ public class Questionary {
 	@Column(nullable = false)
 	private String school;
 
-	@Column(nullable = false, name="user_connection")
+	@Column(nullable = false, name = "user_connection")
 	private String userConnection;
-	
-	@ManyToOne
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	// @JsonBackReference
 	private User user;
 
-	@OneToOne(mappedBy = "questionary")
+	@OneToOne(mappedBy = "questionary", fetch = FetchType.LAZY)
+	// @JsonManagedReference
 	private Mos mos;
 
 	public Questionary() {
@@ -101,9 +105,7 @@ public class Questionary {
 		result = prime * result + ((age == null) ? 0 : age.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((mos == null) ? 0 : mos.hashCode());
 		result = prime * result + ((school == null) ? 0 : school.hashCode());
-		result = prime * result + ((user == null) ? 0 : user.hashCode());
 		result = prime * result
 				+ ((userConnection == null) ? 0 : userConnection.hashCode());
 		return result;
@@ -115,7 +117,7 @@ public class Questionary {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Questionary))
 			return false;
 		Questionary other = (Questionary) obj;
 		if (age == null) {
@@ -133,20 +135,10 @@ public class Questionary {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (mos == null) {
-			if (other.mos != null)
-				return false;
-		} else if (!mos.equals(other.mos))
-			return false;
 		if (school == null) {
 			if (other.school != null)
 				return false;
 		} else if (!school.equals(other.school))
-			return false;
-		if (user == null) {
-			if (other.user != null)
-				return false;
-		} else if (!user.equals(other.user))
 			return false;
 		if (userConnection == null) {
 			if (other.userConnection != null)

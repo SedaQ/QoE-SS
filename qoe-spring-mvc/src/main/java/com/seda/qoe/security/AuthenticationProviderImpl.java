@@ -40,7 +40,7 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 		}
 
 		List<GrantedAuthority> authorities = null;
-		AuthorityUtils.createAuthorityList(user.getUserRole());
+		AuthorityUtils.createAuthorityList(user.getRoles());
 		return new UsernamePasswordAuthenticationToken(email, pwd, authorities);
 	}
 

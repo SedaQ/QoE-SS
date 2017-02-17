@@ -1,8 +1,8 @@
 package com.seda.qoe.dto.mos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
 import com.seda.qoe.dto.video.VideoDTO;
-
 
 public class MosDTO {
 	private Long id;
@@ -10,7 +10,7 @@ public class MosDTO {
 	private String mosValue;
 
 	private QuestionaryDTO questionary;
-
+	
 	private VideoDTO video;
 
 	public MosDTO() {
@@ -47,7 +47,7 @@ public class MosDTO {
 	public void setVideo(VideoDTO video) {
 		this.video = video;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -57,7 +57,6 @@ public class MosDTO {
 				+ ((mosValue == null) ? 0 : mosValue.hashCode());
 		result = prime * result
 				+ ((questionary == null) ? 0 : questionary.hashCode());
-		result = prime * result + ((video == null) ? 0 : video.hashCode());
 		return result;
 	}
 
@@ -67,7 +66,7 @@ public class MosDTO {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof MosDTO))
 			return false;
 		MosDTO other = (MosDTO) obj;
 		if (id == null) {
@@ -85,12 +84,8 @@ public class MosDTO {
 				return false;
 		} else if (!questionary.equals(other.questionary))
 			return false;
-		if (video == null) {
-			if (other.video != null)
-				return false;
-		} else if (!video.equals(other.video))
-			return false;
 		return true;
 	}
+
 	
 }

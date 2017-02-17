@@ -20,18 +20,20 @@ import org.dozer.Mapping;
 public class Scenario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_scenarion")
+	@Column(name = "id_scenarion", nullable = false, unique = true)
 	private Long id;
 
 	@Column(nullable = false)
 	private String scenario;
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.LAZY)
 	@Mapping("video")
+	// @JsonBackReference
 	private Set<Video> video = new HashSet<Video>();
 
-	@OneToOne
-	private ScenarioParameters value;
+	@OneToOne(fetch = FetchType.LAZY)
+	// @JsonBackReference
+	private ScenarioParameters scenarioparameters;
 
 	public Scenario() {
 	}
@@ -52,24 +54,24 @@ public class Scenario {
 		this.scenario = scenario;
 	}
 
-	public Set<Video> getVideos() {
+	public Set<Video> getVideo() {
 		return video;
 	}
 
-	public void setVideos(Set<Video> videos) {
-		this.video = videos;
+	public void setVideo(Set<Video> video) {
+		this.video = video;
 	}
 
 	public void addVideo(Video video) {
 		this.video.add(video);
 	}
 
-	public ScenarioParameters getValues() {
-		return value;
+	public ScenarioParameters getScenarioparameters() {
+		return scenarioparameters;
 	}
 
-	public void setValues(ScenarioParameters values) {
-		this.value = values;
+	public void setScenarioparameters(ScenarioParameters scenarioparameters) {
+		this.scenarioparameters = scenarioparameters;
 	}
 
 	@Override
@@ -79,8 +81,6 @@ public class Scenario {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((scenario == null) ? 0 : scenario.hashCode());
-		result = prime * result + ((value == null) ? 0 : value.hashCode());
-		result = prime * result + ((video == null) ? 0 : video.hashCode());
 		return result;
 	}
 
@@ -90,7 +90,7 @@ public class Scenario {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof Scenario))
 			return false;
 		Scenario other = (Scenario) obj;
 		if (id == null) {
@@ -102,16 +102,6 @@ public class Scenario {
 			if (other.scenario != null)
 				return false;
 		} else if (!scenario.equals(other.scenario))
-			return false;
-		if (value == null) {
-			if (other.value != null)
-				return false;
-		} else if (!value.equals(other.value))
-			return false;
-		if (video == null) {
-			if (other.video != null)
-				return false;
-		} else if (!video.equals(other.video))
 			return false;
 		return true;
 	}

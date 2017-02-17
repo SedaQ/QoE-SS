@@ -5,8 +5,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.seda.qoe.config.BeanMappingConfiguration;
+import com.seda.qoe.dto.mos.MosDTO;
+import com.seda.qoe.dto.questionary.QuestionaryDTO;
+import com.seda.qoe.dto.scenario.ScenarioDTO;
+import com.seda.qoe.dto.scenarioparameters.ScenarioParametersDTO;
 import com.seda.qoe.dto.user.UserDTO;
+import com.seda.qoe.dto.video.VideoDTO;
+import com.seda.qoe.rest.mixin.MosDTOMixin;
+import com.seda.qoe.rest.mixin.QuestionaryDTOMixin;
+import com.seda.qoe.rest.mixin.ScenarioDTOMixin;
+import com.seda.qoe.rest.mixin.ScenarioParametersDTOMixin;
 import com.seda.qoe.rest.mixin.UserDTOMixin;
+import com.seda.qoe.rest.mixin.VideoDTOMixin;
 
 import java.util.List;
 
@@ -26,8 +36,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @EnableWebMvc
 @Configuration
-@Import({BeanMappingConfiguration.class})
-@ComponentScan(basePackages = {"com.seda.qoe.rest.controllers"})
+@Import({ BeanMappingConfiguration.class })
+@ComponentScan(basePackages = { "com.seda.qoe.rest.controllers" })
 public class RestRootWebContext extends WebMvcConfigurerAdapter {
 
 	@Override
@@ -52,8 +62,16 @@ public class RestRootWebContext extends WebMvcConfigurerAdapter {
 		objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm",
 				Locale.ENGLISH));
 
-		// TODO need to add mixins..
-        objectMapper.addMixIn(UserDTO.class,    UserDTOMixin.class);
+		// TODO need to add mixins.. it is used for ignoring inner objects
+		// {collections} but it is still invoking dependencies etc. so it is
+		// needed to make it better!
+		objectMapper.addMixIn(UserDTO.class, UserDTOMixin.class);
+		objectMapper.addMixIn(MosDTO.class, MosDTOMixin.class);
+		objectMapper.addMixIn(QuestionaryDTO.class, QuestionaryDTOMixin.class);
+		objectMapper.addMixIn(ScenarioDTO.class, ScenarioDTOMixin.class);
+		objectMapper.addMixIn(ScenarioParametersDTO.class,
+				ScenarioParametersDTOMixin.class);
+		objectMapper.addMixIn(VideoDTO.class, VideoDTOMixin.class);
 
 		objectMapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
 

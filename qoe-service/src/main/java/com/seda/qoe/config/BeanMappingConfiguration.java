@@ -20,16 +20,16 @@ import com.seda.qoe.context.PersistenceApplicationContext;
 @ComponentScan(basePackages = { "com.seda.qoe.security", "com.seda.qoe.mapping", "com.seda.qoe.service", "com.seda.qoe.facade" })
 public class BeanMappingConfiguration {
         
-//	@Bean
-//	public ModelMapper modelMapper() {
-//		ModelMapper mapper = new ModelMapper();
-//		return mapper;
-//	}
-	
 	@Bean
-	public Mapper dozer(){
-		DozerBeanMapper dozer = new DozerBeanMapper();		
-		return dozer;
+	public ModelMapper modelMapper() {
+		ModelMapper mapper = new ModelMapper();
+		return mapper;
 	}
+	
+//	@Bean
+//	public Mapper dozer(){
+//		DozerBeanMapper dozer = new DozerBeanMapper();		
+//		return dozer;
+//	}
 
 }

@@ -11,6 +11,7 @@
 	<packaging>war</packaging>
 	<name>Rest Layer</name>
 
+	<!-- -->
 	<build>
 		<defaultGoal>tomcat7:run</defaultGoal>
 		<plugins>
@@ -22,7 +23,6 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
-			<!-- -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
@@ -32,7 +32,8 @@
 			</plugin>
 		</plugins>
 	</build>
-
+ 	
+ 	
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>

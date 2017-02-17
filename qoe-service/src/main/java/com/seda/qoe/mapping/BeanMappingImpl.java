@@ -20,10 +20,10 @@ import org.modelmapper.ModelMapper;
 @Named
 public class BeanMappingImpl implements BeanMapping {
 
-	private Mapper modelMapper;
+	private ModelMapper modelMapper;
 
 	@Inject
-	public BeanMappingImpl(Mapper modelMapper) {
+	public BeanMappingImpl(ModelMapper modelMapper) {
 		this.modelMapper = modelMapper;
 	}
 

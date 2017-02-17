@@ -10,6 +10,7 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -45,12 +46,43 @@ public class MosRepositoryTest extends AbstractTestNGSpringContextTests {
 		mos.setMosValue("5");
 		//mos.setVideo(video);
 		//mos.setQuestionary(q);
+		mosDao.deleteAll();
 	}
-
+	
+	@AfterMethod
+	public void afterMethod(){
+		
+	}
+	
 	@Test
 	public void testCreate() {
 		mosDao.save(mos);
 		Assert.assertNotNull(em.find(Mos.class, mos.getId()));
+	}
+	
+	@Test
+	public void testFindAll() {
+		mosDao.save(mos);
+		/*
+		Video video = new Video();
+		video.setVideoSource("mp4/aspen");
+		videoDao.save(video);
+		
+		Questionary q = new Questionary();
+		q.setAge("24");
+		q.setGender("man");
+		q.setSchool("VUT");
+		questionaryDao.save(q);
+		*/
+		
+		Mos mos1 = new Mos();
+		mos1.setMosValue("1223");
+		//mos1.setVideo(video);
+		//mos1.setQuestionary(q);
+
+		mosDao.save(mos1);
+
+		Assert.assertEquals(mosDao.findAll().size(), 2);
 	}
 
 	@Test
@@ -77,32 +109,6 @@ public class MosRepositoryTest extends AbstractTestNGSpringContextTests {
 		mos.setMosValue("3");
 		mosDao.save(mos);
 		Assert.assertEquals(mosDao.findOne(mos.getId()).getMosValue(), "3");
-	}
-
-	@Test
-	public void testFindAll() {
-		mosDao.save(mos);
-		/*
-		Video video = new Video();
-		video.setVideoSource("mp4/aspen");
-		videoDao.save(video);
-		
-		Questionary q = new Questionary();
-		q.setAge("24");
-		q.setGender("man");
-		q.setSchool("VUT");
-		questionaryDao.save(q);
-		*/
-		
-		Mos mos1 = new Mos();
-		mos1.setMosValue("1223");
-		//mos1.setVideo(video);
-		//mos1.setQuestionary(q);
-
-		mosDao.save(mos1);
-
-		Assert.assertEquals(mosDao.findAll().size(), 2);
-
 	}
 
 }

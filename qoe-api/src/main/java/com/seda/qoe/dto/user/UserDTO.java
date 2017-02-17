@@ -46,16 +46,11 @@ public class UserDTO {
 	public void setRoles(String roles) {
 		this.roles = roles;
 	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((passwordHash == null) ? 0 : passwordHash.hashCode());
-		result = prime * result + ((roles == null) ? 0 : roles.hashCode());
 		return result;
 	}
 
@@ -65,7 +60,7 @@ public class UserDTO {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (!(obj instanceof UserDTO))
 			return false;
 		UserDTO other = (UserDTO) obj;
 		if (email == null) {
@@ -73,22 +68,8 @@ public class UserDTO {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (passwordHash == null) {
-			if (other.passwordHash != null)
-				return false;
-		} else if (!passwordHash.equals(other.passwordHash))
-			return false;
-		if (roles == null) {
-			if (other.roles != null)
-				return false;
-		} else if (!roles.equals(other.roles))
-			return false;
 		return true;
 	}
+
 
 }
