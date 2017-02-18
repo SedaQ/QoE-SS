@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.seda.qoe.dto.scenario.ScenarioCreateDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 import com.seda.qoe.entity.Scenario;
 import com.seda.qoe.exceptions.ServiceLayerException;
@@ -71,6 +72,19 @@ public class ScenarioFacadeImpl implements ScenarioFacade {
 			return beanMapping.mapTo(scenarioService.findAll(), ScenarioDTO.class);
 		} catch (ServiceLayerException ex) {
 			return Collections.emptyList();
+		}
+	}
+
+	@Override
+	public ScenarioDTO create(ScenarioCreateDTO scenario) {
+		if (scenario == null)
+			throw new IllegalArgumentException(
+					"ScenarioCreateDTO scenario parameter is null");
+		try {
+			Scenario s = scenarioService.create(beanMapping.mapTo(scenario, Scenario.class));
+			return s != null ? beanMapping.mapTo(s, ScenarioDTO.class): null;
+		} catch (ServiceLayerException ex) {
+			return null;
 		}
 	}
 

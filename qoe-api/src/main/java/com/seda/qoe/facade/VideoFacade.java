@@ -2,9 +2,19 @@ package com.seda.qoe.facade;
 
 import java.util.List;
 
+import com.seda.qoe.dto.video.VideoCreateDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 
 public interface VideoFacade {
+
+	/**
+	 * create new video in database
+	 * 
+	 * @param video
+	 *            specific Video to be created
+	 * @return created video
+	 */
+	public VideoDTO create(VideoCreateDTO video);
 
 	/**
 	 * finds specific Video by id

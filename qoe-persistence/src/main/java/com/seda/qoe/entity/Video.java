@@ -17,8 +17,6 @@ import javax.persistence.Table;
 
 import org.dozer.Mapping;
 
-import com.seda.qoe.enums.UserRole;
-
 @Entity
 @Table(name = "video")
 public class Video {

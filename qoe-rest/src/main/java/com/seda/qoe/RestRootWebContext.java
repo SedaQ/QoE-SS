@@ -36,32 +36,29 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @EnableWebMvc
 @Configuration
-@Import({ BeanMappingConfiguration.class })
-@ComponentScan(basePackages = { "com.seda.qoe.rest.controllers" })
+@Import({BeanMappingConfiguration.class})
+@ComponentScan(basePackages = {"com.seda.qoe.controllers", "com.seda.qoe.assemblers"})
 public class RestRootWebContext extends WebMvcConfigurerAdapter {
 
-	@Override
-	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(new AllowOriginInterceptor());
-	}
-
-	@Override
-	public void configureDefaultServletHandling(
-			DefaultServletHandlerConfigurer configurer) {
-		configurer.enable();
-	}
-
-	@Bean
-	@Primary
-	public MappingJackson2HttpMessageConverter customJackson2HttpMessageConverter() {
-		MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
-		ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.configure(
-				DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-		objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm",
-				Locale.ENGLISH));
-
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new AllowOriginInterceptor()); 
+    }
+    
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
+    
+    @Bean
+    @Primary
+    public MappingJackson2HttpMessageConverter customJackson2HttpMessageConverter() {
+        MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        objectMapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.ENGLISH));
+        
 		// TODO need to add mixins.. it is used for ignoring inner objects
 		// {collections} but it is still invoking dependencies etc. so it is
 		// needed to make it better!
@@ -72,18 +69,15 @@ public class RestRootWebContext extends WebMvcConfigurerAdapter {
 		objectMapper.addMixIn(ScenarioParametersDTO.class,
 				ScenarioParametersDTOMixin.class);
 		objectMapper.addMixIn(VideoDTO.class, VideoDTOMixin.class);
+        
+        objectMapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
+   
+        jsonConverter.setObjectMapper(objectMapper);
+        return jsonConverter;
+    }
 
-		objectMapper.disable(MapperFeature.DEFAULT_VIEW_INCLUSION);
-
-		jsonConverter.setObjectMapper(objectMapper);
-		return jsonConverter;
-
-	}
-
-	@Override
-	public void configureMessageConverters(
-			List<HttpMessageConverter<?>> converters) {
-		converters.add(customJackson2HttpMessageConverter());
-	}
-
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        converters.add(customJackson2HttpMessageConverter());
+    }
 }

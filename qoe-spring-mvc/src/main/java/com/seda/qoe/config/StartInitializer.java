@@ -15,13 +15,13 @@ public class StartInitializer extends AbstractAnnotationConfigDispatcherServletI
 	}
 
 	@Override
-	protected String[] getServletMappings() {
-		return new String[] { "/" };
-	}
-
-	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		return new Class<?>[] { SpringMVCConfig.class};
+	}
+	
+	@Override
+	protected String[] getServletMappings() {
+		return new String[] { "/" };
 	}
 	
 	@Override

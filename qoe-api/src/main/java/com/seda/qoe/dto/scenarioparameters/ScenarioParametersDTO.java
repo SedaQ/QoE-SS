@@ -73,5 +73,4 @@ public class ScenarioParametersDTO {
 		return true;
 	}
 
-
 }

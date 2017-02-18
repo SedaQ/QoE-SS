@@ -13,6 +13,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "mos")
 public class Mos {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_mos", nullable = false, unique = true)
@@ -28,6 +29,9 @@ public class Mos {
 	@ManyToOne(fetch = FetchType.LAZY)
 	// @JsonBackReference
 	private Video video;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	private Scenario scenario;
 
 	public Mos() {
 	}
@@ -62,6 +66,14 @@ public class Mos {
 
 	public void setVideo(Video video) {
 		this.video = video;
+	}
+
+	public Scenario getScenario() {
+		return scenario;
+	}
+
+	public void setScenario(Scenario scenario) {
+		this.scenario = scenario;
 	}
 
 	@Override

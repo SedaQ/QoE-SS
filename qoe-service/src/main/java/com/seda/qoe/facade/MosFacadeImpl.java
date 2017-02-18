@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.seda.qoe.dto.mos.MosCreateDTO;
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.entity.Mos;
 import com.seda.qoe.exceptions.ServiceLayerException;
@@ -20,13 +21,13 @@ public class MosFacadeImpl implements MosFacade {
 
 	private MosService mosService;
 	private BeanMapping beanMapping;
-	
+
 	@Inject
-	public MosFacadeImpl(MosService mosService, BeanMapping beanMapping){
+	public MosFacadeImpl(MosService mosService, BeanMapping beanMapping) {
 		this.mosService = mosService;
 		this.beanMapping = beanMapping;
 	}
-	
+
 	@Override
 	public MosDTO getMosById(Long id) {
 		if (id == null)
@@ -71,6 +72,19 @@ public class MosFacadeImpl implements MosFacade {
 			return beanMapping.mapTo(mosService.findAll(), MosDTO.class);
 		} catch (ServiceLayerException ex) {
 			return Collections.emptyList();
+		}
+	}
+
+	@Override
+	public MosDTO create(MosCreateDTO mos) {
+		if (mos == null)
+			throw new IllegalArgumentException(
+					"MosCreateDTO mos parameter is null");
+		try {
+			Mos mosTemp = mosService.create(beanMapping.mapTo(mos, Mos.class));
+			return mosTemp != null ? beanMapping.mapTo(mosTemp, MosDTO.class): null;
+		} catch (ServiceLayerException ex) {
+			return null;
 		}
 	}
 

@@ -2,10 +2,21 @@ package com.seda.qoe.facade;
 
 import java.util.List;
 
+import com.seda.qoe.dto.scenario.ScenarioCreateDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 
 public interface ScenarioFacade {
 
+	/**
+	 * create new scenario in database
+	 * 
+	 * @param scenario
+	 *            specific Scenario to be created
+	 * @return created scenario
+	 */
+	public ScenarioDTO create(ScenarioCreateDTO scenario);
+
+	
 	/**
 	 * finds specific Scenario by id
 	 * 

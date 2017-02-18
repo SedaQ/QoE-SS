@@ -60,8 +60,10 @@
 		</dependency>
 		<!-- dependency for testing -->
 		<dependency>
-			<groupId>javax.el</groupId>
-			<artifactId>javax.el-api</artifactId>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.el</artifactId>
+			<scope>test</scope><!-- conflicts with tomcat libraries, needed only for 
+				tests anyway -->
 		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>

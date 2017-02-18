@@ -11,7 +11,7 @@
 	<packaging>war</packaging>
 	<name>Rest Layer</name>
 
-	<!-- -->
+	<!--
 	<build>
 		<defaultGoal>tomcat7:run</defaultGoal>
 		<plugins>
@@ -32,12 +32,14 @@
 			</plugin>
 		</plugins>
 	</build>
- 	
- 	
+	 -->
+
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-api</artifactId>
+			<version>7.0.75</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>${project.parent.groupId}</groupId>

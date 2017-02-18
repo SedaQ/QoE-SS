@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.seda.qoe.dto.video.VideoCreateDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 import com.seda.qoe.entity.Video;
 import com.seda.qoe.exceptions.ServiceLayerException;
@@ -71,6 +72,19 @@ public class VideoFacadeImpl implements VideoFacade {
 			return beanMapping.mapTo(videoService.findAll(), VideoDTO.class);
 		} catch (ServiceLayerException ex) {
 			return Collections.emptyList();
+		}
+	}
+
+	@Override
+	public VideoDTO create(VideoCreateDTO video) {
+		if (video == null)
+			throw new IllegalArgumentException(
+					"VideoCreateDTO video parameter is null");
+		try {
+			Video v = videoService.create(beanMapping.mapTo(video, Video.class));
+			return v != null ? beanMapping.mapTo(v, VideoDTO.class): null;
+		} catch (ServiceLayerException ex) {
+			return null;
 		}
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.ScenarioParametersRepository;
@@ -64,6 +65,18 @@ public class ScenarioParametersServiceImpl implements ScenarioParametersService 
 			scenarioParametersDao.delete(c);
 		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with deleting ScenarioParameters, see inner exception.", ex);
+		}
+	}
+
+	@Override
+	public ScenarioParameters create(ScenarioParameters scenarioparameters) {
+		if (scenarioparameters == null)
+			throw new IllegalArgumentException("scenarioparameters parameter is null");
+		try {
+			scenarioParametersDao.save(scenarioparameters);
+			return scenarioparameters;
+		} catch (DataAccessException ex) {
+			throw new ServiceLayerException("Problem with creating scenarioparameters, see inner exception.", ex);
 		}
 	}
 

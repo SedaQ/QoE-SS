@@ -11,6 +11,15 @@ import com.seda.qoe.entity.Mos;
 public interface MosService {
 
 	/**
+	 * create new mos in database
+	 * 
+	 * @param mos
+	 *            specific Mos to be created
+	 * @return created mos
+	 */
+	public Mos create(Mos mos);
+	
+	/**
 	 * finds specific mos by id
 	 * 
 	 * @param id

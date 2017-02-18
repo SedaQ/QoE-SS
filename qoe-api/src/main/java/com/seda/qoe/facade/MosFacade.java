@@ -2,10 +2,21 @@ package com.seda.qoe.facade;
 
 import java.util.List;
 
+import com.seda.qoe.dto.mos.MosCreateDTO;
 import com.seda.qoe.dto.mos.MosDTO;
 
 public interface MosFacade {
 
+	/**
+	 * create new mos in database
+	 * 
+	 * @param mos
+	 *            specific Mos to be created
+	 * @return created mos
+	 */
+	public MosDTO create(MosCreateDTO mos);
+
+	
 	/**
 	 * finds specific mos by id
 	 * 

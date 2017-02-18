@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.VideoRepository;
@@ -64,6 +65,18 @@ public class VideoServiceImpl implements VideoService{
 			videoDao.delete(c);
 		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with deleting Video, see inner exception.", ex);
+		}
+	}
+
+	@Override
+	public Video create(Video video) {
+		if (video == null)
+			throw new IllegalArgumentException("video parameter is null");
+		try {
+			videoDao.save(video);
+			return video;
+		} catch (DataAccessException ex) {
+			throw new ServiceLayerException("Problem with creating video, see inner exception.", ex);
 		}
 	}
 }

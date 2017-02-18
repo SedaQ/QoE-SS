@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.QuestionaryRepository;
@@ -64,6 +65,18 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 			questionaryDao.delete(c);
 		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with deleting Questionary, see inner exception.", ex);
+		}
+	}
+
+	@Override
+	public Questionary create(Questionary questionary) {
+		if (questionary == null)
+			throw new IllegalArgumentException("questionary parameter is null");
+		try {
+			questionaryDao.save(questionary);
+			return questionary;
+		} catch (DataAccessException ex) {
+			throw new ServiceLayerException("Problem with creating questionary, see inner exception.", ex);
 		}
 	}
 

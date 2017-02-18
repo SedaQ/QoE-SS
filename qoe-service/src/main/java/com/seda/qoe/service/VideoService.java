@@ -11,6 +11,15 @@ import com.seda.qoe.entity.Video;
 public interface VideoService {
 	
 	/**
+	 * create new video in database
+	 * 
+	 * @param video
+	 *            specific Video to be created
+	 * @return created video
+	 */
+	public Video create(Video video);
+	
+	/**
 	 * finds specific Video by id
 	 * 
 	 * @param id

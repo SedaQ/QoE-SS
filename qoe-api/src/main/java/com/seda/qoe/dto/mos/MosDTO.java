@@ -1,7 +1,7 @@
 package com.seda.qoe.dto.mos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
+import com.seda.qoe.dto.scenario.ScenarioDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 
 public class MosDTO {
@@ -12,6 +12,8 @@ public class MosDTO {
 	private QuestionaryDTO questionary;
 	
 	private VideoDTO video;
+	
+	private ScenarioDTO scenario;
 
 	public MosDTO() {
 	}
@@ -48,6 +50,14 @@ public class MosDTO {
 		this.video = video;
 	}
 	
+	public ScenarioDTO getScenario() {
+		return scenario;
+	}
+
+	public void setScenario(ScenarioDTO scenario) {
+		this.scenario = scenario;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

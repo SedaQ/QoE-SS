@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.seda.qoe.dto.questionary.QuestionaryCreateDTO;
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
 import com.seda.qoe.entity.Questionary;
 import com.seda.qoe.exceptions.ServiceLayerException;
@@ -71,6 +72,19 @@ public class QuestionaryFacadeImpl implements QuestionaryFacade {
 			return beanMapping.mapTo(questionaryService.findAll(), QuestionaryDTO.class);
 		} catch (ServiceLayerException ex) {
 			return Collections.emptyList();
+		}
+	}
+
+	@Override
+	public QuestionaryDTO create(QuestionaryCreateDTO questionary) {
+		if (questionary == null)
+			throw new IllegalArgumentException(
+					"QuestionaryCreateDTO questionary parameter is null");
+		try {
+			Questionary q = questionaryService.create(beanMapping.mapTo(questionary, Questionary.class));
+			return q != null ? beanMapping.mapTo(q, QuestionaryDTO.class): null;
+		} catch (ServiceLayerException ex) {
+			return null;
 		}
 	}
 

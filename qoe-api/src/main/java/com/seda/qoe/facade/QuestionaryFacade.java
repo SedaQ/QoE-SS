@@ -2,9 +2,19 @@ package com.seda.qoe.facade;
 
 import java.util.List;
 
+import com.seda.qoe.dto.questionary.QuestionaryCreateDTO;
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
 
 public interface QuestionaryFacade {
+
+	/**
+	 * create new questionary in database
+	 * 
+	 * @param questionary
+	 *            specific Questionary to be created
+	 * @return created questionary
+	 */
+	public QuestionaryDTO create(QuestionaryCreateDTO questionary);
 
 	/**
 	 * finds specific Questionary by id

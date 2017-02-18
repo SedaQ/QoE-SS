@@ -14,6 +14,7 @@ import org.springframework.web.context.request.WebRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
+import com.seda.qoe.dto.scenario.ScenarioDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 import com.seda.qoe.facade.MosFacade;
 import com.seda.qoe.rest.ApiUris;
@@ -91,11 +92,29 @@ public class MosController {
 	 * @param webRequest
 	 * @return
 	 */
-	@RequestMapping(value = "/{id}/video", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/{id}/videos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final VideoDTO getVideoByMosId(
 			@PathVariable("id") long id, WebRequest webRequest) {
 		try {
 			return mosFacade.getMosById(id).getVideo();
+		} catch (Exception ex) {
+			throw new ResourceNotFoundException();
+		}
+	}
+	
+	/**
+	 * get scenario by mos id curl -i -X GET
+	 * http://localhost:8080/qoe/rest/mos/{id}/scenarios
+	 * 
+	 * @param id
+	 * @param webRequest
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}/scenarios", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ScenarioDTO getScenarioByMosId(
+			@PathVariable("id") long id, WebRequest webRequest) {
+		try {
+			return mosFacade.getMosById(id).getScenario();
 		} catch (Exception ex) {
 			throw new ResourceNotFoundException();
 		}

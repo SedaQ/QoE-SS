@@ -11,6 +11,15 @@ import com.seda.qoe.entity.Scenario;
 public interface ScenarioService {
 
 	/**
+	 * create new scenario in database
+	 * 
+	 * @param scenario
+	 *            specific Scenario to be created
+	 * @return created scenario
+	 */
+	public Scenario create(Scenario scenario);
+	
+	/**
 	 * finds specific Scenario by id
 	 * 
 	 * @param id

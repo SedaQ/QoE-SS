@@ -34,6 +34,9 @@ public class Scenario {
 	@OneToOne(fetch = FetchType.LAZY)
 	// @JsonBackReference
 	private ScenarioParameters scenarioparameters;
+	
+	@OneToOne(mappedBy="scenario")
+	private Mos mos;
 
 	public Scenario() {
 	}
@@ -72,6 +75,14 @@ public class Scenario {
 
 	public void setScenarioparameters(ScenarioParameters scenarioparameters) {
 		this.scenarioparameters = scenarioparameters;
+	}
+
+	public Mos getMos() {
+		return mos;
+	}
+
+	public void setMos(Mos mos) {
+		this.mos = mos;
 	}
 
 	@Override

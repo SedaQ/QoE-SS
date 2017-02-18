@@ -1,6 +1,5 @@
 package com.seda.qoe.dto.questionary;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.user.UserDTO;
 
@@ -125,6 +124,5 @@ public class QuestionaryDTO {
 			return false;
 		return true;
 	}
-
 
 }

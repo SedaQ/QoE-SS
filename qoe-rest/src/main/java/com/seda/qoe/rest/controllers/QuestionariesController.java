@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +14,12 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.seda.qoe.dto.mos.MosDTO;
+import com.seda.qoe.dto.questionary.QuestionaryCreateDTO;
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
 import com.seda.qoe.dto.user.UserDTO;
 import com.seda.qoe.facade.QuestionaryFacade;
 import com.seda.qoe.rest.ApiUris;
+import com.seda.qoe.rest.exceptions.ResourceAlreadyExistingException;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
 
 /**
@@ -65,7 +68,7 @@ public class QuestionariesController {
 			throw new ResourceNotFoundException();
 		}
 	}
-	
+
 	/**
 	 * get user by id of specific questionary(with HTTP caching) curl -i -X GET
 	 * http://localhost:8080/qoe/rest/questionaries/{id}/users
@@ -83,7 +86,7 @@ public class QuestionariesController {
 			throw new ResourceNotFoundException();
 		}
 	}
-	
+
 	/**
 	 * get mos by id of specific questionary (with HTTP caching) curl -i -X GET
 	 * http://localhost:8080/qoe/rest/questionaries/{id}/mos
@@ -101,4 +104,26 @@ public class QuestionariesController {
 			throw new ResourceNotFoundException();
 		}
 	}
+
+	/**
+	 * Create a new questionary by POST method curl -X POST -i -H
+	 * "Content-Type: application/json" --data
+	 * 
+	 * http://localhost:8080/qoe/questionaries/create
+	 * 
+	 * @param product
+	 *            ProductCreateDTO with required fields for creation
+	 * @return the created product ProductDTO
+	 * @throws ResourceAlreadyExistingException
+	 */
+	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final QuestionaryDTO createQuestionary(
+			@RequestBody QuestionaryCreateDTO questionary) throws Exception {
+		try {
+			return questionaryFacade.create(questionary);
+		} catch (Exception ex) {
+			throw new ResourceAlreadyExistingException();
+		}
+	}
+
 }

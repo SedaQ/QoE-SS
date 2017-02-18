@@ -11,6 +11,15 @@ import com.seda.qoe.entity.Questionary;
 public interface QuestionaryService {
 	
 	/**
+	 * create new questionary in database
+	 * 
+	 * @param questionary
+	 *            specific Questionary to be created
+	 * @return created questionary
+	 */
+	public Questionary create(Questionary questionary);
+	
+	/**
 	 * finds specific Questionary by id
 	 * 
 	 * @param id

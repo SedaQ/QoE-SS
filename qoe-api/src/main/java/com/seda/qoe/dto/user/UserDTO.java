@@ -1,14 +1,9 @@
 package com.seda.qoe.dto.user;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 public class UserDTO {
 
 	protected Long id;
-	//@Email(regexp = )
-	@NotEmpty
 	private String email;
-	@NotEmpty
 	private String passwordHash;
 	private String roles;
 

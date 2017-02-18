@@ -15,8 +15,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.seda.qoe.entity.Mos;
-import com.seda.qoe.entity.Questionary;
-import com.seda.qoe.entity.Video;
 
 @ContextConfiguration(classes = com.seda.qoe.context.PersistenceApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
@@ -29,11 +27,11 @@ public class MosRepositoryTest extends AbstractTestNGSpringContextTests {
 	@Autowired
 	private MosRepository mosDao;
 	
-	@Autowired
-	private VideoRepository videoDao;
-	
-	@Autowired
-	private QuestionaryRepository questionaryDao;
+//	@Autowired
+//	private VideoRepository videoDao;
+//	
+//	@Autowired
+//	private QuestionaryRepository questionaryDao;
 
 	private Mos mos;
 

@@ -3,17 +3,19 @@ package com.seda.qoe.dto.scenario;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.scenarioparameters.ScenarioParametersDTO;
 import com.seda.qoe.dto.video.VideoDTO;
-
 
 public class ScenarioDTO {
 	private Long id;
 	private String scenario;
 	private Set<VideoDTO> video = new HashSet<VideoDTO>();
 	private ScenarioParametersDTO scenarioParameters;
-	
-	public ScenarioDTO(){}
+	private MosDTO mos;
+
+	public ScenarioDTO() {
+	}
 
 	public Long getId() {
 		return id;
@@ -38,17 +40,25 @@ public class ScenarioDTO {
 	public void setVideo(Set<VideoDTO> video) {
 		this.video = video;
 	}
-	
-	public void addVideo(VideoDTO video){
+
+	public void addVideo(VideoDTO video) {
 		this.video.add(video);
 	}
-	
+
 	public ScenarioParametersDTO getScenarioParameters() {
 		return scenarioParameters;
 	}
 
 	public void setScenarioParameters(ScenarioParametersDTO scenarioParameters) {
 		this.scenarioParameters = scenarioParameters;
+	}
+
+	public MosDTO getMos() {
+		return mos;
+	}
+
+	public void setMos(MosDTO mos) {
+		this.mos = mos;
 	}
 
 	@Override

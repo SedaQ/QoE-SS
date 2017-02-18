@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.MosRepository;
@@ -64,6 +65,18 @@ public class MosServiceImpl implements MosService{
 			mosDao.delete(c);
 		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with deleting Mos, see inner exception.", ex);
+		}
+	}
+
+	@Override
+	public Mos create(Mos mos) {
+		if (mos == null)
+			throw new IllegalArgumentException("mos parameter is null");
+		try {
+			mosDao.save(mos);
+			return mos;
+		} catch (DataAccessException ex) {
+			throw new ServiceLayerException("Problem with creating mos, see inner exception.", ex);
 		}
 	}
 

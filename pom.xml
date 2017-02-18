@@ -49,13 +49,6 @@
 			</dependency>
 			<!-- please check version of these taglibs and tomcat -->
 			<dependency>
-				<groupId>org.apache.tomcat</groupId>
-				<artifactId>tomcat-api</artifactId>
-				<!-- <version>8.0.22</version> -->
-				<version>7.0.75</version>
-				<scope>provided</scope>
-			</dependency>
-			<dependency>
 				<groupId>org.apache.taglibs</groupId>
 				<artifactId>taglibs-standard-spec</artifactId>
 				<version>1.2.5</version>
