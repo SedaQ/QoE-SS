@@ -42,9 +42,14 @@ public class ScenariosController {
 			throws JsonProcessingException {
 		try {
 			// logger.debug("rest getUsers()");
+			Collection<ScenarioDTO> scenario = scenarioFacade.getAllScenario();
+			for(ScenarioDTO s : scenario){
+			}
+			
 			return scenarioFacade.getAllScenario();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 
 	}
@@ -63,7 +68,8 @@ public class ScenariosController {
 		try {
 			return scenarioFacade.getScenarioById(id);
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 	
@@ -81,7 +87,8 @@ public class ScenariosController {
 		try {
 			return scenarioFacade.getScenarioById(id).getScenarioParameters();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 	
@@ -99,7 +106,8 @@ public class ScenariosController {
 		try {
 			return scenarioFacade.getScenarioById(id).getVideo();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 

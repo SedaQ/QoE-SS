@@ -11,7 +11,7 @@ public class ScenarioDTO {
 	private Long id;
 	private String scenario;
 	private Set<VideoDTO> video = new HashSet<VideoDTO>();
-	private ScenarioParametersDTO scenarioParameters;
+	private ScenarioParametersDTO scenarioparameters;
 	private MosDTO mos;
 
 	public ScenarioDTO() {
@@ -46,11 +46,11 @@ public class ScenarioDTO {
 	}
 
 	public ScenarioParametersDTO getScenarioParameters() {
-		return scenarioParameters;
+		return scenarioparameters;
 	}
 
 	public void setScenarioParameters(ScenarioParametersDTO scenarioParameters) {
-		this.scenarioParameters = scenarioParameters;
+		this.scenarioparameters = scenarioParameters;
 	}
 
 	public MosDTO getMos() {

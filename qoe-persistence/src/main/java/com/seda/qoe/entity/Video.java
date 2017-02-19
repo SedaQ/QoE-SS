@@ -17,6 +17,7 @@ import javax.persistence.Table;
 
 import org.dozer.Mapping;
 
+
 @Entity
 @Table(name = "video")
 public class Video {
@@ -33,12 +34,10 @@ public class Video {
 	private Collection<String> videoSource;
 
 	@OneToMany(mappedBy = "video", fetch = FetchType.LAZY)
-	// @JsonManagedReference
 	private Set<Mos> mos = new HashSet<Mos>();
 
 	@ManyToMany(mappedBy = "video", fetch = FetchType.LAZY)
-	@Mapping("scenario")
-	// @JsonManagedReference
+	//@Mapping("scenario")
 	private Set<Scenario> scenario = new HashSet<Scenario>();
 
 	public Video() {

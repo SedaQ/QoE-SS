@@ -1,4 +1,4 @@
-package com.seda.qoe.rest.controllers;
+package com.seda.qoe.rest.controllers.representational;
 
 import java.util.Collection;
 
@@ -18,7 +18,7 @@ import com.seda.qoe.dto.questionary.QuestionaryCreateDTO;
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
 import com.seda.qoe.dto.user.UserDTO;
 import com.seda.qoe.facade.QuestionaryFacade;
-import com.seda.qoe.rest.ApiEndPoints;
+import com.seda.qoe.rest.endpoints.ApiEndPoints;
 import com.seda.qoe.rest.exceptions.ResourceAlreadyExistingException;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
 

@@ -101,12 +101,6 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
@@ -116,6 +110,27 @@
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
 			<version>2.11.0</version>
+		</dependency>
+		<!-- REST dependencies -->
+		<dependency>
+			<groupId>org.springframework.hateoas</groupId>
+			<artifactId>spring-hateoas</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -129,8 +144,7 @@
 						<artifactId>maven-war-plugin</artifactId>
 						<version>2.5</version>
 						<configuration>
-							<outputDirectory>C:/Skola/Škola VUT
-								FEKT/moje_Seda/diplomka/Appka/openshift pro appku/qoe/webapps</outputDirectory>
+							<outputDirectory>C:/Skola/Škola VUT FEKT/moje_Seda/diplomka/Appka/openshift pro appku/qoe/webapps</outputDirectory>
 							<warName>ROOT</warName>
 						</configuration>
 					</plugin>

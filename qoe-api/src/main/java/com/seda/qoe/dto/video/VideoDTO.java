@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 

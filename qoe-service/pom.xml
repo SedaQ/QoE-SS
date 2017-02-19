@@ -30,11 +30,12 @@
 			<groupId>net.sf.dozer</groupId>
 			<artifactId>dozer</artifactId>
 		</dependency>
+		<!-- 
 		<dependency>
 			<groupId>org.modelmapper</groupId>
 			<artifactId>modelmapper</artifactId>
 			<version>0.7.5</version>
-		</dependency>
+		</dependency> -->
 		 
 		<!-- For testing -->
 		<dependency>

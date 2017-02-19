@@ -1,4 +1,4 @@
-package com.seda.qoe.rest.controllers;
+package com.seda.qoe.rest.controllers.representational;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -7,7 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.seda.qoe.rest.ApiEndPoints;
+import com.seda.qoe.rest.endpoints.ApiEndPoints;
 
 /**
  * The main entry point of the REST API Provides access to all the resources
@@ -17,7 +17,7 @@ import com.seda.qoe.rest.ApiEndPoints;
  * 
  * @return resources uris
  */
-@RequestMapping(value = "/rest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 public class MainRestController {
 
 	/**

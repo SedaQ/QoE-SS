@@ -42,7 +42,8 @@ public class UsersController {
 		try {
 			return userFacade.getAllUsers();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -60,7 +61,8 @@ public class UsersController {
 		try {
 			return userFacade.getUserById(id);
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -78,7 +80,8 @@ public class UsersController {
 		try {
 			return userFacade.getUserById(id).getRoles();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 

@@ -1,4 +1,4 @@
-package com.seda.qoe.rest.controllers;
+package com.seda.qoe.rest.controllers.representational;
 
 import java.util.Collection;
 
@@ -6,15 +6,18 @@ import javax.inject.Inject;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.seda.qoe.dto.scenarioparameters.ScenarioParametersCreateDTO;
 import com.seda.qoe.dto.scenarioparameters.ScenarioParametersDTO;
 import com.seda.qoe.facade.ScenarioParametersFacade;
-import com.seda.qoe.rest.ApiEndPoints;
+import com.seda.qoe.rest.endpoints.ApiEndPoints;
+import com.seda.qoe.rest.exceptions.ResourceAlreadyExistingException;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
 
 /**
@@ -61,6 +64,17 @@ public class ScenarioParametersRestController {
 			return scenarioParametersFacade.getScenarioParametersById(id);
 		} catch (Exception ex) {
 			throw new ResourceNotFoundException();
+		}
+	}
+	
+	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ScenarioParametersDTO createScenarioParameters(
+			@RequestBody ScenarioParametersCreateDTO scenarioParameters)
+			throws Exception {
+		try {
+			return scenarioParametersFacade.create(scenarioParameters);
+		} catch (Exception ex) {
+			throw new ResourceAlreadyExistingException();
 		}
 	}
 

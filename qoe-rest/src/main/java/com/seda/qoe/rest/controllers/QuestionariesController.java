@@ -47,7 +47,8 @@ public class QuestionariesController {
 			// logger.debug("rest getUsers()");
 			return questionaryFacade.getAllQuestionary();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -65,7 +66,8 @@ public class QuestionariesController {
 		try {
 			return questionaryFacade.getQuestionaryById(id);
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -83,7 +85,8 @@ public class QuestionariesController {
 		try {
 			return questionaryFacade.getQuestionaryById(id).getUser();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -101,7 +104,8 @@ public class QuestionariesController {
 		try {
 			return questionaryFacade.getQuestionaryById(id).getMos();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -122,6 +126,7 @@ public class QuestionariesController {
 		try {
 			return questionaryFacade.create(questionary);
 		} catch (Exception ex) {
+			System.out.println(ex);
 			throw new ResourceAlreadyExistingException();
 		}
 	}

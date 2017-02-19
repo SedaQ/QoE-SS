@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.dozer.Mapping;
+
 @Entity
 @Table(name = "mos")
 public class Mos {
@@ -23,11 +25,9 @@ public class Mos {
 	private String mosValue;
 
 	@OneToOne(fetch = FetchType.LAZY)
-	// @JsonBackReference
 	private Questionary questionary;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	// @JsonBackReference
 	private Video video;
 
 	@OneToOne(fetch = FetchType.LAZY)

@@ -49,14 +49,12 @@
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
 		<!-- Should prevent recursion with @JsonBackReference annotations in entity 
-			classes -->
+			classes <dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-core</artifactId> 
+			</dependency> <dependency> <groupId>com.fasterxml.jackson.core</groupId> 
+			<artifactId>jackson-annotations</artifactId> </dependency> -->
 		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
 		</dependency>
 		<!-- dependency for testing -->
 		<dependency>
@@ -70,29 +68,9 @@
 			<artifactId>testng</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- For embedded usage -->
-		<dependency>
-			<groupId>org.apache.derby</groupId>
-			<artifactId>derby</artifactId>
-		</dependency>
-		<!-- Mapping -->
-		<dependency>
-			<groupId>net.sf.dozer</groupId>
-			<artifactId>dozer</artifactId>
-		</dependency>
+		<!-- For embedded usage <dependency> <groupId>org.apache.derby</groupId> 
+			<artifactId>derby</artifactId> </dependency> -->
+		<!-- Mapping <dependency> <groupId>net.sf.dozer</groupId> <artifactId>dozer</artifactId> 
+			</dependency> -->
 	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
 </project>

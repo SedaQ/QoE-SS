@@ -1,8 +1,8 @@
-package com.seda.qoe.rest.controllers;
+package com.seda.qoe.rest.controllers.representational;
 
 import com.seda.qoe.dto.user.UserDTO;
 import com.seda.qoe.facade.UserFacade;
-import com.seda.qoe.rest.ApiEndPoints;
+import com.seda.qoe.rest.endpoints.ApiEndPoints;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
 
 import com.fasterxml.jackson.core.JsonProcessingException;

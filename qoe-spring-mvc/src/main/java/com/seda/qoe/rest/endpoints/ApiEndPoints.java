@@ -1,4 +1,4 @@
-package com.seda.qoe.rest;
+package com.seda.qoe.rest.endpoints;
 
 /**
  * Represents the entry points for the API this list can be increased so that it
@@ -15,5 +15,5 @@ public abstract class ApiEndPoints {
 	public static final String ROOT_URI_VIDEOS = "/rest/videos";
 	public static final String ROOT_URI_SCENARIOS = "/rest/scenarios";
 	public static final String ROOT_URI_SCENARIO_PARAMETERS = "/rest/scenarioparameters";
-
+	
 }

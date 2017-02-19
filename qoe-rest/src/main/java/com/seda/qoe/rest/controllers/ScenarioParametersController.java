@@ -42,7 +42,8 @@ public class ScenarioParametersController {
 			// logger.debug("rest getUsers()");
 			return scenarioParametersFacade.getAllScenarioParameters();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 	
@@ -60,7 +61,8 @@ public class ScenarioParametersController {
 		try {
 			return scenarioParametersFacade.getScenarioParametersById(id);
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 

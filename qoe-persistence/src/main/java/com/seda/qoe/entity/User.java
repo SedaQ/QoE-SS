@@ -38,15 +38,12 @@ public class User {
 	@Column(name = "password", nullable = false)
 	private String passwordHash;
 
-	@ElementCollection(targetClass = UserRole.class, fetch = FetchType.LAZY)
+	@ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
 	@Enumerated(EnumType.STRING)
 	@CollectionTable(name = "user_role")
 	@Column(name = "role")
-	@Mapping("roles")
+	//@Mapping("roles")
 	private Collection<UserRole> roles;
-
-	// @Column(name = "role")
-	// private String roles;
 
 	@OneToMany(mappedBy = "user")
 	private Set<Questionary> questionary = new HashSet<Questionary>();

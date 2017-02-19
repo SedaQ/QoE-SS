@@ -9,17 +9,9 @@
 	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
-			<!-- <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" 
-				/> <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" 
-				/> <property name="hibernate.connection.url" value="jdbc:mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/qoe" 
-				/> <property name="hibernate.connection.username" value="adminCt71F2q" /> 
-				<property name="hibernate.connection.password" value="Rb1jrFBcXAt_" /> <property 
-				name="hibernate.connection.username" value="$OPENSHIFT_MYSQL_DB_USERNAME" 
-				/> <property name="hibernate.connection.password" value="$OPENSHIFT_MYSQL_DB_PASSWORD" 
-				/> <property name="hibernate.hbm2ddl.auto" value="create" /> <property name="show_sql" 
-				value="true" /> <property name="format_sql" value="true" /> -->
-
-			<!-- For local usage -->
+			<!-- -->
+			
+			<!-- For local usage  -->
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/qoe" />
 			<property name="hibernate.connection.username" value="root" />
 			<property name="hibernate.connection.password" value="" />
@@ -34,6 +26,14 @@
 				/> <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" 
 				/> <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect" 
 				/> <property name="hibernate.hbm2ddl.auto" value="create" /> <property name="show_sql" 
+				value="true" /> <property name="format_sql" value="true" /> -->
+
+			<!-- redhat alternative <property name="hibernate.connection.driver_class" 
+				value="com.mysql.jdbc.Driver" /> <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" 
+				/> <property name="hibernate.connection.url" value="jdbc:mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/qoe" 
+				/> <property name="hibernate.connection.username" value="$OPENSHIFT_MYSQL_DB_USERNAME" 
+				/> <property name="hibernate.connection.password" value="$OPENSHIFT_MYSQL_DB_PASSWORD" 
+				/> <property name="hibernate.hbm2ddl.auto" value="NONE" /> <property name="show_sql" 
 				value="true" /> <property name="format_sql" value="true" /> -->
 		</properties>
 	</persistence-unit>

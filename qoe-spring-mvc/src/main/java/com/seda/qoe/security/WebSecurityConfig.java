@@ -10,27 +10,30 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 /**
  * @author Pavel Šeda (441048)
- *
+ * 
  */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Inject
-    private AuthenticationProviderImpl authProvider;
-	
+	private AuthenticationProviderImpl authProvider;
+
 	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	protected void configure(AuthenticationManagerBuilder auth)
+			throws Exception {
 		auth.authenticationProvider(authProvider);
 	}
-		
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
 		http
-			.authorizeRequests()
-				.antMatchers("/").permitAll()
-				.antMatchers("/**").permitAll();
+			.csrf().disable();
+//			.authorizeRequests()
+				//.antMatchers("/qoe/rest/**").anonymous()
+//				.antMatchers("/").anonymous()
+//				.antMatchers("/**").anonymous()
 //				.antMatchers("/assets/**").permitAll()
 //				.antMatchers("/login").anonymous()
 //				.anyRequest().authenticated()
@@ -42,10 +45,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //				.and()
 //			.exceptionHandling()
 //				.accessDeniedPage("/errorpage")
-//				.and()
-//			.csrf();
+//			.and()
+//				.csrf();
 		// @formatter:on
 	}
-
 }
-

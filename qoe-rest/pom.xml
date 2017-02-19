@@ -10,7 +10,7 @@
 	<artifactId>qoe-rest</artifactId>
 	<packaging>war</packaging>
 	<name>Rest Layer</name>
-
+	
 	<!--
 	<build>
 		<defaultGoal>tomcat7:run</defaultGoal>
@@ -32,8 +32,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	 -->
-
+	-->
 	<dependencies>
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>

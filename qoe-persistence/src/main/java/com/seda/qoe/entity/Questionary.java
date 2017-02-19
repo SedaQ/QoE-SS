@@ -10,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.dozer.Mapping;
+
 
 @Entity
 @Table(name = "questionary")
@@ -32,11 +34,9 @@ public class Questionary {
 	private String userConnection;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	// @JsonBackReference
 	private User user;
 
 	@OneToOne(mappedBy = "questionary", fetch = FetchType.LAZY)
-	// @JsonManagedReference
 	private Mos mos;
 
 	public Questionary() {

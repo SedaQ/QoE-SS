@@ -1,4 +1,4 @@
-package com.seda.qoe.rest.controllers;
+package com.seda.qoe.rest.controllers.representational;
 
 import java.util.Arrays;
 import org.springframework.http.HttpStatus;

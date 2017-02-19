@@ -1,4 +1,4 @@
-package com.seda.qoe.rest.controllers;
+package com.seda.qoe.rest.controllers.representational;
 
 import java.util.Collection;
 import java.util.Set;
@@ -17,7 +17,7 @@ import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 import com.seda.qoe.facade.VideoFacade;
-import com.seda.qoe.rest.ApiEndPoints;
+import com.seda.qoe.rest.endpoints.ApiEndPoints;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
 
 /**

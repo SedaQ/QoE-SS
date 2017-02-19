@@ -45,7 +45,8 @@ public class VideosController {
 			// logger.debug("rest getUsers()");
 			return videoFacade.getAllVideo();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -63,7 +64,8 @@ public class VideosController {
 		try {
 			return videoFacade.getVideoById(id);
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 	
@@ -81,7 +83,8 @@ public class VideosController {
 		try {
 			return videoFacade.getVideoById(id).getScenario();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 	
@@ -94,12 +97,13 @@ public class VideosController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}/mos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final Set<MosDTO> getVideoMosByVideoId(@PathVariable("id") long id,
+	public final Collection<MosDTO> getVideoMosByVideoId(@PathVariable("id") long id,
 			WebRequest webRequest) {
 		try {
 			return videoFacade.getVideoById(id).getMos();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 

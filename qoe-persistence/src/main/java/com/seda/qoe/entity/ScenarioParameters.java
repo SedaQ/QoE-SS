@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.dozer.Mapping;
+
 @Entity
 @Table(name = "scenario_parameters")
 public class ScenarioParameters {
@@ -24,7 +26,7 @@ public class ScenarioParameters {
 	private Long length;
 
 	@OneToOne(mappedBy = "scenarioparameters", fetch = FetchType.LAZY)
-	//@JsonManagedReference
+	@Mapping("scenario")
 	private Scenario scenario;
 
 	public ScenarioParameters() {
