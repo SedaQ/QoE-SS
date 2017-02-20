@@ -49,6 +49,10 @@ POST ~/questionaries
 curl -X POST -i -H "Content-Type: application/json" 
 --data '{"age":"24","gender":"muz","school":"stredni_skola","userConnection":"mobilni_data"}' http://localhost:8080/rest/hateos/questionaries
 ```
+or with reference to user entity send with JSON inner object:
+```
+{"age":"29","gender":"muze","school":"stredni_skolaa","userConnection":"mobilnieee_data","user":{"id":"1"}}
+```
 
 
 
