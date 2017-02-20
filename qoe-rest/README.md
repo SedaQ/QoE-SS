@@ -38,7 +38,8 @@ Requires: email, password
 ```
 POST ~/users
 curl -X POST -i -H "Content-Type: application/json" 
---data '{"email":"pavelseda@email.cz","password":"EncryptedPassword123"}' http://localhost:8080/rest/hateos/users
+--data '{"email":"pavelseda@email.cz","password":"EncryptedPassword123"}'
+http://localhost:8080/rest/hateos/users
 ```
 
 #### Questionary
