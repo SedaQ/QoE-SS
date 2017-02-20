@@ -53,6 +53,17 @@ or with reference to user entity send this type of data with JSON inner object u
 ```
 {"age":"29","gender":"muze","school":"stredni_skolaa","userConnection":"mobilnieee_data","user":{"id":"1"}}
 ```
-
+#### Mos
+Requires: mosValue
+```
+POST ~/mos
+curl -X POST -i -H "Content-Type: application/json" 
+--data '{"mosValue":"5"}' 
+http://localhost:8080/rest/hateos/mos
+```
+or with reference to questionary, scenario, video entities send this type of data with JSON inner objects..
+```
+{"mosValue":"2","questionary":{"id":"1"}, "scenario":{"id":"2"},"video":{"id":"9"}}
+```
 
 
