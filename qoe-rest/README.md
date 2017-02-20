@@ -33,10 +33,20 @@ You can also use Curl or Postman.
 
 
 ### POST example commands
-#### User
+#### User 
+Requires: email, password
 ```
 POST ~/users
-curl -X POST -i -H "Content-Type: application/json" --data '{"email":"pavelseda@email.cz","password":"EncryptedPassword123"}' http://localhost:8080/rest/hateos/users
+curl -X POST -i -H "Content-Type: application/json" 
+--data '{"email":"pavelseda@email.cz","password":"EncryptedPassword123"}' http://localhost:8080/rest/hateos/users
+```
+
+#### Questionary
+Requires: age, gender, school, userConnection
+```
+POST ~/questionaries
+curl -X POST -i -H "Content-Type: application/json" 
+--data '{"age":"24","gender":"muz","school":"stredni_skola","userConnection":"mobilni_data"}' http://localhost:8080/rest/hateos/questionaries
 ```
 
 
