@@ -10,8 +10,9 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
 			<!-- -->
+
 			
-			<!-- For local usage  -->
+			<!-- For local usage -->
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/qoe" />
 			<property name="hibernate.connection.username" value="root" />
 			<property name="hibernate.connection.password" value="" />

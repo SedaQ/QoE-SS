@@ -69,6 +69,26 @@ public class UsersRestHateosController {
 		return new ResponseEntity<Resources<Resource<UserDTO>>>(userResources,
 				HttpStatus.OK);
 	}
+	
+	/**
+	 * Create a new user by POST method
+     * curl -X POST -i -H "Content-Type: application/json" --data 
+     * '{"email":"pavelseda@seznam.cz","password":"EncryptedPassword1234"}' 
+     * http://localhost:8080/rest/hateos/users
+
+	 * @param user
+	 * @return Boolean if user is created
+	 * @throws Exception
+	 */
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final Boolean createUser(@RequestBody UserCreateDTO user)
+			throws Exception {
+		try {
+			return userFacade.registerUser(user, user.getPassword());
+		} catch (Exception ex) {
+			throw new ResourceAlreadyExistingException();
+		}
+	}
 
 	/**
 	 * get mos by id curl -i -X GET
@@ -100,16 +120,6 @@ public class UsersRestHateosController {
 			return ResponseEntity.ok().eTag(eTag.toString()).body(resource);
 		} catch (Exception ex) {
 			throw new ResourceNotFoundException();
-		}
-	}
-
-	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final Boolean createUser(@RequestBody UserCreateDTO user)
-			throws Exception {
-		try {
-			return userFacade.registerUser(user, user.getPassword());
-		} catch (Exception ex) {
-			throw new ResourceAlreadyExistingException();
 		}
 	}
 

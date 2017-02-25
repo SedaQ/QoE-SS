@@ -1,24 +1,27 @@
 package com.seda.qoe.dto.questionary;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.user.UserDTO;
 
 public class QuestionaryCreateDTO {
+	
 	private Long id;
-
+	@NotEmpty
+	private String email;
 	private String gender;
-
+	@NotEmpty
 	private String age;
-
+	@NotEmpty
 	private String school;
-
+	@NotEmpty
 	private String userConnection;
-
+	
 	private UserDTO user;
 	private MosDTO mos;
-
-	public QuestionaryCreateDTO() {
-	}
+	
+	public QuestionaryCreateDTO(){}
 
 	public Long getId() {
 		return id;
@@ -76,16 +79,20 @@ public class QuestionaryCreateDTO {
 		this.mos = mos;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((age == null) ? 0 : age.hashCode());
-		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((school == null) ? 0 : school.hashCode());
-		result = prime * result
-				+ ((userConnection == null) ? 0 : userConnection.hashCode());
 		return result;
 	}
 
@@ -95,34 +102,20 @@ public class QuestionaryCreateDTO {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof QuestionaryCreateDTO))
+		if (getClass() != obj.getClass())
 			return false;
 		QuestionaryCreateDTO other = (QuestionaryCreateDTO) obj;
-		if (age == null) {
-			if (other.age != null)
+		if (email == null) {
+			if (other.email != null)
 				return false;
-		} else if (!age.equals(other.age))
-			return false;
-		if (gender == null) {
-			if (other.gender != null)
-				return false;
-		} else if (!gender.equals(other.gender))
+		} else if (!email.equals(other.email))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (school == null) {
-			if (other.school != null)
-				return false;
-		} else if (!school.equals(other.school))
-			return false;
-		if (userConnection == null) {
-			if (other.userConnection != null)
-				return false;
-		} else if (!userConnection.equals(other.userConnection))
-			return false;
 		return true;
 	}
+
 }

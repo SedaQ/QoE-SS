@@ -90,10 +90,10 @@ public class ScenariosRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}/scenarioparameters", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ScenarioParametersDTO getScenarioParametersByScenarioId(@PathVariable("id") long id,
+	public final Collection<ScenarioParametersDTO> getScenarioParametersByScenarioId(@PathVariable("id") long id,
 			WebRequest webRequest) {
 		try {
-			return scenarioFacade.getScenarioById(id).getScenarioParameters();
+			return scenarioFacade.getScenarioById(id).getScenarioparameters();
 		} catch (Exception ex) {
 			throw new ResourceNotFoundException();
 		}

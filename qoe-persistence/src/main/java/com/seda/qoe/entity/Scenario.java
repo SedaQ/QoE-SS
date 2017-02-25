@@ -10,10 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.dozer.Mapping;
+
+import com.seda.qoe.entity.ScenarioParameters;
 
 
 @Entity
@@ -27,15 +30,15 @@ public class Scenario {
 	@Column(nullable = false)
 	private String scenario;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	//@Mapping("video")
 	private Set<Video> video = new HashSet<Video>();
 
-	@OneToOne
-	@Mapping("scenarioparameters")
-	private ScenarioParameters scenarioparameters;
+	@ManyToMany(mappedBy = "scenario")
+	//@Mapping("scenarioparameters")
+	private Set<ScenarioParameters> scenarioparameters = new HashSet<ScenarioParameters>();
 	
-	@OneToOne(mappedBy="scenario", fetch = FetchType.LAZY)
+	@OneToOne(mappedBy="scenario", fetch = FetchType.EAGER)
 	private Mos mos;
 
 	public Scenario() {
@@ -69,12 +72,17 @@ public class Scenario {
 		this.video.add(video);
 	}
 
-	public ScenarioParameters getScenarioparameters() {
+
+	public Set<ScenarioParameters> getScenarioparameters() {
 		return scenarioparameters;
 	}
 
-	public void setScenarioparameters(ScenarioParameters scenarioparameters) {
+	public void setScenarioparameters(Set<ScenarioParameters> scenarioparameters) {
 		this.scenarioparameters = scenarioparameters;
+	}
+	
+	public void addScenarioParameter(ScenarioParameters scenarioParameter){
+		this.scenarioparameters.add(scenarioParameter);
 	}
 
 	public Mos getMos() {

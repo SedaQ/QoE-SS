@@ -2,6 +2,9 @@ package com.seda.qoe.facade;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.seda.qoe.dto.video.VideoCreateDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 
@@ -49,4 +52,10 @@ public interface VideoFacade {
 	 * @return List of Video which are in qoe DB
 	 */
 	public List<VideoDTO> getAllVideo();
+	
+	/**
+	 * 
+	 * @return random video from DB
+	 */
+	public VideoDTO findRandomVideo();
 }

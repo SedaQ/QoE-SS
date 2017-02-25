@@ -73,8 +73,8 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 		if (questionary == null)
 			throw new IllegalArgumentException("questionary parameter is null");
 		try {
-			questionaryDao.save(questionary);
-			return questionary;
+			Questionary q = questionaryDao.save(questionary);
+			return questionaryDao.findByEmail(q.getEmail());
 		} catch (DataAccessException ex) {
 			throw new ServiceLayerException("Problem with creating questionary, see inner exception.", ex);
 		}

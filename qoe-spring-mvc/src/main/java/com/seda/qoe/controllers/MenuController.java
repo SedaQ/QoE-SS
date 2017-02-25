@@ -26,6 +26,11 @@ public class MenuController {
 		return "videa/controlledburn";
 	}
 
+	@RequestMapping(value = "/testvidea/questionnaire")
+	public String testVideaAspen() {
+		return "testvidea/questionnaire";
+	}
+
 	@RequestMapping(value = "/presentation")
 	public String presentation() {
 		return "presentation";

@@ -1,11 +1,16 @@
 package com.seda.qoe.entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,9 +30,9 @@ public class ScenarioParameters {
 	@Column(nullable = false)
 	private Long length;
 
-	@OneToOne(mappedBy = "scenarioparameters", fetch = FetchType.LAZY)
-	@Mapping("scenario")
-	private Scenario scenario;
+	@ManyToMany(fetch = FetchType.EAGER)
+	//@Mapping("scenario")
+	private Set<Scenario> scenario = new HashSet<Scenario>();
 
 	public ScenarioParameters() {
 	}
@@ -56,12 +61,16 @@ public class ScenarioParameters {
 		this.length = length;
 	}
 
-	public Scenario getScenario() {
+	public Set<Scenario> getScenario() {
 		return scenario;
 	}
 
-	public void setScenario(Scenario scenario) {
+	public void setScenario(Set<Scenario> scenario) {
 		this.scenario = scenario;
+	}
+	
+	public void addScenario(Scenario scenario){
+		this.scenario.add(scenario);
 	}
 
 	@Override

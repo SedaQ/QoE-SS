@@ -1,7 +1,7 @@
 package com.seda.qoe.dto.scenario;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.scenarioparameters.ScenarioParametersDTO;
@@ -10,8 +10,8 @@ import com.seda.qoe.dto.video.VideoDTO;
 public class ScenarioDTO {
 	private Long id;
 	private String scenario;
-	private Set<VideoDTO> video = new HashSet<VideoDTO>();
-	private ScenarioParametersDTO scenarioparameters;
+	private List<VideoDTO> video = new ArrayList<VideoDTO>();
+	private List<ScenarioParametersDTO> scenarioparameters = new ArrayList<ScenarioParametersDTO>();
 	private MosDTO mos;
 
 	public ScenarioDTO() {
@@ -33,24 +33,29 @@ public class ScenarioDTO {
 		this.scenario = scenario;
 	}
 
-	public Set<VideoDTO> getVideo() {
+
+	public List<VideoDTO> getVideo() {
 		return video;
 	}
 
-	public void setVideo(Set<VideoDTO> video) {
+	public void setVideo(List<VideoDTO> video) {
 		this.video = video;
+	}
+
+	public List<ScenarioParametersDTO> getScenarioparameters() {
+		return scenarioparameters;
+	}
+
+	public void setScenarioparameters(List<ScenarioParametersDTO> scenarioparameters) {
+		this.scenarioparameters = scenarioparameters;
+	}
+	
+	public void addScenarioparameters(ScenarioParametersDTO scenarioparameters){
+		this.scenarioparameters.add(scenarioparameters);
 	}
 
 	public void addVideo(VideoDTO video) {
 		this.video.add(video);
-	}
-
-	public ScenarioParametersDTO getScenarioParameters() {
-		return scenarioparameters;
-	}
-
-	public void setScenarioParameters(ScenarioParametersDTO scenarioParameters) {
-		this.scenarioparameters = scenarioParameters;
 	}
 
 	public MosDTO getMos() {

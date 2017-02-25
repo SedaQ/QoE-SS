@@ -5,6 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.VideoRepository;
@@ -73,10 +76,22 @@ public class VideoServiceImpl implements VideoService{
 		if (video == null)
 			throw new IllegalArgumentException("video parameter is null");
 		try {
-			videoDao.save(video);
-			return video;
+			return videoDao.save(video);
 		} catch (DataAccessException ex) {
 			throw new ServiceLayerException("Problem with creating video, see inner exception.", ex);
 		}
+	}
+
+	@Override
+	public Video findRandomVideo() {
+		try {
+			return videoDao.getRandomVideo();
+		} catch (DataAccessException ex) {
+			throw new ServiceLayerException("Problem with creating video, see inner exception.", ex);
+		}
+	}
+	
+	private Pageable createPageRequest(Integer firstPosition, Integer secondPosition){
+		return new PageRequest(firstPosition, secondPosition);
 	}
 }

@@ -1,5 +1,6 @@
 package com.seda.qoe.entity;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,15 +30,15 @@ public class Video {
 	@Column(nullable = false)
 	private String name;
 
-	@ElementCollection(targetClass = String.class, fetch = FetchType.LAZY)
+	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
 	@Column(nullable = false, name = "video_src")
-	private Collection<String> videoSource;
+	//@Mapping("videoSource")
+	private Collection<String> videoSource = new ArrayList<String>();
 
-	@OneToMany(mappedBy = "video", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "video", fetch = FetchType.EAGER)
 	private Set<Mos> mos = new HashSet<Mos>();
 
-	@ManyToMany(mappedBy = "video", fetch = FetchType.LAZY)
-	//@Mapping("scenario")
+	@ManyToMany(mappedBy = "video", fetch = FetchType.EAGER)
 	private Set<Scenario> scenario = new HashSet<Scenario>();
 
 	public Video() {
@@ -125,6 +126,12 @@ public class Video {
 		} else if (!videoSource.equals(other.videoSource))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Video [id=" + id + ", name=" + name + ", videoSource="
+				+ videoSource + ", mos=" + mos + ", scenario=" + scenario + "]";
 	}
 
 }

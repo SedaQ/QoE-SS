@@ -1,43 +1,15 @@
 package com.seda.qoe.dto.mos;
 
-import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.NotEmpty;
-
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 
-public class MosCreateDTO {
-	private Long id;
-
-	@NotEmpty
-	private String mosValue;
-	@NotNull
+public class MosRedirectParameters {
 	private QuestionaryDTO questionary;
-	@NotNull
 	private VideoDTO video;
-	@NotNull
 	private ScenarioDTO scenario;
-
-	public MosCreateDTO() {
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getMosValue() {
-		return mosValue;
-	}
-
-	public void setMosValue(String mosValue) {
-		this.mosValue = mosValue;
-	}
+	
+	public MosRedirectParameters(){}
 
 	public QuestionaryDTO getQuestionary() {
 		return questionary;
@@ -67,11 +39,11 @@ public class MosCreateDTO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result
-				+ ((mosValue == null) ? 0 : mosValue.hashCode());
 		result = prime * result
 				+ ((questionary == null) ? 0 : questionary.hashCode());
+		result = prime * result
+				+ ((scenario == null) ? 0 : scenario.hashCode());
+		result = prime * result + ((video == null) ? 0 : video.hashCode());
 		return result;
 	}
 
@@ -81,24 +53,30 @@ public class MosCreateDTO {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof MosCreateDTO))
+		if (getClass() != obj.getClass())
 			return false;
-		MosCreateDTO other = (MosCreateDTO) obj;
-		if (id == null) {
-			if (other.getId() != null)
-				return false;
-		} else if (!id.equals(other.getId()))
-			return false;
-		if (mosValue == null) {
-			if (other.getMosValue() != null)
-				return false;
-		} else if (!mosValue.equals(other.getMosValue()))
-			return false;
+		MosRedirectParameters other = (MosRedirectParameters) obj;
 		if (questionary == null) {
-			if (other.getQuestionary() != null)
+			if (other.questionary != null)
 				return false;
-		} else if (!questionary.equals(other.getQuestionary()))
+		} else if (!questionary.equals(other.questionary))
+			return false;
+		if (scenario == null) {
+			if (other.scenario != null)
+				return false;
+		} else if (!scenario.equals(other.scenario))
+			return false;
+		if (video == null) {
+			if (other.video != null)
+				return false;
+		} else if (!video.equals(other.video))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "MosRedirectParameters [questionary=" + questionary + ", video="
+				+ video + ", scenario=" + scenario + "]";
 	}
 }

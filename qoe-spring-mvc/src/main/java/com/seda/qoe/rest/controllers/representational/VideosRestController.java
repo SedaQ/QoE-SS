@@ -1,7 +1,7 @@
 package com.seda.qoe.rest.controllers.representational;
 
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -94,7 +94,7 @@ public class VideosRestController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}/mos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final Set<MosDTO> getVideoMosByVideoId(@PathVariable("id") long id,
+	public final Collection<MosDTO> getVideoMosByVideoId(@PathVariable("id") long id,
 			WebRequest webRequest) {
 		try {
 			return videoFacade.getVideoById(id).getMos();

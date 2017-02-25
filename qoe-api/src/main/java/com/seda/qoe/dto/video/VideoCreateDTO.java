@@ -1,19 +1,22 @@
 package com.seda.qoe.dto.video;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 
 public class VideoCreateDTO {
+	
 	private Long id;
+	@NotEmpty
 	private String name;
+	@NotEmpty
 	private List<String> videoSource = new ArrayList<String>();
-	private Set<MosDTO> mos = new HashSet<MosDTO>();
-	private Set<ScenarioDTO> scenario = new HashSet<ScenarioDTO>();
+	private List<MosDTO> mos = new ArrayList<MosDTO>();
+	private List<ScenarioDTO> scenario = new ArrayList<ScenarioDTO>();
 
 	public VideoCreateDTO() {
 	}
@@ -46,11 +49,11 @@ public class VideoCreateDTO {
 		this.videoSource.add(videoSource);
 	}
 
-	public Set<MosDTO> getMos() {
+	public List<MosDTO> getMos() {
 		return mos;
 	}
 
-	public void setMos(Set<MosDTO> mos) {
+	public void setMos(List<MosDTO> mos) {
 		this.mos = mos;
 	}
 
@@ -58,11 +61,11 @@ public class VideoCreateDTO {
 		this.mos.add(mos);
 	}
 
-	public Set<ScenarioDTO> getScenario() {
+	public List<ScenarioDTO> getScenario() {
 		return scenario;
 	}
 
-	public void setScenario(Set<ScenarioDTO> scenario) {
+	public void setScenario(List<ScenarioDTO> scenario) {
 		this.scenario = scenario;
 	}
 

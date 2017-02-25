@@ -4,7 +4,7 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -72,6 +72,17 @@ public class VideosRestHateosController {
 		return new ResponseEntity<Resources<Resource<VideoDTO>>>(videoResource,
 				HttpStatus.OK);
 	}
+	
+
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final VideoDTO createVideo(@RequestBody VideoCreateDTO video)
+			throws Exception {
+		try {
+			return videoFacade.create(video);
+		} catch (Exception ex) {
+			throw new ResourceAlreadyExistingException();
+		}
+	}
 
 	/**
 	 * get mos by id curl -i -X GET
@@ -106,16 +117,6 @@ public class VideosRestHateosController {
 		}
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final VideoDTO createVideo(@RequestBody VideoCreateDTO video)
-			throws Exception {
-		try {
-			return videoFacade.create(video);
-		} catch (Exception ex) {
-			throw new ResourceAlreadyExistingException();
-		}
-	}
-
 	/**
 	 * get scenario associated with video by video id curl -i -X GET
 	 * http://localhost:8080/qoe/rest/videos/{id}/scenarios
@@ -143,7 +144,7 @@ public class VideosRestHateosController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}/mos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final Set<MosDTO> getVideoMosByVideoId(@PathVariable("id") long id,
+	public final Collection<MosDTO> getVideoMosByVideoId(@PathVariable("id") long id,
 			WebRequest webRequest) {
 		try {
 			return videoFacade.getVideoById(id).getMos();

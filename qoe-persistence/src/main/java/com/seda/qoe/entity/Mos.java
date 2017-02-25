@@ -24,13 +24,13 @@ public class Mos {
 	@Column(nullable = false, name = "mos_value")
 	private String mosValue;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	private Questionary questionary;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Video video;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	private Scenario scenario;
 
 	public Mos() {

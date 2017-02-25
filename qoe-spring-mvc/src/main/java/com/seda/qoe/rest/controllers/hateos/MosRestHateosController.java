@@ -71,6 +71,30 @@ public class MosRestHateosController {
 		return new ResponseEntity<Resources<Resource<MosDTO>>>(mosResources,
 				HttpStatus.OK);
 	}
+	/**
+	 * POST ~/mos
+	 *	curl -X POST -i -H "Content-Type: application/json" 
+	 *	--data '{"mosValue":"5"}'
+	 *
+	 * 	or with entity referencies
+	 * 
+	 *  {"mosValue":"2","questionary":{"id":"1"}, "scenario":{"id":"2"},"video":{"id":"9"}}
+	 *	http://localhost:8080/rest/hateos/mos
+     *
+	 * @param mos
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final MosDTO createMos(@RequestBody MosCreateDTO mos) {
+
+		// if(mosFacade.getMosById(mos.getId()) != null)
+		// throw new ResourceAlreadyExistingException();
+		MosDTO created = mosFacade.create(mos);
+		if (created != null)
+			return created;
+		else
+			throw new InvalidParameterException();
+	}
 
 	/**
 	 * get mos by id curl -i -X GET
@@ -115,18 +139,6 @@ public class MosRestHateosController {
 
 		if (!deleted)
 			throw new ResourceNotFoundException();
-	}
-
-	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final MosDTO createMos(@RequestBody MosCreateDTO mos) {
-
-		// if(mosFacade.getMosById(mos.getId()) != null)
-		// throw new ResourceAlreadyExistingException();
-		MosDTO created = mosFacade.create(mos);
-		if (created != null)
-			return created;
-		else
-			throw new InvalidParameterException();
 	}
 
 	/**

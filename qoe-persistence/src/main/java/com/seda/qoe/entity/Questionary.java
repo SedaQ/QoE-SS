@@ -10,9 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.dozer.Mapping;
-
-
 @Entity
 @Table(name = "questionary")
 public class Questionary {
@@ -20,6 +17,9 @@ public class Questionary {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_questionary", nullable = false, unique = true)
 	private Long id;
+
+	@Column(nullable = false)
+	private String email;
 
 	@Column(nullable = false)
 	private String gender;
@@ -33,10 +33,10 @@ public class Questionary {
 	@Column(nullable = false, name = "user_connection")
 	private String userConnection;
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
 
-	@OneToOne(mappedBy = "questionary", fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "questionary", fetch = FetchType.EAGER)
 	private Mos mos;
 
 	public Questionary() {
@@ -97,17 +97,21 @@ public class Questionary {
 	public void setUserConnection(String userConnection) {
 		this.userConnection = userConnection;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((age == null) ? 0 : age.hashCode());
-		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((school == null) ? 0 : school.hashCode());
-		result = prime * result
-				+ ((userConnection == null) ? 0 : userConnection.hashCode());
 		return result;
 	}
 
@@ -117,33 +121,18 @@ public class Questionary {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof Questionary))
+		if (getClass() != obj.getClass())
 			return false;
 		Questionary other = (Questionary) obj;
-		if (age == null) {
-			if (other.age != null)
+		if (email == null) {
+			if (other.email != null)
 				return false;
-		} else if (!age.equals(other.age))
-			return false;
-		if (gender == null) {
-			if (other.gender != null)
-				return false;
-		} else if (!gender.equals(other.gender))
+		} else if (!email.equals(other.email))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
-			return false;
-		if (school == null) {
-			if (other.school != null)
-				return false;
-		} else if (!school.equals(other.school))
-			return false;
-		if (userConnection == null) {
-			if (other.userConnection != null)
-				return false;
-		} else if (!userConnection.equals(other.userConnection))
 			return false;
 		return true;
 	}

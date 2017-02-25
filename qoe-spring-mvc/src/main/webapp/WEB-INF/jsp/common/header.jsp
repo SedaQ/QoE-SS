@@ -8,14 +8,30 @@
 		</div>
 		<ul class="nav navbar-nav">
 			<li class="active"><a
-				href="${pageContext.request.contextPath}/home">Home</a></li>
+				href="${pageContext.request.contextPath}/home">Home</a>
+			</li>
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#">Videa <span class="caret"></span>
 			</a>
 				<ul class="dropdown-menu">
 					<!-- <li><a href="${pageContext.request.contextPath}/videa/aspen">aspen</a>
 					</li> -->
-					<li><a href="${pageContext.request.contextPath}/videa/aspenvidea">aspen videa</a>
+					<li><a
+						href="${pageContext.request.contextPath}/videa/aspenvidea">aspen
+							videa</a></li>
+					<!-- <li><a
+						href="${pageContext.request.contextPath}/videa/controlledBurn">controlled
+							burn</a></li> -->
+				</ul>
+			</li>
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#">Test QoE<span class="caret"></span>
+			</a>
+				<ul class="dropdown-menu">
+					<!-- <li><a href="${pageContext.request.contextPath}/videa/aspen">aspen</a>
+							</li> -->
+					<li><a
+						href="${pageContext.request.contextPath}/testvidea/questionnaire">Start testing</a>
 					</li>
 					<!-- <li><a
 						href="${pageContext.request.contextPath}/videa/controlledBurn">controlled
@@ -28,18 +44,24 @@
 					<li><a href="${pageContext.request.contextPath}/presentation">Presentation</a>
 					</li>
 					<li><a href="${pageContext.request.contextPath}/subjectiveqoe">Subjektivní
-							QoE </a></li>
+							QoE </a>
+					</li>
 					<li><a href="${pageContext.request.contextPath}/objectiveqoe">Objektivní
-							QoE </a></li>
+							QoE </a>
+					</li>
 					<li><a
 						href="${pageContext.request.contextPath}/qoemeasurement">Měření
-							subjektivního QoE </a></li>
+							subjektivního QoE </a>
+					</li>
 					<li><a
 						href="${pageContext.request.contextPath}/resultcorrelation">Korelace
-							výsledků</a></li>
+							výsledků</a>
+					</li>
 					<li><a href="${pageContext.request.contextPath}/fullthesis">DP
-							práce </a></li>
-				</ul></li>
+							práce </a>
+					</li>
+				</ul>
+			</li>
 			<!-- <li><a href="${pageContext.request.contextPath}/presentation">Presentation</a></li> -->
 			<li><a href="${pageContext.request.contextPath}/about">About</a>
 			</li>
@@ -51,7 +73,8 @@
 
 		<ul class="nav navbar-nav navbar-right">
 			<li><a href="${pageContext.request.contextPath}/logout"><span
-					class="glyphicon glyphicon-log-in"> Logout</span> </a></li>
+					class="glyphicon glyphicon-log-in"> Logout</span> </a>
+			</li>
 		</ul>
 	</div>
 	</nav>

@@ -71,6 +71,17 @@ public class ScenariosRestHateosController {
 		return new ResponseEntity<Resources<Resource<ScenarioDTO>>>(
 				scenarioResources, HttpStatus.OK);
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final ScenarioDTO createScenario(
+			@RequestBody ScenarioCreateDTO scenario) throws Exception {
+		try {
+			return scenarioFacade.create(scenario);
+		} catch (Exception ex) {
+			throw new ResourceAlreadyExistingException();
+		}
+	}
+	
 
 	/**
 	 * get mos by id curl -i -X GET
@@ -105,16 +116,6 @@ public class ScenariosRestHateosController {
 		}
 	}
 
-	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ScenarioDTO createScenario(
-			@RequestBody ScenarioCreateDTO scenario) throws Exception {
-		try {
-			return scenarioFacade.create(scenario);
-		} catch (Exception ex) {
-			throw new ResourceAlreadyExistingException();
-		}
-	}
-
 	/**
 	 * get scenarioparameters by scenario id curl -i -X GET
 	 * http://localhost:8080/qoe/rest/scenarios/{id}/scenarioparameters
@@ -124,11 +125,11 @@ public class ScenariosRestHateosController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}/scenarioparameters", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final ScenarioParametersDTO getScenarioParametersByScenarioId(
+	public final Collection<ScenarioParametersDTO> getScenarioParametersByScenarioId(
 			@PathVariable("id") long id, WebRequest webRequest) {
 		try {
 			System.out.println();
-			return scenarioFacade.getScenarioById(id).getScenarioParameters();
+			return scenarioFacade.getScenarioById(id).getScenarioparameters();
 		} catch (Exception ex) {
 			System.out.println(ex);
 			throw new ResourceNotFoundException(ex);

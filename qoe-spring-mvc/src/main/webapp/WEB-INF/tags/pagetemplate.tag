@@ -73,6 +73,20 @@
 						</ul>
 					</li>
 					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="#">Test QoE<span class="caret"></span>
+					</a>
+						<ul class="dropdown-menu">
+							<!-- <li><a href="${pageContext.request.contextPath}/videa/aspen">aspen</a>
+							</li> -->
+							<li><a
+								href="${pageContext.request.contextPath}/testvidea/questionnaire">Start
+									testing</a></li>
+							<!-- <li><a
+						href="${pageContext.request.contextPath}/videa/controlledBurn">controlled
+							burn</a></li> -->
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Info<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu">
@@ -143,43 +157,7 @@
 	</div>
 
 	<script type="application/x-javascript">
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	</script>
 	<!-- //Custom Theme files -->
 

@@ -178,7 +178,7 @@
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<configuration>
-					<path>/qoe</path>
+					<path>/</path>
 					<uriEncoding>utf-8</uriEncoding>
 				</configuration>
 			</plugin>

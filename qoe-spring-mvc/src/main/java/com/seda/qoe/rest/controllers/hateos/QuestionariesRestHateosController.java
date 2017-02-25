@@ -73,6 +73,31 @@ public class QuestionariesRestHateosController {
 	}
 	
 	/**
+	 * Create a new questionary by POST method curl -X POST -i -H
+	 * "Content-Type: application/json" --data '{"age":"24","gender":"muz","school":"stredni_skola","userConnection":"mobilni_data"}'
+	 * 
+	 * http://localhost:8080/qoe/questionaries
+	 * 
+	 * or with entity references:
+	 * 
+	 *  {"age":"29","gender":"muze","school":"stredni_skolaa","userConnection":"mobilnieee_data","user":{"id":"1"}}
+	 *
+	 * @param questionary
+	 *            QuestionaryCreateDTO with required fields for creation
+	 * @return the created questionary QuestionaryCreateDTO
+	 * @throws ResourceAlreadyExistingException
+	 */
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public final QuestionaryDTO createQuestionary(
+			@RequestBody QuestionaryCreateDTO questionary) throws Exception {
+		try {
+			return questionaryFacade.create(questionary);
+		} catch (Exception ex) {
+			throw new ResourceAlreadyExistingException();
+		}
+	}
+	
+	/**
 	 * get mos by id curl -i -X GET
 	 * http://localhost:8080/qoe/rest/hateos/mos/{id}
 	 * 
@@ -101,27 +126,6 @@ public class QuestionariesRestHateosController {
 			return ResponseEntity.ok().eTag(eTag.toString()).body(resource);
 		} catch (Exception ex) {
 			throw new ResourceNotFoundException();
-		}
-	}
-	
-	/**
-	 * Create a new questionary by POST method curl -X POST -i -H
-	 * "Content-Type: application/json" --data
-	 * 
-	 * http://localhost:8080/qoe/questionaries/create
-	 * 
-	 * @param questionary
-	 *            QuestionaryCreateDTO with required fields for creation
-	 * @return the created questionary QuestionaryCreateDTO
-	 * @throws ResourceAlreadyExistingException
-	 */
-	@RequestMapping(value = "/create", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final QuestionaryDTO createQuestionary(
-			@RequestBody QuestionaryCreateDTO questionary) throws Exception {
-		try {
-			return questionaryFacade.create(questionary);
-		} catch (Exception ex) {
-			throw new ResourceAlreadyExistingException();
 		}
 	}
 	
