@@ -65,8 +65,6 @@ public class MosDTO {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((mosValue == null) ? 0 : mosValue.hashCode());
-		result = prime * result
-				+ ((questionary == null) ? 0 : questionary.hashCode());
 		return result;
 	}
 
@@ -76,23 +74,18 @@ public class MosDTO {
 			return true;
 		if (obj == null)
 			return false;
-		if (!(obj instanceof MosDTO))
+		if (obj instanceof MosDTO)
 			return false;
 		MosDTO other = (MosDTO) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!id.equals(other.getId()))
 			return false;
 		if (mosValue == null) {
 			if (other.mosValue != null)
 				return false;
-		} else if (!mosValue.equals(other.mosValue))
-			return false;
-		if (questionary == null) {
-			if (other.questionary != null)
-				return false;
-		} else if (!questionary.equals(other.questionary))
+		} else if (!mosValue.equals(other.getMosValue()))
 			return false;
 		return true;
 	}

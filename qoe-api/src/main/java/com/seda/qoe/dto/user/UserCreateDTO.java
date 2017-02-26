@@ -1,8 +1,13 @@
 package com.seda.qoe.dto.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.seda.qoe.enums.UserRoles;
 
 public class UserCreateDTO {
 	protected Long id;
@@ -15,8 +20,7 @@ public class UserCreateDTO {
 	private String password;
 
 	@NotEmpty(message = "User role couldn't be empty")
-	private String userRole;
-
+	private List<UserRoles> roles = new ArrayList<UserRoles>();
 
 	public UserCreateDTO() {
 	}
@@ -45,12 +49,12 @@ public class UserCreateDTO {
 		this.id = id;
 	}
 
-	public String getUserRole() {
-		return userRole;
+	public List<UserRoles> getRoles() {
+		return roles;
 	}
 
-	public void setUserRole(String userRole) {
-		this.userRole = userRole;
+	public void setRoles(List<UserRoles> roles) {
+		this.roles = roles;
 	}
 
 	@Override

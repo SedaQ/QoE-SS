@@ -1,13 +1,15 @@
 package com.seda.qoe.entity;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,6 +20,8 @@ import javax.persistence.Table;
 
 import org.dozer.Mapping;
 
+import com.seda.qoe.comparator.StringComparator;
+import com.seda.qoe.enums.UserRole;
 
 @Entity
 @Table(name = "video")
@@ -31,9 +35,10 @@ public class Video {
 	private String name;
 
 	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
+	@CollectionTable(name = "video_source")
 	@Column(nullable = false, name = "video_src")
 	//@Mapping("videoSource")
-	private Collection<String> videoSource = new ArrayList<String>();
+	private Set<String> videoSource = new TreeSet<String>(new StringComparator());
 
 	@OneToMany(mappedBy = "video", fetch = FetchType.EAGER)
 	private Set<Mos> mos = new HashSet<Mos>();
@@ -60,15 +65,15 @@ public class Video {
 		this.name = name;
 	}
 
-	public Collection<String> getVideoSource() {
+	public Set<String> getVideoSource() {
 		return videoSource;
 	}
 
-	public void setVideoSource(Collection<String> videoSource) {
+	public void setVideoSource(Set<String> videoSource) {
 		this.videoSource = videoSource;
 	}
-	
-	public void addVideoSource(String videoSource){
+
+	public void addVideoSource(String videoSource) {
 		this.videoSource.add(videoSource);
 	}
 
@@ -100,9 +105,8 @@ public class Video {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result
-				+ ((videoSource == null) ? 0 : videoSource.hashCode());
 		return result;
 	}
 
@@ -115,23 +119,17 @@ public class Video {
 		if (!(obj instanceof Video))
 			return false;
 		Video other = (Video) obj;
-		if (name == null) {
-			if (other.name != null)
+		if (id == null) {
+			if (other.getId() != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!id.equals(other.getId()))
 			return false;
-		if (videoSource == null) {
-			if (other.videoSource != null)
+		if (name == null) {
+			if (other.getName() != null)
 				return false;
-		} else if (!videoSource.equals(other.videoSource))
+		} else if (!name.equals(other.getName()))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Video [id=" + id + ", name=" + name + ", videoSource="
-				+ videoSource + ", mos=" + mos + ", scenario=" + scenario + "]";
 	}
 
 }

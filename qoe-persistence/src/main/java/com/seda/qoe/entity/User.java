@@ -1,6 +1,5 @@
 package com.seda.qoe.entity;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,7 +42,7 @@ public class User {
 	@CollectionTable(name = "user_role")
 	@Column(name = "role")
 	//@Mapping("roles")
-	private Collection<UserRole> roles;
+	private Set<UserRole> roles = new HashSet<UserRole>();
 
 	@OneToMany(mappedBy = "user")
 	private Set<Questionary> questionary = new HashSet<Questionary>();
@@ -75,11 +74,11 @@ public class User {
 		this.passwordHash = passwordHash;
 	}
 
-	public Collection<UserRole> getRoles() {
+	public Set<UserRole> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Collection<UserRole> roles) {
+	public void setRoles(Set<UserRole> roles) {
 		this.roles = roles;
 	}
 

@@ -10,7 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -34,7 +33,7 @@ public class Scenario {
 	//@Mapping("video")
 	private Set<Video> video = new HashSet<Video>();
 
-	@ManyToMany(mappedBy = "scenario")
+	@ManyToMany(mappedBy = "scenario", fetch = FetchType.EAGER)
 	//@Mapping("scenarioparameters")
 	private Set<ScenarioParameters> scenarioparameters = new HashSet<ScenarioParameters>();
 	
@@ -113,14 +112,14 @@ public class Scenario {
 			return false;
 		Scenario other = (Scenario) obj;
 		if (id == null) {
-			if (other.id != null)
+			if (other.getId() != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!id.equals(other.getId()))
 			return false;
 		if (scenario == null) {
-			if (other.scenario != null)
+			if (other.getScenario() != null)
 				return false;
-		} else if (!scenario.equals(other.scenario))
+		} else if (!scenario.equals(other.getScenario()))
 			return false;
 		return true;
 	}

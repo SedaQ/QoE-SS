@@ -2,14 +2,16 @@ package com.seda.qoe.service;
 
 import java.util.List;
 
+import org.springframework.data.repository.query.Param;
+
 import com.seda.qoe.entity.Questionary;
 
 /**
  * @author Pavel Šeda
- *
+ * 
  */
 public interface QuestionaryService {
-	
+
 	/**
 	 * create new questionary in database
 	 * 
@@ -18,7 +20,7 @@ public interface QuestionaryService {
 	 * @return created questionary
 	 */
 	public Questionary create(Questionary questionary);
-	
+
 	/**
 	 * finds specific Questionary by id
 	 * 
@@ -51,4 +53,15 @@ public interface QuestionaryService {
 	 *            Questionary that has to be removed
 	 */
 	public void remove(Questionary c);
+
+	/**
+	 * find Questionary by equals method attributes
+	 * @param email
+	 * @param gender
+	 * @param age
+	 * @param school
+	 * @param userConnection
+	 */
+	public Questionary findByEqualsMethod(String email, String gender, String age, String school,
+			String userConnection);
 }

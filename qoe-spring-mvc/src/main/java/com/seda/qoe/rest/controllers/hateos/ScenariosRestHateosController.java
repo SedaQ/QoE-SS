@@ -56,32 +56,37 @@ public class ScenariosRestHateosController {
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final HttpEntity<Resources<Resource<ScenarioDTO>>> getScenarios()
 			throws JsonProcessingException {
+		try {
+			Collection<ScenarioDTO> ScenarioDTO = scenarioFacade
+					.getAllScenario();
+			Collection<Resource<ScenarioDTO>> mosResourceCollection = new ArrayList<Resource<ScenarioDTO>>();
+			for (ScenarioDTO m : ScenarioDTO) {
+				mosResourceCollection.add(scenarioResourceAssembler
+						.toResource(m));
+			}
 
-		Collection<ScenarioDTO> ScenarioDTO = scenarioFacade.getAllScenario();
-		Collection<Resource<ScenarioDTO>> mosResourceCollection = new ArrayList<Resource<ScenarioDTO>>();
-		for (ScenarioDTO m : ScenarioDTO) {
-			mosResourceCollection.add(scenarioResourceAssembler.toResource(m));
+			Resources<Resource<ScenarioDTO>> scenarioResources = new Resources<Resource<ScenarioDTO>>(
+					mosResourceCollection);
+			scenarioResources.add(linkTo(ScenariosRestHateosController.class)
+					.withSelfRel());
+
+			return new ResponseEntity<Resources<Resource<ScenarioDTO>>>(
+					scenarioResources, HttpStatus.OK);
+		} catch (Exception ex) {
+			System.out.println(ex);
+			throw new ResourceNotFoundException(ex);
 		}
-
-		Resources<Resource<ScenarioDTO>> scenarioResources = new Resources<Resource<ScenarioDTO>>(
-				mosResourceCollection);
-		scenarioResources.add(linkTo(ScenariosRestHateosController.class)
-				.withSelfRel());
-
-		return new ResponseEntity<Resources<Resource<ScenarioDTO>>>(
-				scenarioResources, HttpStatus.OK);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final ScenarioDTO createScenario(
 			@RequestBody ScenarioCreateDTO scenario) throws Exception {
 		try {
 			return scenarioFacade.create(scenario);
 		} catch (Exception ex) {
-			throw new ResourceAlreadyExistingException();
+			throw new ResourceAlreadyExistingException(ex);
 		}
 	}
-	
 
 	/**
 	 * get mos by id curl -i -X GET
@@ -112,7 +117,7 @@ public class ScenariosRestHateosController {
 
 			return ResponseEntity.ok().eTag(eTag.toString()).body(resource);
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -150,7 +155,7 @@ public class ScenariosRestHateosController {
 		try {
 			return scenarioFacade.getScenarioById(id).getVideo();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -168,7 +173,7 @@ public class ScenariosRestHateosController {
 		try {
 			return scenarioFacade.getScenarioById(id).getMos();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 }

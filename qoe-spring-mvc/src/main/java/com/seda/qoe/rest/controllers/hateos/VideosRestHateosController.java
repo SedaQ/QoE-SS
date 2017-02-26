@@ -72,7 +72,6 @@ public class VideosRestHateosController {
 		return new ResponseEntity<Resources<Resource<VideoDTO>>>(videoResource,
 				HttpStatus.OK);
 	}
-	
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final VideoDTO createVideo(@RequestBody VideoCreateDTO video)
@@ -80,7 +79,7 @@ public class VideosRestHateosController {
 		try {
 			return videoFacade.create(video);
 		} catch (Exception ex) {
-			throw new ResourceAlreadyExistingException();
+			throw new ResourceAlreadyExistingException(ex);
 		}
 	}
 
@@ -113,7 +112,7 @@ public class VideosRestHateosController {
 
 			return ResponseEntity.ok().eTag(eTag.toString()).body(resource);
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -131,7 +130,7 @@ public class VideosRestHateosController {
 		try {
 			return videoFacade.getVideoById(id).getScenario();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -144,12 +143,12 @@ public class VideosRestHateosController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}/mos", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final Collection<MosDTO> getVideoMosByVideoId(@PathVariable("id") long id,
-			WebRequest webRequest) {
+	public final Collection<MosDTO> getVideoMosByVideoId(
+			@PathVariable("id") long id, WebRequest webRequest) {
 		try {
 			return videoFacade.getVideoById(id).getMos();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 }

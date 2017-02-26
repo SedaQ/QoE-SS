@@ -1,11 +1,17 @@
 package com.seda.qoe.dto.user;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import com.seda.qoe.enums.UserRoles;
+
 public class UserDTO {
 
 	protected Long id;
 	private String email;
 	private String passwordHash;
-	private String roles;
+	private List<UserRoles> roles = new ArrayList<UserRoles>();
 
 	public UserDTO() {
 	}
@@ -33,14 +39,15 @@ public class UserDTO {
 	public Long getId() {
 		return id;
 	}
-
-	public String getRoles() {
+	
+	public Collection<UserRoles> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(String roles) {
+	public void setRoles(List<UserRoles> roles) {
 		this.roles = roles;
 	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -59,9 +66,9 @@ public class UserDTO {
 			return false;
 		UserDTO other = (UserDTO) obj;
 		if (email == null) {
-			if (other.email != null)
+			if (other.getEmail() != null)
 				return false;
-		} else if (!email.equals(other.email))
+		} else if (!email.equals(other.getEmail()))
 			return false;
 		return true;
 	}

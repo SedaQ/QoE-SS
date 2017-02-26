@@ -84,7 +84,19 @@ public class QuestionaryFacadeImpl implements QuestionaryFacade {
 			Questionary q = questionaryService.create(beanMapping.mapTo(questionary, Questionary.class));
 			return q != null ? beanMapping.mapTo(q, QuestionaryDTO.class): null;
 		} catch (ServiceLayerException ex) {
-			return null;
+			throw new RuntimeException("exception.." + ex);
+		}
+	}
+
+	@Override
+	public QuestionaryDTO findByEqualsMethod(String email, String gender,
+			String age, String school, String userConnection) {
+		if(email == null || gender == null || age == null || userConnection == null)
+			throw new IllegalArgumentException("findByEqualsMethod some parameters is null");
+		try {
+			return beanMapping.mapTo(questionaryService.findByEqualsMethod(email, gender, age, school, userConnection), QuestionaryDTO.class);
+		} catch(ServiceLayerException ex){
+			throw new RuntimeException("exception.." + ex);
 		}
 	}
 

@@ -98,7 +98,7 @@ public class ScenarioParametersRestHateosController {
 
 			return ResponseEntity.ok().eTag(eTag.toString()).body(resource);
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 

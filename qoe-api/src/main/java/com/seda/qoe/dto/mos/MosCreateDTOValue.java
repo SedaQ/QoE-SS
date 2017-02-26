@@ -42,18 +42,18 @@ public class MosCreateDTOValue {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (obj instanceof MosCreateDTOValue)
 			return false;
 		MosCreateDTOValue other = (MosCreateDTOValue) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!id.equals(other.getId()))
 			return false;
 		if (mosValue == null) {
 			if (other.mosValue != null)
 				return false;
-		} else if (!mosValue.equals(other.mosValue))
+		} else if (!mosValue.equals(other.getMosValue()))
 			return false;
 		return true;
 	}

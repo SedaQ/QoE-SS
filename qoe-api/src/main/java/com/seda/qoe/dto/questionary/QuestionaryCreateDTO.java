@@ -1,27 +1,23 @@
 package com.seda.qoe.dto.questionary;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
-import com.seda.qoe.dto.mos.MosDTO;
-import com.seda.qoe.dto.user.UserDTO;
+import javax.validation.constraints.NotNull;
 
 public class QuestionaryCreateDTO {
-	
+
 	private Long id;
-	@NotEmpty
+	@NotNull
 	private String email;
+	@NotNull
 	private String gender;
-	@NotEmpty
+	@NotNull
 	private String age;
-	@NotEmpty
+	@NotNull
 	private String school;
-	@NotEmpty
+	@NotNull
 	private String userConnection;
-	
-	private UserDTO user;
-	private MosDTO mos;
-	
-	public QuestionaryCreateDTO(){}
+
+	public QuestionaryCreateDTO() {
+	}
 
 	public Long getId() {
 		return id;
@@ -63,22 +59,6 @@ public class QuestionaryCreateDTO {
 		this.userConnection = userConnection;
 	}
 
-	public UserDTO getUser() {
-		return user;
-	}
-
-	public void setUser(UserDTO user) {
-		this.user = user;
-	}
-
-	public MosDTO getMos() {
-		return mos;
-	}
-
-	public void setMos(MosDTO mos) {
-		this.mos = mos;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -91,8 +71,13 @@ public class QuestionaryCreateDTO {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((age == null) ? 0 : age.hashCode());
+		result = prime * result + ((email == null) ? 0 : email.hashCode());
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + ((school == null) ? 0 : school.hashCode());
+		result = prime * result
+				+ ((userConnection == null) ? 0 : userConnection.hashCode());
 		return result;
 	}
 
@@ -102,18 +87,38 @@ public class QuestionaryCreateDTO {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		if (obj instanceof QuestionaryCreateDTO)
 			return false;
 		QuestionaryCreateDTO other = (QuestionaryCreateDTO) obj;
-		if (email == null) {
-			if (other.email != null)
+		if(id == null){
+			if(other.getId() !=null)
 				return false;
-		} else if (!email.equals(other.email))
+		} else if(!id.equals(other.getId()))
 			return false;
-		if (id == null) {
-			if (other.id != null)
+		if (age == null) {
+			if (other.getAge() != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!age.equals(other.getAge()))
+			return false;
+		if (email == null) {
+			if (other.getEmail() != null)
+				return false;
+		} else if (!email.equals(other.getEmail()))
+			return false;
+		if (gender == null) {
+			if (other.getGender() != null)
+				return false;
+		} else if (!gender.equals(other.getGender()))
+			return false;
+		if (school == null) {
+			if (other.getSchool() != null)
+				return false;
+		} else if (!school.equals(other.getSchool()))
+			return false;
+		if (userConnection == null) {
+			if (other.getUserConnection() != null)
+				return false;
+		} else if (!userConnection.equals(other.getUserConnection()))
 			return false;
 		return true;
 	}

@@ -23,6 +23,8 @@ import org.springframework.web.context.request.WebRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.seda.qoe.dto.user.UserCreateDTO;
 import com.seda.qoe.dto.user.UserDTO;
+import com.seda.qoe.enums.UserRoles;
+import com.seda.qoe.enums.UserRoles;
 import com.seda.qoe.facade.UserFacade;
 import com.seda.qoe.rest.assemblers.UserResourceAssembler;
 import com.seda.qoe.rest.endpoints.ApiHateosEndPoints;
@@ -132,7 +134,7 @@ public class UsersRestHateosController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}/roles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final String getUserRolesByUserId(@PathVariable("id") long id,
+	public final Collection<UserRoles> getUserRolesByUserId(@PathVariable("id") long id,
 			WebRequest webRequest) {
 		try {
 			return userFacade.getUserById(id).getRoles();

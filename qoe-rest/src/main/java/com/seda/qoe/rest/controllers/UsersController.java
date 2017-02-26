@@ -1,6 +1,7 @@
 package com.seda.qoe.rest.controllers;
 
 import com.seda.qoe.dto.user.UserDTO;
+import com.seda.qoe.enums.UserRoles;
 import com.seda.qoe.facade.UserFacade;
 import com.seda.qoe.rest.ApiUris;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
@@ -75,7 +76,7 @@ public class UsersController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}/roles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final String getUserRolesByUserId(@PathVariable("id") long id,
+	public final Collection<UserRoles> getUserRolesByUserId(@PathVariable("id") long id,
 			WebRequest webRequest) {
 		try {
 			return userFacade.getUserById(id).getRoles();

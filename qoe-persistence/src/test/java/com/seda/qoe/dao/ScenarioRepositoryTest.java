@@ -14,34 +14,27 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.seda.qoe.entity.Video;
+import com.seda.qoe.entity.Mos;
+import com.seda.qoe.entity.Scenario;
 
 @ContextConfiguration(classes = com.seda.qoe.context.PersistenceApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class VideoRepositoryTest extends AbstractTestNGSpringContextTests {
+public class ScenarioRepositoryTest extends AbstractTestNGSpringContextTests {
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Autowired
-	private VideoRepository videoDao;
+	private ScenarioRepository scenarioDao;
 
-	Video video;
-	Video video2;
+	private Scenario scenario;
 
 	@BeforeMethod
 	public void beforeMethod() {
-		video = new Video();
-		video.setName("aspen");
-		video.addVideoSource("source.mp4");
-
-		video2 = new Video();
-		video2.setName("collen burn");
-		video2.addVideoSource("source2.mp4");
-
-		videoDao.save(video);
-		videoDao.save(video2);
+		scenario = new Scenario();
+		scenario.setScenario("scenarioxyz120310310230");
+		scenarioDao.save(scenario);
 	}
 
 	@AfterMethod
@@ -50,20 +43,13 @@ public class VideoRepositoryTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Test
-	public void testGetAll() {
-		Assert.assertNotNull(videoDao.findAll());
-	}
-
-	@Test
 	public void testCreate() {
-		Assert.assertNotNull(em.find(Video.class, video.getId()));
-		Assert.assertNotNull(em.find(Video.class, video2.getId()));
+		Assert.assertNotNull(em.find(Scenario.class, scenario.getId()));
 	}
 
 	@Test
-	public void testGetRandomVideo() {
-		Video returnRandomVideo = videoDao.getRandomVideo();
-		Assert.assertTrue(videoDao.findAll().contains(returnRandomVideo));
+	public void testFindAll() {
+		Assert.assertNotNull(scenarioDao.findAll());
 	}
 
 }

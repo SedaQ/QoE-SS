@@ -93,7 +93,7 @@ public class QuestionariesRestHateosController {
 		try {
 			return questionaryFacade.create(questionary);
 		} catch (Exception ex) {
-			throw new ResourceAlreadyExistingException();
+			throw new ResourceAlreadyExistingException(ex);
 		}
 	}
 	
@@ -125,7 +125,7 @@ public class QuestionariesRestHateosController {
 
 			return ResponseEntity.ok().eTag(eTag.toString()).body(resource);
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 	
@@ -143,7 +143,7 @@ public class QuestionariesRestHateosController {
 		try {
 			return questionaryFacade.getQuestionaryById(id).getUser();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -161,7 +161,7 @@ public class QuestionariesRestHateosController {
 		try {
 			return questionaryFacade.getQuestionaryById(id).getMos();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.seda.qoe.dto.mos.MosCreateDTO;
 import com.seda.qoe.dto.mos.MosCreateDTOValue;
-import com.seda.qoe.dto.mos.MosRedirectParameters;
 import com.seda.qoe.dto.questionary.QuestionaryCreateDTO;
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;

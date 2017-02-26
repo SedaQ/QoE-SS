@@ -124,7 +124,7 @@ public class MosRestHateosController {
 
 			return ResponseEntity.ok().eTag(eTag.toString()).body(resource);
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -155,7 +155,7 @@ public class MosRestHateosController {
 		try {
 			return mosFacade.getMosById(id).getQuestionary();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -173,7 +173,7 @@ public class MosRestHateosController {
 		try {
 			return mosFacade.getMosById(id).getVideo();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 
@@ -191,7 +191,7 @@ public class MosRestHateosController {
 		try {
 			return mosFacade.getMosById(id).getScenario();
 		} catch (Exception ex) {
-			throw new ResourceNotFoundException();
+			throw new ResourceNotFoundException(ex);
 		}
 	}
 

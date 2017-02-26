@@ -49,4 +49,15 @@ public interface QuestionaryFacade {
 	 * @return List of Questionary which are in qoe DB
 	 */
 	public List<QuestionaryDTO> getAllQuestionary();
+	
+	/**
+	 * find Questionary by equals method attributes
+	 * @param email
+	 * @param gender
+	 * @param age
+	 * @param school
+	 * @param userConnection
+	 */
+	public QuestionaryDTO findByEqualsMethod(String email, String gender, String age, String school,
+			String userConnection);
 }

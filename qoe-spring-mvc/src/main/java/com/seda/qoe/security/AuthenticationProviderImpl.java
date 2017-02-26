@@ -1,5 +1,6 @@
 package com.seda.qoe.security;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,6 +15,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.stereotype.Component;
 
 import com.seda.qoe.dto.user.UserDTO;
+import com.seda.qoe.enums.UserRoles;
 import com.seda.qoe.facade.UserFacade;
 
 @Component
@@ -40,8 +42,16 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 		}
 
 		List<GrantedAuthority> authorities = null;
-		AuthorityUtils.createAuthorityList(user.getRoles());
+		AuthorityUtils.createAuthorityList(user.getRoles().iterator().next().toString());
 		return new UsernamePasswordAuthenticationToken(email, pwd, authorities);
+	}
+	
+	public String[] names(Collection<UserRoles> user){
+		java.util.List<UserRoles> roles = new java.util.ArrayList<UserRoles>();
+		for(UserRoles u : UserRoles.values()){
+			roles.add(u);
+		}
+		return roles.toArray(new String[roles.size()]);
 	}
 
 	@Override

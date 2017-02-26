@@ -10,60 +10,43 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.seda.qoe.entity.Video;
+import com.seda.qoe.entity.Questionary;
 
 @ContextConfiguration(classes = com.seda.qoe.context.PersistenceApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class VideoRepositoryTest extends AbstractTestNGSpringContextTests {
+public class QuestionaryRepositoryTest extends AbstractTestNGSpringContextTests {
 
 	@PersistenceContext
 	private EntityManager em;
 
 	@Autowired
-	private VideoRepository videoDao;
+	private QuestionaryRepository questionaryDao;
 
-	Video video;
-	Video video2;
+	private Questionary questionary;
 
 	@BeforeMethod
 	public void beforeMethod() {
-		video = new Video();
-		video.setName("aspen");
-		video.addVideoSource("source.mp4");
-
-		video2 = new Video();
-		video2.setName("collen burn");
-		video2.addVideoSource("source2.mp4");
-
-		videoDao.save(video);
-		videoDao.save(video2);
-	}
-
-	@AfterMethod
-	public void afterMethod() {
-
-	}
-
-	@Test
-	public void testGetAll() {
-		Assert.assertNotNull(videoDao.findAll());
+		questionary = new Questionary();
+		questionary.setAge("24");
+		questionary.setEmail("pavelseda@eeeeeeeeetest.cz");
+		questionary.setGender("muz");
+		questionary.setSchool("stredni_skola");
+		questionary.setUserConnection("wifi_pripojeni");
+		questionaryDao.save(questionary);
 	}
 
 	@Test
 	public void testCreate() {
-		Assert.assertNotNull(em.find(Video.class, video.getId()));
-		Assert.assertNotNull(em.find(Video.class, video2.getId()));
+		Assert.assertNotNull(em.find(Questionary.class, questionary.getId()));
 	}
 
 	@Test
-	public void testGetRandomVideo() {
-		Video returnRandomVideo = videoDao.getRandomVideo();
-		Assert.assertTrue(videoDao.findAll().contains(returnRandomVideo));
+	public void testFindAll() {
+		Assert.assertNotNull(questionaryDao.findAll());
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.seda.qoe.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -73,11 +74,23 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 		if (questionary == null)
 			throw new IllegalArgumentException("questionary parameter is null");
 		try {
-			Questionary q = questionaryDao.save(questionary);
-			return questionaryDao.findByEmail(q.getEmail());
+			return questionaryDao.save(questionary);
 		} catch (DataAccessException ex) {
 			throw new ServiceLayerException("Problem with creating questionary, see inner exception.", ex);
 		}
+	}
+
+	@Override
+	public Questionary findByEqualsMethod(String email, String gender, String age, String school,
+			String userConnection) {
+		if(email == null || gender == null || age == null || school == null || userConnection == null)
+			throw new IllegalArgumentException("findByEqualsMethod some parameters is null");
+		try {
+			return questionaryDao.findByEqualsMethod(email, gender, age, school, userConnection);
+		} catch(DataAccessException ex){
+			throw new ServiceLayerException("Problem with findByEqualsMethod search.", ex);
+		}
+		
 	}
 
 }

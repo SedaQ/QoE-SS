@@ -5,13 +5,13 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.dozer.Mapping;
@@ -29,6 +29,9 @@ public class ScenarioParameters {
 
 	@Column(nullable = false)
 	private Long length;
+	
+	@Column(nullable = false, name="video_quality")
+	private String videoQuality;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	//@Mapping("scenario")
@@ -72,6 +75,14 @@ public class ScenarioParameters {
 	public void addScenario(Scenario scenario){
 		this.scenario.add(scenario);
 	}
+	
+	public String getVideoQuality() {
+		return videoQuality;
+	}
+
+	public void setVideoQuality(String videoQuality) {
+		this.videoQuality = videoQuality;
+	}
 
 	@Override
 	public int hashCode() {
@@ -79,6 +90,7 @@ public class ScenarioParameters {
 		int result = 1;
 		result = prime * result + ((length == null) ? 0 : length.hashCode());
 		result = prime * result + ((time == null) ? 0 : time.hashCode());
+		result = prime * result + ((videoQuality == null) ? 0 : videoQuality.hashCode());
 		return result;
 	}
 
@@ -100,6 +112,11 @@ public class ScenarioParameters {
 			if (other.time != null)
 				return false;
 		} else if (!time.equals(other.time))
+			return false;
+		if (videoQuality == null) {
+			if (other.videoQuality != null)
+				return false;
+		} else if (!videoQuality.equals(other.videoQuality))
 			return false;
 		return true;
 	}

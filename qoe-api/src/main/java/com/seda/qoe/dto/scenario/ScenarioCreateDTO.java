@@ -86,14 +86,14 @@ public class ScenarioCreateDTO {
 			return false;
 		ScenarioCreateDTO other = (ScenarioCreateDTO) obj;
 		if (id == null) {
-			if (other.id != null)
+			if (other.getId() != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!id.equals(other.getId()))
 			return false;
 		if (scenario == null) {
-			if (other.scenario != null)
+			if (other.getScenario() != null)
 				return false;
-		} else if (!scenario.equals(other.scenario))
+		} else if (!scenario.equals(other.getScenario()))
 			return false;
 		return true;
 	}
