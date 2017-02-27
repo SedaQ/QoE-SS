@@ -16,6 +16,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import com.seda.qoe.dto.questionary.QuestionaryCreateDTO;
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
+import com.seda.qoe.dto.scenario.ScenarioDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 import com.seda.qoe.facade.QuestionaryFacade;
 import com.seda.qoe.facade.VideoFacade;
@@ -55,12 +56,12 @@ public class VideoController {
 		VideoDTO video = videoFacade.findRandomVideo();
 		model.addAttribute("questionaryObj", questionary);
 		model.addAttribute("videoObj", video);
-		model.addAttribute(
-				"scenarioObj",
-				video.getScenario().get(
-						(int) Math.random() * video.getScenario().size()));
 		model.addAttribute("videoSources", video.getVideoSource());
-		//
+		ScenarioDTO scenario = video.getScenario().get(
+				(int) Math.random() * video.getScenario().size());
+		model.addAttribute("scenarioObj", scenario);
+		model.addAttribute("videoSources", video.getVideoSource());
+		model.addAttribute("videoScenarioParameters", scenario.getScenarioparameters());
 		// System.out.println("Questionary id:" + questionary.getId());
 		// System.out.println("ID videa je: " + video.getId());
 		// System.out.println("Scenario id je: " + video.getScenario().get((int)
@@ -74,17 +75,14 @@ public class VideoController {
 		session.removeAttribute("videoObj");
 		session.removeAttribute("scenarioObj");
 		model.addAttribute("videoObj", video);
-		model.addAttribute(
-				"scenarioObj",
-				video.getScenario().get(
-						(int) Math.random() * video.getScenario().size()));
-
-		// System.out.println("Atributy po redirection");
-		// System.out.println("Questionary id:" + ((QuestionaryDTO)
-		// session.getAttribute("questionaryObj")).getId());
-		// System.out.println("ID videa je: " + video.getId());
-		// System.out.println("Scenario id je: " + video.getScenario().get((int)
-		// Math.random() * video.getScenario().size()).getId());
+		ScenarioDTO scenario = video.getScenario().get(
+				(int) Math.random() * video.getScenario().size());
+		model.addAttribute("scenarioObj", scenario);
+		model.addAttribute("videoSources", video.getVideoSource());
+		model.addAttribute("videoScenarioParameters", scenario.getScenarioparameters());
+		
+		System.out.println("Id videa je: " + video.getId());
+		System.out.println("Name scenaria je: " + scenario.getScenario());
 		return "testvidea/video";
 	}
 }

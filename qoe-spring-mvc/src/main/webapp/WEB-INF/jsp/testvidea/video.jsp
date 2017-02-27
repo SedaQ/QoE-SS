@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" 
+           uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
@@ -51,16 +53,16 @@
 				poster="${pageContext.request.contextPath}/assets/videa/loading.gif"
 				data-setup="{}">
 			    <source
-				src="${pageContext.request.contextPath}/assets/videa/aspen/aspen_1080p.mp4"
+				src="${pageContext.request.contextPath}/assets/videa/aspen_1080p.mp4"
 				type='video/mp4' label='1080' />
 			    <source
-				src="${pageContext.request.contextPath}/assets/videa/aspen/aspen_720p.mp4"
+				src="${pageContext.request.contextPath}/assets/videa/aspen_720p.mp4"
 				type='video/mp4' label='720' />
 	   		    <source
-				src="${pageContext.request.contextPath}/assets/videa/aspen/aspen_480p.mp4"
+				src="${pageContext.request.contextPath}/assets/videa/aspen_480p.mp4"
 				type='video/mp4' label='480' />
 				<source
-				src="${pageContext.request.contextPath}/assets/videa/aspen/aspen_360p.mp4"
+				src="${pageContext.request.contextPath}/assets/videa/aspen_360p.mp4"
 				type='video/mp4' label='360' "/>
 				<p>
 			      To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -75,24 +77,44 @@
 	      
 	      <br/>
 		  <script type="text/javascript">
+		  			var pauseTime = [];
+		  			var pauseLength = [];
+		  			var pauseVideoQuality = [];
+		  			var nextIndex = 0;
+					<c:forEach items="${videoScenarioParameters}" var="scenarioParameter" varStatus="pauseTimeStatus">
+						pauseTime.push("${scenarioParameter.time}");
+						pauseLength.push(${scenarioParameter.length}*1000);
+						pauseVideoQuality.push("${scenarioParameter.videoQuality}");
+					</c:forEach>
+					
 					var isPause = 0;
-					var pauseTime = [ "4", "8", "14" ];
+					console.log(pauseTime);
+					console.log(pauseLength);
+					console.log(pauseVideoQuality);
+					
 					var pausedCurrTime = video.currentTime;
 					$(".playpause").fadeOut();
 
+					var wait = function() {
+						$(".playpause").fadeOut();
+						isPause++;
+						video.currentTime = pausedCurrTime + 1;
+						video.play();
+						//pauseLength.shift();
+					};
+					
 					video.addEventListener('timeupdate', function() {
-						//console.log(this.currentTime.toString().split('.')[0]
-						//	.trim());
 						if ((jQuery.inArray(this.currentTime.toString().split(
 								'.')[0].trim(), pauseTime) > -1)) {
 							pausedCurrTime = this.currentTime;
 							this.pause();
 							$(".playpause").fadeIn();
-							wait();
+							console.log(pauseLength[nextIndex]);
+							setTimeout( wait, pauseLength[nextIndex++]);
 						}
 						if(this.ended){
 							document.getElementById("submitVideoFormToEvaluateMos").submit();
-						};
+						}
 					});
 					video.addEventListener('click', function() {
 						if (this.paused) {
@@ -102,14 +124,6 @@
 						}
 					});
 
-					function wait() {
-						setTimeout(function() {
-							$(".playpause").fadeOut();
-							isPause++;
-							video.currentTime = pausedCurrTime + 1;
-							video.play();
-						}, 2000);
-					}
 
 					var $video = $('video'), $window = $(window);
 

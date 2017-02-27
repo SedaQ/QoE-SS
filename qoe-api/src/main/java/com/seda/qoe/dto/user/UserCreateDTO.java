@@ -20,7 +20,7 @@ public class UserCreateDTO {
 	private String password;
 
 	@NotEmpty(message = "User role couldn't be empty")
-	private List<UserRoles> roles = new ArrayList<UserRoles>();
+	private List<String> roles = new ArrayList<String>();
 
 	public UserCreateDTO() {
 	}
@@ -49,11 +49,11 @@ public class UserCreateDTO {
 		this.id = id;
 	}
 
-	public List<UserRoles> getRoles() {
+	public List<String> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<UserRoles> roles) {
+	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
 

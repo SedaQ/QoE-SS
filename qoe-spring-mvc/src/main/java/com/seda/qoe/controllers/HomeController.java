@@ -26,5 +26,9 @@ public class HomeController {
 		return "resultcorrelation";
 	}
 	
+	@RequestMapping(value = "/errorpage")
+	public String errorpage() {
+		return "errorpage";
+	}
 
 }

@@ -1,7 +1,14 @@
 package com.seda.qoe.service;
 
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +16,7 @@ import com.seda.qoe.dao.UserRepository;
 import com.seda.qoe.entity.User;
 import com.seda.qoe.enums.UserRoles;
 import com.seda.qoe.exceptions.ServiceLayerException;
+import com.seda.qoe.security.AESCipher;
 import com.seda.qoe.security.UserPasswordEncryption;
 
 /**
@@ -20,12 +28,14 @@ public class UserServiceImpl implements UserService {
 
 	private UserRepository userDao;
 
-	private UserPasswordEncryption userPasswordEncryption;
-
+	private AESCipher encryptDecrypt;
+	//private UserPasswordEncryption userPasswordEncryption;
+	
 	@Inject
-	public UserServiceImpl(UserRepository userDao, UserPasswordEncryption userPasswordEncryption) {
+	public UserServiceImpl(UserRepository userDao, UserPasswordEncryption userPasswordEncryption, AESCipher encryptDecrypt) {
 		this.userDao = userDao;
-		this.userPasswordEncryption = userPasswordEncryption;
+		//this.userPasswordEncryption = userPasswordEncryption;
+		this.encryptDecrypt = encryptDecrypt;
 	}
 
 	@Override
@@ -34,12 +44,24 @@ public class UserServiceImpl implements UserService {
 			throw new IllegalArgumentException("User u parameter is null");
 		if (unencryptedPassword == null)
 			throw new IllegalArgumentException("String unencryptedPassword parameter is null");
-
 		try {
-			u.setPasswordHash(userPasswordEncryption.createHash(unencryptedPassword));
+			// u.setPasswordHash(userPasswordEncryption.createHash(unencryptedPassword)); // was with UserPasswordEncryption
+			u.setPasswordHash(encryptDecrypt.encrypt(unencryptedPassword));
 			userDao.save(u);
 		} catch (RuntimeException ex) {
 			throw new ServiceLayerException("Problem with registering LS-User, see inner exception.", ex);
+		} catch (InvalidKeyException e) {
+			throw new ServiceLayerException("Problem with registering LS-User, see inner exception.", e);
+		} catch (NoSuchAlgorithmException e) {
+			throw new ServiceLayerException("Problem with registering LS-User, see inner exception.", e);
+		} catch (NoSuchPaddingException e) {
+			throw new ServiceLayerException("Problem with registering LS-User, see inner exception.", e);
+		} catch (IllegalBlockSizeException e) {
+			throw new ServiceLayerException("Problem with registering LS-User, see inner exception.", e);
+		} catch (BadPaddingException e) {
+			throw new ServiceLayerException("Problem with registering LS-User, see inner exception.", e);
+		} catch (IOException e) {
+			throw new ServiceLayerException("Problem with registering LS-User, see inner exception.", e);
 		}
 	}
 
@@ -51,9 +73,22 @@ public class UserServiceImpl implements UserService {
 			throw new IllegalArgumentException("String password parameter is null");
 
 		try {
-			return userPasswordEncryption.validatePassword(password, u.getPasswordHash());
-		} catch (RuntimeException ex) {
-			throw new ServiceLayerException("Problem with authenticating User, see inner exception.", ex);
+			//return userPasswordEncryption.validatePassword(password, u.getPasswordHash()); // was with UserPasswordEncryption
+			return encryptDecrypt.validatePassword(password, u.getPasswordHash());
+		} catch (RuntimeException e) {
+			throw new ServiceLayerException("Problem with authenticating User, see inner exception.", e);
+		} catch (InvalidKeyException e) {
+			throw new ServiceLayerException("Problem with authenticating User, see inner exception.", e);
+		} catch (InvalidAlgorithmParameterException e) {
+			throw new ServiceLayerException("Problem with authenticating User, see inner exception.", e);
+		} catch (NoSuchAlgorithmException e) {
+			throw new ServiceLayerException("Problem with authenticating User, see inner exception.", e);
+		} catch (NoSuchPaddingException e) {
+			throw new ServiceLayerException("Problem with authenticating User, see inner exception.", e);
+		} catch (IllegalBlockSizeException e) {
+			throw new ServiceLayerException("Problem with authenticating User, see inner exception.", e);
+		} catch (BadPaddingException e) {
+			throw new ServiceLayerException("Problem with authenticating User, see inner exception.", e);
 		}
 	}
 

@@ -73,20 +73,7 @@ public class SpringMVCConfig extends WebMvcConfigurerAdapter {
 	 */
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/WEB-INF/assets/**").addResourceLocations("/WEB-INF/assets/").setCachePeriod(31556926);
-		registry.addResourceHandler("/assets/bootstrap/**").addResourceLocations("/assets/bootstrap/")
-				.setCachePeriod(31556926);
-		registry.addResourceHandler("/assets/reveal/**").addResourceLocations("/assets/reveal/")
-				.setCachePeriod(31556926);
-		registry.addResourceHandler("/assets/pdf/**").addResourceLocations("/assets/reveal/")
-		.setCachePeriod(31556926);
-		registry.addResourceHandler("/assets/videa/**").addResourceLocations("/assets/videa/").setCachePeriod(31556926);
-		registry.addResourceHandler("/assets/css/**").addResourceLocations("/assets/css/").setCachePeriod(31556926);
-		registry.addResourceHandler("/assets/font-awesome/**").addResourceLocations("/assets/font-awesome/")
-				.setCachePeriod(31556926);
-		registry.addResourceHandler("/assets/ico/**").addResourceLocations("/assets/ico/").setCachePeriod(31556926);
-		registry.addResourceHandler("/assets/img/**").addResourceLocations("/assets/img/").setCachePeriod(31556926);
-		registry.addResourceHandler("/assets/js/**").addResourceLocations("/assets/js/").setCachePeriod(31556926);
+		registry.addResourceHandler("/WEB-INF/assets/**").addResourceLocations("/WEB-INF/assets/**").setCachePeriod(31556926);
 	}
 
 	/**

@@ -123,22 +123,31 @@
 					</li>
 				</ul>
 
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="${pageContext.request.contextPath}/logout"><span
-							class="glyphicon glyphicon-log-in"> Logout</span> </a>
-					</li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="${pageContext.request.contextPath}/userDetail">
-							<sec:authorize var="loggedIn" access="isAuthenticated()">
+				<sec:authorize access="isAnonymous()">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="${pageContext.request.contextPath}/login"><span
+								class="glyphicon glyphicon-log-in"> Login</span> </a></li>
+					</ul>
+				</sec:authorize>
+
+				<sec:authorize var="loggedIn" access="isAuthenticated()">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="${pageContext.request.contextPath}/logout"><span
+								class="glyphicon glyphicon-log-in"> Logout</span>
+						</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="${pageContext.request.contextPath}/userDetail">
+
 								<c:choose>
 									<c:when test="${loggedIn}">
 										<%=request.getUserPrincipal().getName()%>
 									</c:when>
-								</c:choose>
-							</sec:authorize> </a>
-					</li>
-				</ul>
+								</c:choose> </a></li>
+					</ul>
+				</sec:authorize>
+
 			</div>
 		</nav>
 
@@ -163,13 +172,12 @@
 
 	<!-- js -->
 	<script src="<c:url value="/assets/bootstrap/js/bootstrap.js"/>"></script>
+	<!-- -->
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="<c:url value="/assets/js/jquery-1.11.1.min.js"/>"></script>
-	<!-- <script src="<c:url value="/assets/bootstrap/js/bootstrap.min.js"/>"></script> -->
-	<script src="<c:url value="/assets/js/jquery.backstretch.min.js"/>"></script>
 	<script src="<c:url value="/assets/js/scripts.js"/>"></script>
 
 </body>

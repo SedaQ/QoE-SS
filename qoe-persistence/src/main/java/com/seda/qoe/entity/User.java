@@ -42,7 +42,7 @@ public class User {
 	@CollectionTable(name = "user_role")
 	@Column(name = "role")
 	//@Mapping("roles")
-	private Set<UserRole> roles = new HashSet<UserRole>();
+	private Set<String> roles = new HashSet<String>();
 
 	@OneToMany(mappedBy = "user")
 	private Set<Questionary> questionary = new HashSet<Questionary>();
@@ -74,15 +74,15 @@ public class User {
 		this.passwordHash = passwordHash;
 	}
 
-	public Set<UserRole> getRoles() {
+	public Set<String> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<UserRole> roles) {
+	public void setRoles(Set<String> roles) {
 		this.roles = roles;
 	}
 
-	public void addRole(UserRole role) {
+	public void addRole(String role) {
 		this.roles.add(role);
 	}
 

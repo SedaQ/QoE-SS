@@ -134,7 +134,7 @@ public class UsersRestHateosController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}/roles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final Collection<UserRoles> getUserRolesByUserId(@PathVariable("id") long id,
+	public final Collection<String> getUserRolesByUserId(@PathVariable("id") long id,
 			WebRequest webRequest) {
 		try {
 			return userFacade.getUserById(id).getRoles();

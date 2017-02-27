@@ -67,15 +67,4 @@ public class VideoFacadeTest extends AbstractTestNGSpringContextTests {
 		verify(videoService, times(1)).findRandomVideo();
 	}
 
-	// @Test
-	// public void testCreate() {
-	// videoFacade.create(videoCreateDTO);
-	// verify(videoService, times(1)).create(any(Video.class));
-	// }
-
-	// @Test
-	// public void testRemove() {
-	// videoFacade.deleteVideo(videoDTO);
-	// verify(videoService, times(1)).remove(any(Video.class));
-	// }
 }

@@ -1,3 +1,7 @@
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	
 <div class="header">
 	<nav class="navbar navbar-inverse"> <!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="container-fluid">
@@ -71,11 +75,30 @@
 			</li>
 		</ul>
 
-		<ul class="nav navbar-nav navbar-right">
-			<li><a href="${pageContext.request.contextPath}/logout"><span
-					class="glyphicon glyphicon-log-in"> Logout</span> </a>
-			</li>
-		</ul>
+				<sec:authorize access="isAnonymous()">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="${pageContext.request.contextPath}/login"><span
+								class="glyphicon glyphicon-log-in"> Login</span> </a></li>
+					</ul>
+				</sec:authorize>
+
+				<sec:authorize var="loggedIn" access="isAuthenticated()">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="${pageContext.request.contextPath}/logout"><span
+								class="glyphicon glyphicon-log-in"> Logout</span>
+						</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="${pageContext.request.contextPath}/userDetail">
+
+								<c:choose>
+									<c:when test="${loggedIn}">
+										<%=request.getUserPrincipal().getName()%>
+									</c:when>
+								</c:choose> </a></li>
+					</ul>
+				</sec:authorize>
 	</div>
 	</nav>
 

@@ -29,24 +29,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// @formatter:off
 		http
-			.csrf().disable();
-//			.authorizeRequests()
-				//.antMatchers("/qoe/rest/**").anonymous()
-//				.antMatchers("/").anonymous()
-//				.antMatchers("/**").anonymous()
-//				.antMatchers("/assets/**").permitAll()
-//				.antMatchers("/login").anonymous()
-//				.anyRequest().authenticated()
-//				.and()
-//			.formLogin()
-//				.loginPage("/login")
-//				.usernameParameter("username").passwordParameter("password")
-//				.defaultSuccessUrl("/home")
-//				.and()
-//			.exceptionHandling()
-//				.accessDeniedPage("/errorpage")
-//			.and()
-//				.csrf();
+			.csrf().disable()
+			.authorizeRequests()
+				.antMatchers("/assets/**").permitAll()
+				.antMatchers("/rest/**").authenticated()
+				.and()
+			.formLogin()
+				.loginPage("/login")
+				.usernameParameter("username").passwordParameter("password")
+				//.defaultSuccessUrl("/home")
+				.and()
+			.exceptionHandling()
+				.accessDeniedPage("/errorpage");
 		// @formatter:on
 	}
 }

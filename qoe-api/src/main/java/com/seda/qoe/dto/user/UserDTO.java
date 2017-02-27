@@ -11,7 +11,7 @@ public class UserDTO {
 	protected Long id;
 	private String email;
 	private String passwordHash;
-	private List<UserRoles> roles = new ArrayList<UserRoles>();
+	private List<String> roles = new ArrayList<String>();
 
 	public UserDTO() {
 	}
@@ -40,11 +40,11 @@ public class UserDTO {
 		return id;
 	}
 	
-	public Collection<UserRoles> getRoles() {
+	public List<String> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<UserRoles> roles) {
+	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
 
