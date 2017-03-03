@@ -31,6 +31,16 @@ After succesfully build, change directory to rest module and run tomcat via:
 For easy testing purpose in GUI I recommend you to use Advanced REST client for Chrome browser. https://advancedrestclient.com/
 You can also use Curl or Postman.
 
+### GET example commands
+#### Questionary
+```
+~/rest/hateos/questionaries
+```
+Posibility of filtering and searching via REST API
+```
+~/rest/hateos/questionaries?search=age==24;school==zakladni
+```
+Notation for searching is written in EBNF notation [ISO 14977](http://www.cl.cam.ac.uk/~mgk25/iso-14977.pdf)
 
 ### POST example commands
 #### User 
