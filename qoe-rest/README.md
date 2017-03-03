@@ -31,6 +31,17 @@ After succesfully build, change directory to rest module and run tomcat via:
 For easy testing purpose in GUI I recommend you to use Advanced REST client for Chrome browser. https://advancedrestclient.com/
 You can also use Curl or Postman.
 
+### GET example commands
+#### Questionary
+```
+~/rest/hateos/questionaries
+```
+Posibility of filtering and searching via REST API
+```
+~/rest/hateos/questionaries?search=age==24;school==zakladni
+```
+Notation for searching is nicely listed in following page in section Grammar and semantic:
+https://github.com/jirutka/rsql-parser
 
 ### POST example commands
 #### User 
