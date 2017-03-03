@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.WebRequest;
 
@@ -55,10 +56,11 @@ public class MosRestHateosController {
 	 * @throws JsonProcessingException
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final HttpEntity<Resources<Resource<MosDTO>>> getMos()
+	public final HttpEntity<Resources<Resource<MosDTO>>> getMos(
+			@RequestParam(value = "search", required = false) String search)
 			throws JsonProcessingException {
 
-		Collection<MosDTO> mosDTO = mosFacade.getAllMos();
+		Collection<MosDTO> mosDTO = mosFacade.getAllMos(search);
 		Collection<Resource<MosDTO>> mosResourceCollection = new ArrayList<Resource<MosDTO>>();
 		for (MosDTO m : mosDTO) {
 			mosResourceCollection.add(mosResourceAssembler.toResource(m));
@@ -71,16 +73,17 @@ public class MosRestHateosController {
 		return new ResponseEntity<Resources<Resource<MosDTO>>>(mosResources,
 				HttpStatus.OK);
 	}
+
 	/**
-	 * POST ~/mos
-	 *	curl -X POST -i -H "Content-Type: application/json" 
-	 *	--data '{"mosValue":"5"}'
-	 *
-	 * 	or with entity referencies
+	 * POST ~/mos curl -X POST -i -H "Content-Type: application/json" --data
+	 * '{"mosValue":"5"}'
 	 * 
-	 *  {"mosValue":"2","questionary":{"id":"1"}, "scenario":{"id":"2"},"video":{"id":"9"}}
-	 *	http://localhost:8080/rest/hateos/mos
-     *
+	 * or with entity referencies
+	 * 
+	 * {"mosValue":"2","questionary":{"id":"1"},
+	 * "scenario":{"id":"2"},"video":{"id":"9"}}
+	 * http://localhost:8080/rest/hateos/mos
+	 * 
 	 * @param mos
 	 * @return
 	 */

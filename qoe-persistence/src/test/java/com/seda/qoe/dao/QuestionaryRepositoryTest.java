@@ -1,5 +1,8 @@
 package com.seda.qoe.dao;
 
+
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -32,6 +35,7 @@ public class QuestionaryRepositoryTest extends AbstractTestNGSpringContextTests 
 	public void beforeMethod() {
 		questionary = new Questionary();
 		questionary.setAge("24");
+		questionary.setDate(new Date());
 		questionary.setEmail("pavelseda@eeeeeeeeetest.cz");
 		questionary.setGender("muz");
 		questionary.setSchool("stredni_skola");

@@ -7,7 +7,7 @@ import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.stereotype.Component;
 
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
-import com.seda.qoe.rest.controllers.QuestionariesController;
+import com.seda.qoe.rest.controllers.hateos.QuestionariesRestHateosController;
 
 /**
  * 
@@ -22,11 +22,11 @@ public class QuestionaryResourceAssembler implements ResourceAssembler<Questiona
         Resource<QuestionaryDTO> questionaryResource = new Resource<QuestionaryDTO>(questionaryDTO);
 
         try {
-        	questionaryResource.add(linkTo(QuestionariesController.class).slash(id).withSelfRel());
-        	questionaryResource.add(linkTo(QuestionariesController.class).slash(id).slash("user").withRel("user"));
-        	questionaryResource.add(linkTo(QuestionariesController.class).slash(id).slash("mos").withRel("mos"));
-        	questionaryResource.add(linkTo(QuestionariesController.class).slash(id).withRel("DELETE"));
-        	questionaryResource.add(linkTo(QuestionariesController.class).slash("update").withRel("PUT"));
+        	questionaryResource.add(linkTo(QuestionariesRestHateosController.class).slash(id).withSelfRel());
+        	questionaryResource.add(linkTo(QuestionariesRestHateosController.class).slash(id).slash("users").withRel("users"));
+        	questionaryResource.add(linkTo(QuestionariesRestHateosController.class).slash(id).slash("mos").withRel("mos"));
+        	questionaryResource.add(linkTo(QuestionariesRestHateosController.class).slash(id).withRel("DELETE"));
+        	questionaryResource.add(linkTo(QuestionariesRestHateosController.class).slash("update").withRel("PUT"));
 
         } catch (Exception ex) {
         }

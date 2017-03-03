@@ -33,7 +33,7 @@ public interface MosService {
 	 * 
 	 * @return List of mos which are in language school
 	 */
-	public List<Mos> findAll();
+	public List<Mos> findAll(String search);
 
 	/**
 	 * updates given mos

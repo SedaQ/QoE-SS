@@ -67,9 +67,9 @@ public class MosFacadeImpl implements MosFacade {
 	}
 
 	@Override
-	public List<MosDTO> getAllMos() {
+	public List<MosDTO> getAllMos(String search) {
 		try {
-			return beanMapping.mapTo(mosService.findAll(), MosDTO.class);
+			return beanMapping.mapTo(mosService.findAll(search), MosDTO.class);
 		} catch (ServiceLayerException ex) {
 			return Collections.emptyList();
 		}

@@ -9,34 +9,28 @@
 	<persistence-unit name="default" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
-			
-			<!-- For local usage -->
+
+			<!-- For local usage-->
+			<property name="hibernate.connection.provider_class"
+				value="org.hibernate.connection.C3P0ConnectionProvider" />
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/qoe" />
 			<property name="hibernate.connection.username" value="root" />
 			<property name="hibernate.connection.password" value="" />
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="validate" />
-			<property name="connection.autoReconnect" value="true"/>
-			<property name="connection.autoReconnectForPools" value="true"/>
-			<property name="connection.is-connection-validation-required" value="true"/>
+			 
+			<property name="hibernate.c3p0.acquire_increment" value="1"/>
+			<property name="hibernate.c3p0.min_size" value="4"/> 
+			<property name="hibernate.c3p0.max_size"  value="100"/>
+			<property name="hibernate.c3p0.idle_test_period"  value="100"/>
+			<property name="hibernate.c3p0.max_statements" value="100"/>
+			<property name="hibernate.c3p0.timeout" value="100"/>
+			<property name="hibernate.c3p0.preferredTestQuery" value="SELECT 1"/>
+			<property name="hibernate.c3p0.testConnectionOnCheckout" value="true"/>
 			<property name="show_sql" value="true" />
-			<property name="format_sql" value="true" />  
+			<property name="format_sql" value="true" /> 
 
-			<!-- <property name="hibernate.connection.url" value="jdbc:derby:memory:testdb" 
-				/> <property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.EmbeddedDriver" 
-				/> <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider" 
-				/> <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect" 
-				/> <property name="hibernate.hbm2ddl.auto" value="create" /> <property name="show_sql" 
-				value="true" /> <property name="format_sql" value="true" /> -->
-
-			<!-- redhat alternative <property name="hibernate.connection.driver_class" 
-				value="com.mysql.jdbc.Driver" /> <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" 
-				/> <property name="hibernate.connection.url" value="jdbc:mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/qoe" 
-				/> <property name="hibernate.connection.username" value="$OPENSHIFT_MYSQL_DB_USERNAME" 
-				/> <property name="hibernate.connection.password" value="$OPENSHIFT_MYSQL_DB_PASSWORD" 
-				/> <property name="hibernate.hbm2ddl.auto" value="NONE" /> <property name="show_sql" 
-				value="true" /> <property name="format_sql" value="true" /> -->
 		</properties>
 	</persistence-unit>
 </persistence>

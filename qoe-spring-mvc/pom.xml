@@ -36,6 +36,13 @@
 			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		<!-- Could be used when implementing searchParamCriteria  -->
+		<!-- 
+		<dependency>
+			<groupId>cz.jirutka.rsql</groupId>
+			<artifactId>rsql-parser</artifactId>
+			<version>2.0.0</version>
+		</dependency> -->
 		<!-- jsp-api could be removed only for removing errors in eclipse IDE after 
 			cleaning project -->
 		<dependency>
@@ -144,7 +151,7 @@
 						<artifactId>maven-war-plugin</artifactId>
 						<version>2.5</version>
 						<configuration>
-							<outputDirectory>C:/Skola/Škola VUT FEKT/moje_Seda/diplomka/Appka/openshift pro appku/qoe/webapps</outputDirectory>
+							<outputDirectory>C:\Skola\Škola VUT FEKT\moje_Seda\diplomka\Appka\openshift pro appku\qoe\webapps</outputDirectory>
 							<warName>ROOT</warName>
 						</configuration>
 					</plugin>

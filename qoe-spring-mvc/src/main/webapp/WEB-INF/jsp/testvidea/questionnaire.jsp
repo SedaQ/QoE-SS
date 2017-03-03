@@ -8,15 +8,19 @@
 
 <my:pagetemplate title="QoE">
 	<jsp:attribute name="body">
+		
 		<h1 class="page-header">
 			Prosím vyplňte následující dotazník před zahájením testování QoE <small></small>
 		</h1>
-		<div class="col-md-5 col-md-offset-2">
+		<div class="col-md-4 col-md-offset-4">
 			<form:form method="post"
-				action="${pageContext.request.contextPath}/video/questionnairefilled" modelAttribute="questionaryCreate" enctype="multipart/form-data;charset=UTF-8">
+				action="${pageContext.request.contextPath}/video/questionnairefilled"
+				modelAttribute="questionaryCreate"
+				enctype="multipart/form-data;charset=UTF-8">
 				<div class="form-group">
 				  <label for="email">Email:</label>
-				  <input type="email" class="form-control" name="email" id="email" placeholder="Enter a valid email address" required="true"/>
+				  <input type="email" class="form-control" name="email" id="email"
+						placeholder="Enter a valid email address" required="true" />
 				</div>
 				<div class="form-group">
 				  <label for="age">Věk:</label>
@@ -32,7 +36,8 @@
 				</div>
 				<div class="form-group">
 				  <label for="school">Dosažené vzdělání:</label>
-				  <select class="form-control" name="school" id="school"  required="true">
+				  <select class="form-control" name="school" id="school"
+						required="true">
 				    <option>zakladni</option>
 				    <option>stredni_skola</option>
 				    <option>vysoka_skola</option>
@@ -40,15 +45,16 @@
 				</div>
 				<div class="form-group">
 				  <label for="userConnection">Typ připojení k internetu:</label>
-				  <select class="form-control" name="userConnection" id="userConnection"  required="true">
+				  <select class="form-control" name="userConnection"
+						id="userConnection" required="true">
 				    <option>wifi_pripojeni</option>
 				    <option>pripojeni_kabelem</option>
 				  </select>
 				</div>
 				<button type="submit" class="btn btn-primary">Start video</button>
 			</form:form>
-			<br/>
-			<br/>
+			<br />
+			<br />
 		</div>
 	</jsp:attribute>
 </my:pagetemplate>

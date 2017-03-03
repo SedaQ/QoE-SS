@@ -10,14 +10,21 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.inject.Inject;
+
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.UserRepository;
+import com.seda.qoe.entity.Scenario;
 import com.seda.qoe.entity.User;
 import com.seda.qoe.enums.UserRoles;
 import com.seda.qoe.exceptions.ServiceLayerException;
 import com.seda.qoe.security.AESCipher;
 import com.seda.qoe.security.UserPasswordEncryption;
+import com.seda.qoe.specification.RsqlVisitor;
+
+import cz.jirutka.rsql.parser.RSQLParser;
+import cz.jirutka.rsql.parser.ast.Node;
 
 /**
  * @author Pavel Šeda
@@ -128,9 +135,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public List<User> findAll() {
+	public List<User> findAll(String search) {
 		try {
-			return userDao.findAll();
+			if(search !=null && !search.isEmpty()){
+				final Node rootNode = new RSQLParser().parse(search);
+	            Specification<User> spec = rootNode.accept(new RsqlVisitor<User>());
+	            return userDao.findAll(spec);
+			} else{
+				return userDao.findAll();
+			}
 		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with finding User, see inner exception.", ex);
 		}

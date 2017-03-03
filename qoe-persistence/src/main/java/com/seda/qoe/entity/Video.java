@@ -37,8 +37,7 @@ public class Video {
 	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
 	@CollectionTable(name = "video_source")
 	@Column(nullable = false, name = "video_src")
-	//@Mapping("videoSource")
-	private Set<String> videoSource = new TreeSet<String>(new StringComparator());
+	private Set<String> videoSource = new HashSet<String>();//new TreeSet<String>(new StringComparator());
 
 	@OneToMany(mappedBy = "video", fetch = FetchType.EAGER)
 	private Set<Mos> mos = new HashSet<Mos>();

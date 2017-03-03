@@ -7,7 +7,7 @@ import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.stereotype.Component;
 
 import com.seda.qoe.dto.user.UserDTO;
-import com.seda.qoe.rest.controllers.UsersController;
+import com.seda.qoe.rest.controllers.hateos.UsersRestHateosController;
 
 /**
  * 
@@ -22,10 +22,10 @@ public class UserResourceAssembler implements ResourceAssembler<UserDTO, Resourc
         Resource<UserDTO> scenarioResource = new Resource<UserDTO>(userDTO);
 
         try {
-        	scenarioResource.add(linkTo(UsersController.class).slash(id).withSelfRel());
-        	scenarioResource.add(linkTo(UsersController.class).slash(id).slash("questionary").withRel("questionary"));
-        	scenarioResource.add(linkTo(UsersController.class).slash(id).withRel("DELETE"));
-        	scenarioResource.add(linkTo(UsersController.class).slash("update").withRel("PUT"));
+        	scenarioResource.add(linkTo(UsersRestHateosController.class).slash(id).withSelfRel());
+        	scenarioResource.add(linkTo(UsersRestHateosController.class).slash(id).slash("questionaries").withRel("questionaries"));
+        	scenarioResource.add(linkTo(UsersRestHateosController.class).slash(id).withRel("DELETE"));
+        	scenarioResource.add(linkTo(UsersRestHateosController.class).slash("update").withRel("PUT"));
 
         } catch (Exception ex) {
         }

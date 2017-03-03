@@ -48,7 +48,7 @@ public interface VideoFacade {
 	 * 
 	 * @return List of Video which are in qoe DB
 	 */
-	public List<VideoDTO> getAllVideo();
+	public List<VideoDTO> getAllVideo(String search);
 	
 	/**
 	 * 

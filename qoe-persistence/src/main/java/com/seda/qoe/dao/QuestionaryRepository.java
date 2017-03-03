@@ -1,12 +1,14 @@
 package com.seda.qoe.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import com.seda.qoe.entity.Mos;
 import com.seda.qoe.entity.Questionary;
 
-public interface QuestionaryRepository extends JpaRepository<Questionary, Long> {
+public interface QuestionaryRepository extends JpaRepository<Questionary, Long>, JpaSpecificationExecutor<Questionary> {
 
 	/**
 	 * Find specific questionary by email

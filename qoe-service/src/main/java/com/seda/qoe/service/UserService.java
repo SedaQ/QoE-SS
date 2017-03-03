@@ -24,7 +24,7 @@ public interface UserService {
 	 * 
 	 * @return List of user which are in language school
 	 */
-	public List<User> findAll();
+	public List<User> findAll(String search);
 
 	/**
 	 * Find specific user by his email

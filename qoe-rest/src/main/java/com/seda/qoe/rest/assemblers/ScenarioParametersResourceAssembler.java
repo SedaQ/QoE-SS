@@ -7,7 +7,7 @@ import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.stereotype.Component;
 
 import com.seda.qoe.dto.scenarioparameters.ScenarioParametersDTO;
-import com.seda.qoe.rest.controllers.ScenarioParametersController;
+import com.seda.qoe.rest.controllers.hateos.ScenarioParametersRestHateosController;
 
 
 /**
@@ -23,10 +23,10 @@ public class ScenarioParametersResourceAssembler implements ResourceAssembler<Sc
         Resource<ScenarioParametersDTO> scenarioParametersResource = new Resource<ScenarioParametersDTO>(scenarioParametersDTO);
 
         try {
-        	scenarioParametersResource.add(linkTo(ScenarioParametersController.class).slash(id).withSelfRel());
-        	scenarioParametersResource.add(linkTo(ScenarioParametersController.class).slash(id).slash("scenario").withRel("scenario"));
-        	scenarioParametersResource.add(linkTo(ScenarioParametersController.class).slash(id).withRel("DELETE"));
-        	scenarioParametersResource.add(linkTo(ScenarioParametersController.class).slash("update").withRel("PUT"));
+        	scenarioParametersResource.add(linkTo(ScenarioParametersRestHateosController.class).slash(id).withSelfRel());
+        	scenarioParametersResource.add(linkTo(ScenarioParametersRestHateosController.class).slash(id).slash("scenarios").withRel("scenarios"));
+        	scenarioParametersResource.add(linkTo(ScenarioParametersRestHateosController.class).slash(id).withRel("DELETE"));
+        	scenarioParametersResource.add(linkTo(ScenarioParametersRestHateosController.class).slash("update").withRel("PUT"));
 
         } catch (Exception ex) {
         }

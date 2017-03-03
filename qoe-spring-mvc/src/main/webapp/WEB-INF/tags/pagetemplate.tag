@@ -138,13 +138,12 @@
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="${pageContext.request.contextPath}/userDetail">
-
+						 <li><a href="${pageContext.request.contextPath}/userDetail">
 								<c:choose>
 									<c:when test="${loggedIn}">
 										<%=request.getUserPrincipal().getName()%>
 									</c:when>
-								</c:choose> </a></li>
+								</c:choose> </a></li> 
 					</ul>
 				</sec:authorize>
 
@@ -157,7 +156,7 @@
 	<div class="container">
 		<!-- page body -->
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-12">
 				<!-- page body -->
 				<jsp:invoke fragment="body" />
 			</div>

@@ -33,7 +33,7 @@ public interface ScenarioService {
 	 * 
 	 * @return List of Scenario which are in language school
 	 */
-	public List<Scenario> findAll();
+	public List<Scenario> findAll(String search);
 
 	/**
 	 * updates given Scenario

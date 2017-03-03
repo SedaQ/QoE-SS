@@ -35,7 +35,7 @@ public interface QuestionaryService {
 	 * 
 	 * @return List of Questionary which are in language school
 	 */
-	public List<Questionary> findAll();
+	public List<Questionary> findAll(String search);
 
 	/**
 	 * updates given Questionary

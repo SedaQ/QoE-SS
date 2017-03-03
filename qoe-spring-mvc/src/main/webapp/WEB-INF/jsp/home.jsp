@@ -12,7 +12,7 @@
 	</h1>
 	<section class="container">
 			<article class="row">
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<h3>
 					<a href="#">Subjektivní QoE</a>
 				</h3>
@@ -26,7 +26,7 @@
 				</p>
 				<a href="${pageContext.request.contextPath}/subjectiveqoe" class="btn btn-primary" role="button">Přečtěte si více</a>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<h3>
 					<a href="#">Objektivní QoE</a>
 				</h3>
@@ -46,7 +46,7 @@
 				</p>
 				<a href="${pageContext.request.contextPath}/objectiveqoe" class="btn btn-primary" role="button">Přečtěte si více</a>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<h3>
 					<a href="#">Metody měření subjektivního QoE</a>
 				</h3>

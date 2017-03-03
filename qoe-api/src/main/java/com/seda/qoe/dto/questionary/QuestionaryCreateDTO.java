@@ -1,5 +1,7 @@
 package com.seda.qoe.dto.questionary;
 
+import java.util.Date;
+
 import javax.validation.constraints.NotNull;
 
 public class QuestionaryCreateDTO {
@@ -13,6 +15,7 @@ public class QuestionaryCreateDTO {
 	private String age;
 	@NotNull
 	private String school;
+	private Date date;
 	@NotNull
 	private String userConnection;
 
@@ -67,6 +70,14 @@ public class QuestionaryCreateDTO {
 		this.email = email;
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,6 +87,7 @@ public class QuestionaryCreateDTO {
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((school == null) ? 0 : school.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result
 				+ ((userConnection == null) ? 0 : userConnection.hashCode());
 		return result;
@@ -114,6 +126,11 @@ public class QuestionaryCreateDTO {
 			if (other.getSchool() != null)
 				return false;
 		} else if (!school.equals(other.getSchool()))
+			return false;
+		if (date == null) {
+			if (other.getDate() != null)
+				return false;
+		} else if (!date.equals(other.getDate()))
 			return false;
 		if (userConnection == null) {
 			if (other.getUserConnection() != null)

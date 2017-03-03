@@ -12,11 +12,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Měření subjektivního QoE</title>
 <style>
-	body {
-	    background-image: url("${pageContext.request.contextPath}/assets/img/backgrounds/1.jpg");
-	    background-color: #3e3e3e;
-	    background-size: cover;
-	}
+body {
+	background-image:
+		url("${pageContext.request.contextPath}/assets/img/backgrounds/1.jpg");
+	background-color: #3e3e3e;
+	background-size: cover;
+}
 </style>
 
 <!-- CSS -->
@@ -53,7 +54,7 @@
 						<h1>
 							<strong>Měření subjektivního QoE</strong>
 						</h1>
-						<div class="description">
+						<div class="descripstion">
 							<p></p>
 						</div>
 					</div>
@@ -86,16 +87,18 @@
 							</c:if>
 							<c:url value="/login" var="loginUrl" />
 							<form role="form" action="${loginUrl}" method="post"
-								class="login-form">
+								class="login-form" id="loginForm">
 								<div class="form-group">
-									<label class="sr-only" for="username">Username</label> <input
+									<label class="sr-only" for="userName">Username</label> <input
 										type="text" name="username" placeholder="Username..."
-										class="form-username form-control" id="form-username">
+										class="form-username form-control" id="form-username"
+										required="true" />
 								</div>
 								<div class="form-group">
 									<label class="sr-only" for="password">Password</label> <input
 										type="password" name="password" placeholder="Password..."
-										class="form-password form-control" id="form-password">
+										class="form-password form-control" id="form-password"
+										required="true" />
 								</div>
 								<!-- <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" /> -->
 								<button type="submit" class="btn">Sign in!</button>

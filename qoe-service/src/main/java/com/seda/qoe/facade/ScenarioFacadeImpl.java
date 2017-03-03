@@ -67,9 +67,9 @@ public class ScenarioFacadeImpl implements ScenarioFacade {
 	}
 
 	@Override
-	public List<ScenarioDTO> getAllScenario() {
+	public List<ScenarioDTO> getAllScenario(String search) {
 		try {
-			return beanMapping.mapTo(scenarioService.findAll(), ScenarioDTO.class);
+			return beanMapping.mapTo(scenarioService.findAll(search), ScenarioDTO.class);
 		} catch (ServiceLayerException ex) {
 			return Collections.emptyList();
 		}

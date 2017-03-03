@@ -56,7 +56,7 @@ public class VideosRestHateosController {
 	 * @throws JsonProcessingException
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final HttpEntity<Resources<Resource<VideoDTO>>> getVideos(@RequestParam(value = "search", required = false) String search)
+	public final HttpEntity<Resources<Resource<VideoDTO>>> getVideos(@RequestParam("search") String search)
 			throws JsonProcessingException {
 
 		Collection<VideoDTO> videosDTO = videoFacade.getAllVideo(search);

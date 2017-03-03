@@ -5,11 +5,17 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.ScenarioParametersRepository;
+import com.seda.qoe.entity.Questionary;
 import com.seda.qoe.entity.ScenarioParameters;
 import com.seda.qoe.exceptions.ServiceLayerException;
+import com.seda.qoe.specification.RsqlVisitor;
+
+import cz.jirutka.rsql.parser.RSQLParser;
+import cz.jirutka.rsql.parser.ast.Node;
 
 /**
  * @author Pavel Šeda
@@ -38,9 +44,15 @@ public class ScenarioParametersServiceImpl implements ScenarioParametersService 
 	}
 
 	@Override
-	public List<ScenarioParameters> findAll() {
+	public List<ScenarioParameters> findAll(String search) {
 		try {
-			return scenarioParametersDao.findAll();
+			if(search !=null && !search.isEmpty()){
+				final Node rootNode = new RSQLParser().parse(search);
+	            Specification<ScenarioParameters> spec = rootNode.accept(new RsqlVisitor<ScenarioParameters>());
+	            return scenarioParametersDao.findAll(spec);
+			} else{
+				return scenarioParametersDao.findAll();
+			}
 		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with finding ScenarioParameters, see inner exception.", ex);
 		}

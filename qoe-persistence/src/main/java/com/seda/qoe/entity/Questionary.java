@@ -1,5 +1,7 @@
 package com.seda.qoe.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -32,6 +34,9 @@ public class Questionary {
 
 	@Column(nullable = false, name = "user_connection")
 	private String userConnection;
+	
+	@Column(nullable = false)
+	private Date date;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	private User user;
@@ -106,6 +111,14 @@ public class Questionary {
 		this.email = email;
 	}
 
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -117,6 +130,7 @@ public class Questionary {
 		result = prime * result + ((school == null) ? 0 : school.hashCode());
 		result = prime * result
 				+ ((userConnection == null) ? 0 : userConnection.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		return result;
 	}
 
@@ -153,6 +167,11 @@ public class Questionary {
 			if (other.getSchool() != null)
 				return false;
 		} else if (!school.equals(other.getSchool()))
+			return false;
+		if (date == null) {
+			if (other.getDate() != null)
+				return false;
+		} else if (!date.equals(other.getDate()))
 			return false;
 		if (userConnection == null) {
 			if (other.getUserConnection() != null)

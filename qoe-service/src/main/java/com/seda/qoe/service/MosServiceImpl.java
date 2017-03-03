@@ -5,11 +5,16 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.MosRepository;
 import com.seda.qoe.entity.Mos;
 import com.seda.qoe.exceptions.ServiceLayerException;
+import com.seda.qoe.specification.RsqlVisitor;
+
+import cz.jirutka.rsql.parser.RSQLParser;
+import cz.jirutka.rsql.parser.ast.Node;
 
 /**
  * @author Pavel Šeda
@@ -38,9 +43,15 @@ public class MosServiceImpl implements MosService{
 	}
 
 	@Override
-	public List<Mos> findAll() {
+	public List<Mos> findAll(String search) {
 		try {
-			return mosDao.findAll();
+			if(search !=null && !search.isEmpty()){
+				final Node rootNode = new RSQLParser().parse(search);
+	            Specification<Mos> spec = rootNode.accept(new RsqlVisitor<Mos>());
+				return mosDao.findAll(spec);
+			} else{
+				return mosDao.findAll();
+			}
 		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with finding Mos, see inner exception.", ex);
 		}

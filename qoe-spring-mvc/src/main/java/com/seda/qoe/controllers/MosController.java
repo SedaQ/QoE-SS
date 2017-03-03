@@ -9,11 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.seda.qoe.dto.mos.MosCreateDTO;
 import com.seda.qoe.dto.mos.MosCreateDTOValue;
-import com.seda.qoe.dto.questionary.QuestionaryCreateDTO;
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 import com.seda.qoe.dto.video.VideoDTO;
@@ -27,8 +26,8 @@ public class MosController {
 	private MosFacade mosFacade;
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(Model model) {
-		model.addAttribute("mosList", mosFacade.getAllMos());
+	public String list(Model model, @RequestParam("search") String search) {
+		model.addAttribute("mosList", mosFacade.getAllMos(search));
 		return "mos/mosList";
 	}
 

@@ -39,7 +39,7 @@ public interface UserFacade {
 	 * 
 	 * @return List of courses which are in language school
 	 */
-	public List<UserDTO> getAllUsers();
+	public List<UserDTO> getAllUsers(String search);
 
 	/**
 	 * Find specific user by his email

@@ -5,14 +5,18 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.VideoRepository;
 import com.seda.qoe.entity.Video;
 import com.seda.qoe.exceptions.ServiceLayerException;
+import com.seda.qoe.specification.RsqlVisitor;
+
+import cz.jirutka.rsql.parser.RSQLParser;
+import cz.jirutka.rsql.parser.ast.Node;
 
 /**
  * @author Pavel Šeda
@@ -41,9 +45,15 @@ public class VideoServiceImpl implements VideoService{
 	}
 
 	@Override
-	public List<Video> findAll() {
+	public List<Video> findAll(String search) {
 		try {
-			return videoDao.findAll();
+			if(search !=null && !search.isEmpty()){
+				final Node rootNode = new RSQLParser().parse(search);
+	            Specification<Video> spec = rootNode.accept(new RsqlVisitor<Video>());
+	            return videoDao.findAll(spec);
+			} else{
+				return videoDao.findAll();
+			}
 		} catch (Exception ex) {
 			throw new ServiceLayerException("Problem with finding Video, see inner exception.", ex);
 		}

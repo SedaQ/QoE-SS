@@ -33,7 +33,7 @@ public interface VideoService {
 	 * 
 	 * @return List of Video which are in language school
 	 */
-	public List<Video> findAll();
+	public List<Video> findAll(String search);
 
 	/**
 	 * updates given Video

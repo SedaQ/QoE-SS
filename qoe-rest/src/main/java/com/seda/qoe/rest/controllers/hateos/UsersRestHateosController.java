@@ -55,7 +55,7 @@ public class UsersRestHateosController {
 	 * @throws JsonProcessingException
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final HttpEntity<Resources<Resource<UserDTO>>> getUsers(@RequestParam(value = "search", required = false) String search)
+	public final HttpEntity<Resources<Resource<UserDTO>>> getUsers(@RequestParam("search") String search)
 			throws JsonProcessingException {
 
 		Collection<UserDTO> userDTO = userFacade.getAllUsers(search);

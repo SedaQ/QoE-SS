@@ -67,9 +67,9 @@ public class UserFacadeImpl implements UserFacade {
 	}
 
 	@Override
-	public List<UserDTO> getAllUsers() {
+	public List<UserDTO> getAllUsers(String search) {
 		try {
-			return beanMapping.mapTo(userService.findAll(), UserDTO.class);
+			return beanMapping.mapTo(userService.findAll(search), UserDTO.class);
 		} catch (ServiceLayerException ex) {
 			return Collections.emptyList();
 		}

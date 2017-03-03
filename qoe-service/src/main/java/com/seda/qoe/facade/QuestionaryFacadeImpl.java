@@ -67,9 +67,9 @@ public class QuestionaryFacadeImpl implements QuestionaryFacade {
 	}
 
 	@Override
-	public List<QuestionaryDTO> getAllQuestionary() {
+	public List<QuestionaryDTO> getAllQuestionary(String search) {
 		try {
-			return beanMapping.mapTo(questionaryService.findAll(), QuestionaryDTO.class);
+			return beanMapping.mapTo(questionaryService.findAll(search), QuestionaryDTO.class);
 		} catch (ServiceLayerException ex) {
 			return Collections.emptyList();
 		}

@@ -7,7 +7,7 @@ import org.springframework.hateoas.ResourceAssembler;
 import org.springframework.stereotype.Component;
 
 import com.seda.qoe.dto.mos.MosDTO;
-import com.seda.qoe.rest.controllers.MosController;
+import com.seda.qoe.rest.controllers.hateos.MosRestHateosController;
 
 /**
  * 
@@ -22,12 +22,12 @@ public class MosResourceAssembler implements ResourceAssembler<MosDTO, Resource<
         Resource<MosDTO> mosResource = new Resource<MosDTO>(mosDTO);
 
         try {
-        	mosResource.add(linkTo(MosController.class).slash(id).withSelfRel());
-        	mosResource.add(linkTo(MosController.class).slash(id).slash("questionary").withRel("questionary"));
-        	mosResource.add(linkTo(MosController.class).slash(id).slash("video").withRel("video"));
-        	mosResource.add(linkTo(MosController.class).slash(id).slash("scenario").withRel("scenario"));
-        	mosResource.add(linkTo(MosController.class).slash(id).withRel("DELETE"));
-        	mosResource.add(linkTo(MosController.class).slash("update").withRel("PUT"));
+        	mosResource.add(linkTo(MosRestHateosController.class).slash(id).withSelfRel());
+        	mosResource.add(linkTo(MosRestHateosController.class).slash(id).slash("questionaries").withRel("questionaries"));
+        	mosResource.add(linkTo(MosRestHateosController.class).slash(id).slash("videos").withRel("videos"));
+        	mosResource.add(linkTo(MosRestHateosController.class).slash(id).slash("scenarios").withRel("scenarios"));
+        	mosResource.add(linkTo(MosRestHateosController.class).slash(id).withRel("DELETE"));
+        	mosResource.add(linkTo(MosRestHateosController.class).slash("update").withRel("PUT"));
 
         } catch (Exception ex) {
         }

@@ -49,5 +49,5 @@ public interface MosFacade {
 	 * 
 	 * @return List of mos which are in qoe DB
 	 */
-	public List<MosDTO> getAllMos();
+	public List<MosDTO> getAllMos(String search);
 }

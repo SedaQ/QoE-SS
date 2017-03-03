@@ -49,5 +49,5 @@ public interface ScenarioFacade {
 	 * 
 	 * @return List of Scenario which are in qoe DB
 	 */
-	public List<ScenarioDTO> getAllScenario();
+	public List<ScenarioDTO> getAllScenario(String search);
 }

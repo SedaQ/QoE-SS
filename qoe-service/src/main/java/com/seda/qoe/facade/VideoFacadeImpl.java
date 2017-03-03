@@ -69,9 +69,9 @@ public class VideoFacadeImpl implements VideoFacade {
 	}
 
 	@Override
-	public List<VideoDTO> getAllVideo() {
+	public List<VideoDTO> getAllVideo(String search) {
 		try {
-			return beanMapping.mapTo(videoService.findAll(), VideoDTO.class);
+			return beanMapping.mapTo(videoService.findAll(search), VideoDTO.class);
 		} catch (ServiceLayerException ex) {
 			return Collections.emptyList();
 		}

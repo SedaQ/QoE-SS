@@ -56,7 +56,7 @@ public class QuestionariesRestHateosController {
 	 * @throws JsonProcessingException
 	 */
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final HttpEntity<Resources<Resource<QuestionaryDTO>>> getQuestionary(@RequestParam(value = "search", required = false) String search)
+	public final HttpEntity<Resources<Resource<QuestionaryDTO>>> getQuestionary(@RequestParam("search") String search)
 			throws JsonProcessingException {
 		Collection<QuestionaryDTO> questionaryDTO = questionaryFacade.getAllQuestionary(search);
 		Collection<Resource<QuestionaryDTO>> mosResourceCollection = new ArrayList<Resource<QuestionaryDTO>>();

@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.seda.qoe.enums.UserRoles;
+
 /**
  * @author Pavel Šeda (441048)
  * 
@@ -27,20 +29,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// @formatter:off
 		http
 			.csrf().disable()
 			.authorizeRequests()
 				.antMatchers("/assets/**").permitAll()
 				.antMatchers("/rest/**").authenticated()
+				.antMatchers("/auth/**").authenticated()
 				.and()
 			.formLogin()
 				.loginPage("/login")
 				.usernameParameter("username").passwordParameter("password")
+				.defaultSuccessUrl("/home", false)
 				//.defaultSuccessUrl("/home")
 				.and()
 			.exceptionHandling()
 				.accessDeniedPage("/errorpage");
-		// @formatter:on
+			//.csrf().enable();
 	}
 }
