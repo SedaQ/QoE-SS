@@ -7,15 +7,13 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.seda.qoe.enums.UserRoles;
-
 public class UserCreateDTO {
 	protected Long id;
-	@NotEmpty
+	@NotEmpty(message="email haven't be empty")
 	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@" + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Email must exists!")
 	private String email;
 
-	@NotEmpty
+	@NotEmpty(message="password haven't be empty")
 	@Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$",  message = "Minimum 8 characters at least 1 Alphabet and 1 Number") // Minimum 8 characters at least 1 Alphabet and 1 Number
 	private String password;
 

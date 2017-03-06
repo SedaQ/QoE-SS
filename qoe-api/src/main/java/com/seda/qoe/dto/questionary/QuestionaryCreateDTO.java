@@ -3,20 +3,24 @@ package com.seda.qoe.dto.questionary;
 import java.util.Date;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 public class QuestionaryCreateDTO {
 
 	private Long id;
-	@NotNull
+	@NotNull(message = "It's required to set email")
+	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "Email must exists!")
 	private String email;
-	@NotNull
+	@NotNull(message = "It's required to set gender")
 	private String gender;
-	@NotNull
+	@NotNull(message = "It's required to set age")
+	@Pattern(regexp = "^[0-9]+", message = "Field age must contains only numbers")
 	private String age;
-	@NotNull
+	@NotNull(message = "It's required to set school")
 	private String school;
 	private Date date;
-	@NotNull
+	@NotNull(message = "It's required to set user connection")
 	private String userConnection;
 
 	public QuestionaryCreateDTO() {
@@ -102,10 +106,10 @@ public class QuestionaryCreateDTO {
 		if (obj instanceof QuestionaryCreateDTO)
 			return false;
 		QuestionaryCreateDTO other = (QuestionaryCreateDTO) obj;
-		if(id == null){
-			if(other.getId() !=null)
+		if (id == null) {
+			if (other.getId() != null)
 				return false;
-		} else if(!id.equals(other.getId()))
+		} else if (!id.equals(other.getId()))
 			return false;
 		if (age == null) {
 			if (other.getAge() != null)

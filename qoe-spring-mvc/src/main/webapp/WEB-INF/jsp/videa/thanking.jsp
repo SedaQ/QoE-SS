@@ -6,7 +6,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<my:pagetemplate title="QoE">
+<my:videopagetemplate title="QoE">
 	<jsp:attribute name="body">
 	    <h1 class="page-header">
 		  Děkujeme, že jste se účastnil testování, Vaše hodnocení bylo uloženo do databáze<small></small>
@@ -15,7 +15,7 @@
 	    	<label>Pokud chcete spustit další scénář klikněte na tlačítko níže:</label>
 	    </div>
 	    <form:form method="GET"
-				action="${pageContext.request.contextPath}/video/retesting">
+				action="${pageContext.request.contextPath}/video/mobileretesting">
 	    	<button type="submit" class="btn btn-primary">Spustit další scénář</button>
 	    </form:form>
 	    <div>
@@ -23,4 +23,4 @@
 		    <br/>
 	    </div>
 	</jsp:attribute>
-</my:pagetemplate>
+</my:videopagetemplate>

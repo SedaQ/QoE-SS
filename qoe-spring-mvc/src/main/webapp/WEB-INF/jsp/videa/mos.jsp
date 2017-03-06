@@ -6,7 +6,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<my:pagetemplate title="QoE">
+<my:videopagetemplate title="QoE">
 	<jsp:attribute name="body">
 	    <h1 class="page-header">
 		  Ohodnoťte přehrané video na stupnici MOS<small></small>
@@ -16,7 +16,7 @@
 	   	    <div class="col-md-2"></div>
 				<div class="col-md-3 ">
 					<form:form method="post"
-				action="${pageContext.request.contextPath}/mos/sendevaluation"
+				action="${pageContext.request.contextPath}/mos/sendevaluationmobile"
 				modelAttribute="mosCreateDTO"
 				enctype="multipart/form-data;charset=UTF-8">
 						<div class="form-group">
@@ -29,9 +29,6 @@
 						    <option>1</option>
 						  </select>
 						</div>
-		  				<!-- <input type="hidden" name="questionary" value="${questionaryObj}" />
-						<input type="hidden" name="video" value="${videoObj}" />
-						<input type="hidden" name="scenario" value="${scenarioObj}" /> -->
 						  
 						<button type="submit" class="btn btn-primary">Odešli hodnocení</button>
 					</form:form>
@@ -70,4 +67,4 @@
 			</article>
 		</section>
 	</jsp:attribute>
-</my:pagetemplate>
+</my:videopagetemplate>

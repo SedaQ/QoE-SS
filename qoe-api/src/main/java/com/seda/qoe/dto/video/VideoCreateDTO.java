@@ -3,15 +3,18 @@ package com.seda.qoe.dto.video;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.Size;
+
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 
 public class VideoCreateDTO {
-	
+
 	private Long id;
-	@NotEmpty
+	@NotEmpty(message = "It's required to set name for video")
+	@Size(min = 2, max = 40, message = "Video name must be longer than 2 and shorter than 40 characters")
 	private String name;
 	@NotEmpty
 	private List<String> videoSource = new ArrayList<String>();

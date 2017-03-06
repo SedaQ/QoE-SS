@@ -3,12 +3,18 @@ package com.seda.qoe.dto.scenario;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.scenarioparameters.ScenarioParametersDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 
 public class ScenarioCreateDTO {
 	private Long id;
+	@NotEmpty(message="It's required to set name for scenario")
+	@Size(min=2,message="Scenario name must be longer than 2")
 	private String scenario;
 	private List<VideoDTO> video = new ArrayList<VideoDTO>();
 	private List<ScenarioParametersDTO> scenarioparameters = new ArrayList<ScenarioParametersDTO>();

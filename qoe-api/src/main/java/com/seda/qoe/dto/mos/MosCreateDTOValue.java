@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class MosCreateDTOValue {
 	private Long id;
 
-	@NotEmpty
+	@NotEmpty(message = "It's required to set value or mos")
 	private String mosValue;
 	
 	public MosCreateDTOValue(){}

@@ -19,18 +19,22 @@
 				enctype="multipart/form-data;charset=UTF-8">
 				<div class="form-group">
 				  <label for="email">Email:</label>
-				  <input type="email" class="form-control" name="email" id="email"
-						placeholder="Enter a valid email address" required="true" />
+				  <form:input path="email" type="email" class="form-control"
+						name="email" id="email" placeholder="Enter a valid email address" />
+				  <form:errors path="email" cssClass="error" element="div" />
 				</div>
 				<div class="form-group">
 				  <label for="age">Věk:</label>
-				  <input type="number" min="1" max="150" class="form-control"
-						name="age" id="age" placeholder="Enter age" required="true">
+				  <form:input path="age" type="number" min="1" max="150"
+						class="form-control" name="age" id="age" placeholder="Enter age"
+						required="true" />
+				  <form:errors path="age" cssClass="error" element="div" />
 				</div>
 				<label>Vyberte svoje pohlaví:</label>
 				<div class="form-group">
 					<label class="radio-inline">
-					<input type="radio" id="gender" name="gender" value="muz" checked>muž</label>
+					<input path="gender" type="radio" id="gender" name="gender"
+						value="muz" checked>muž</label>
 					<label class="radio-inline">
 					<input type="radio" id="gender" name="gender" value="zena">žena</label>
 				</div>

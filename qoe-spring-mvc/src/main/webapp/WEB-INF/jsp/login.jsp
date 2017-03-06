@@ -27,7 +27,7 @@ body {
 	href="<c:url value="/assets/bootstrap/css/bootstrap.min.css"/>">
 <link rel="stylesheet"
 	href="<c:url value="/assets/font-awesome/css/font-awesome.min.css"/>">
-<link rel="stylesheet"
+<link rel="stylesheet"fsc
 	href="<c:url value="/assets/css/form-elements.css"/>">
 <link rel="stylesheet" href="<c:url value="/assets/css/style.css"/>">
 
@@ -111,9 +111,9 @@ body {
 	</div>
 
 	<!-- Javascript -->
-	<script src="<c:url value="/assets/js/jquery-1.11.1.min.js"/>"></script>
+	<script src="<c:url value="/assets/js/jquery-1.11.1.js"/>"></script>
 	<script src="<c:url value="/assets/bootstrap/js/bootstrap.min.js"/>"></script>
-	<script src="<c:url value="/assets/js/jquery.backstretch.min.js"/>"></script>
-	<script src="<c:url value="/assets/js/scripts.js"/>"></script>
+	<!--<script src="<c:url value="/assets/js/jquery.backstretch.min.js"/>"></script>
+	 <script src="<c:url value="/assets/js/scripts.js"/>"></script> -->
 </body>
 </html>

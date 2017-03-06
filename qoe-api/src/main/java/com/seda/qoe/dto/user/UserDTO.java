@@ -1,10 +1,7 @@
 package com.seda.qoe.dto.user;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-
-import com.seda.qoe.enums.UserRoles;
 
 public class UserDTO {
 

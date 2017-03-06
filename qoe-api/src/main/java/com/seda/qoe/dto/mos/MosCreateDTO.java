@@ -11,13 +11,13 @@ import com.seda.qoe.dto.video.VideoDTO;
 public class MosCreateDTO {
 	private Long id;
 
-	@NotEmpty
+	@NotEmpty(message = "It's required to set value or mos")
 	private String mosValue;
-	@NotNull
+	@NotNull(message = "It's required to assign this mos to some questionary")
 	private QuestionaryDTO questionary;
-	@NotNull
+	@NotNull(message = "It's required to assign this mos to some video")
 	private VideoDTO video;
-	@NotNull
+	@NotNull(message = "It's required to assign this mos to some scenario")
 	private ScenarioDTO scenario;
 
 	public MosCreateDTO() {

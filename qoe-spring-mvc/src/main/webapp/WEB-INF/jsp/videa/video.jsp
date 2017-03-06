@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 
-<my:pagetemplate title="QoE">
+<my:videopagetemplate title="QoE">
 	<jsp:attribute name="head">
 		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 		
@@ -39,7 +40,7 @@
 	</jsp:attribute>
 	<jsp:attribute name="body">
 		<h1 class="page-header">
-			Spusťe video a po přehrání video ohodnoťte na stupnici MOS <small></small>
+			Spusťe video<small></small>
 		</h1>
 
 		<div id="video_wrapper">
@@ -56,7 +57,7 @@
 		  </div>
 	      <div class="playpause"></div>
       		<form:form id="submitVideoFormToEvaluateMos" method="post"
-			action="${pageContext.request.contextPath}/mos/evaluate"
+			action="${pageContext.request.contextPath}/mos/evaluatemobile"
 			enctype="multipart/form-data;charset=UTF-8">
 			</form:form>
 	      <br />
@@ -147,4 +148,4 @@
 					}).resize();
 				</script>
 	</jsp:attribute>
-</my:pagetemplate>
+</my:videopagetemplate>

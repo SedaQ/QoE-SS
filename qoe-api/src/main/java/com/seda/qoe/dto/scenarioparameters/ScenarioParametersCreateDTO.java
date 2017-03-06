@@ -3,12 +3,20 @@ package com.seda.qoe.dto.scenarioparameters;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 
 public class ScenarioParametersCreateDTO {
 	private Long id;
+	@NotEmpty(message="It's required to fill time in scenario parameters")
 	private Long time;
+	@NotEmpty(message="It's required to fill length in scenario parameters")
 	private Long length;
+	@NotEmpty(message="It's required to fill videoQuality in scenario parameters")
+	@Size(min=3, max=20, message="Video quality length must be between 3 and 20 characters")
 	private String videoQuality;
 	private List<ScenarioDTO> scenario = new ArrayList<ScenarioDTO>();
 

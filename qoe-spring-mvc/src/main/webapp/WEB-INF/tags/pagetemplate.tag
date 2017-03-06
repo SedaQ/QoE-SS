@@ -7,6 +7,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -58,20 +59,17 @@
 					<li class="active"><a
 						href="${pageContext.request.contextPath}/home">Home</a>
 					</li>
-					<li class="dropdown"><a class="dropdown-toggle"
-						data-toggle="dropdown" href="#">Videa <span class="caret"></span>
-					</a>
-						<ul class="dropdown-menu">
-							<!-- <li><a href="${pageContext.request.contextPath}/videa/aspen">aspen</a>
-							</li> -->
-							<li><a
-								href="${pageContext.request.contextPath}/videa/aspenvidea">aspen
-									videa</a></li>
-							<!-- <li><a
-						href="${pageContext.request.contextPath}/videa/controlledBurn">controlled
-							burn</a></li> -->
-						</ul>
-					</li>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Videa <span class="caret"></span>
+						</a>
+							<ul class="dropdown-menu">
+								<li><a
+									href="${pageContext.request.contextPath}/video/mobilevideo/1">Start
+										testing</a></li>
+							</ul>
+						</li>
+					</sec:authorize>
 					<li class="dropdown"><a class="dropdown-toggle"
 						data-toggle="dropdown" href="#">Test QoE<span class="caret"></span>
 					</a>
@@ -122,6 +120,21 @@
 					<li><a href="${pageContext.request.contextPath}/statistics">Statistics</a>
 					</li>
 				</ul>
+				<div class="col-sm-3 col-md-3">
+					<form:form class="navbar-form" role="search" method="post"
+						action="${pageContext.request.contextPath}/searchtesters">
+						<div class="input-group">
+							<input type="text" class="form-control"
+								placeholder="Search testers" name="q">
+							<div class="input-group-btn">
+								<button class="btn btn-default" type="submit">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+							</div>
+						</div>
+					</form:form>
+				</div>
+
 
 				<sec:authorize access="isAnonymous()">
 					<ul class="nav navbar-nav navbar-right">
@@ -133,17 +146,16 @@
 				<sec:authorize var="loggedIn" access="isAuthenticated()">
 					<ul class="nav navbar-nav navbar-right">
 						<li><a href="${pageContext.request.contextPath}/logout"><span
-								class="glyphicon glyphicon-log-in"> Logout</span>
-						</a>
+								class="glyphicon glyphicon-log-in"> Logout</span> </a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						 <li><a href="${pageContext.request.contextPath}/userDetail">
+						<li><a href="${pageContext.request.contextPath}/userDetail">
 								<c:choose>
 									<c:when test="${loggedIn}">
 										<%=request.getUserPrincipal().getName()%>
 									</c:when>
-								</c:choose> </a></li> 
+								</c:choose> </a></li>
 					</ul>
 				</sec:authorize>
 
@@ -161,7 +173,6 @@
 				<jsp:invoke fragment="body" />
 			</div>
 		</div>
-
 	</div>
 
 	<script type="application/x-javascript">
@@ -176,7 +187,7 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="<c:url value="/assets/js/jquery-1.11.1.min.js"/>"></script>
+	<script src="<c:url value="/assets/js/jquery-1.11.1.js"/>"></script>
 	<script src="<c:url value="/assets/js/scripts.js"/>"></script>
 
 </body>

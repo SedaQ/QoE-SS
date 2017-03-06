@@ -18,6 +18,10 @@ import com.seda.qoe.dto.scenario.ScenarioDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 import com.seda.qoe.facade.MosFacade;
 
+/**
+ * @author Pavel Šeda (441048)
+ * 
+ */
 @Controller
 @RequestMapping("/mos")
 public class MosController {
@@ -33,7 +37,6 @@ public class MosController {
 
 	@RequestMapping(value = "/evaluate", method = RequestMethod.POST)
 	public String evaluate(Model model) {
-
 		return "testvidea/mos";
 	}
 
@@ -41,21 +44,39 @@ public class MosController {
 	public String sendEvaluation(
 			@Valid @ModelAttribute("mosCreateDTO") MosCreateDTOValue mosCreateDTO,
 			Model model, HttpSession session) {
-		try{
+		try {
 			MosCreateDTO mos = new MosCreateDTO();
 			mos.setMosValue(mosCreateDTO.getMosValue());
 			mos.setQuestionary((QuestionaryDTO) session
 					.getAttribute("questionaryObj"));
 			mos.setVideo((VideoDTO) session.getAttribute("videoObj"));
 			mos.setScenario((ScenarioDTO) session.getAttribute("scenarioObj"));
-			// System.out.println("Pred createm Questionary id:" +
-			// mos.getQuestionary().getId());
-			// System.out.println("ID videa je: " + mos.getVideo().getId());
-			// System.out.println("Scenario id je: " +mos.getScenario().getId());
 			mosFacade.create(mos);
 			return "testvidea/thanking";
-		} catch(Exception ex){
+		} catch (Exception ex) {
 			return "testvidea/thanking";
+		}
+	}
+
+	@RequestMapping(value = "/evaluatemobile", method = RequestMethod.POST)
+	public String evaluateMobile(Model model) {
+		return "videa/mos";
+	}
+
+	@RequestMapping(value = "/sendevaluationmobile", method = RequestMethod.POST)
+	public String sendEvaluationMobile(@Valid MosCreateDTOValue mosCreateDTO,
+			Model model, HttpSession session) {
+		try {
+			MosCreateDTO mos = new MosCreateDTO();
+			mos.setMosValue(mosCreateDTO.getMosValue());
+			mos.setQuestionary((QuestionaryDTO) session
+					.getAttribute("questionaryObj"));
+			mos.setVideo((VideoDTO) session.getAttribute("videoObj"));
+			mos.setScenario((ScenarioDTO) session.getAttribute("scenarioObj"));
+			mosFacade.create(mos);
+			return "videa/thanking";
+		} catch (Exception ex) {
+			return "videa/thanking";
 		}
 	}
 
