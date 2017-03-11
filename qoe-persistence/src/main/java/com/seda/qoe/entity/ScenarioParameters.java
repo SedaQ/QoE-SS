@@ -12,6 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @Entity
 @Table(name = "scenario_parameters")
 public class ScenarioParameters {

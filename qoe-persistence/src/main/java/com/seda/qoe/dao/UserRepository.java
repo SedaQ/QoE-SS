@@ -9,6 +9,10 @@ import org.springframework.data.repository.query.Param;
 
 import com.seda.qoe.entity.User;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
 
 	/**

@@ -5,6 +5,10 @@ import java.util.Date;
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.user.UserDTO;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class QuestionaryDTO {
 	private Long id;
 

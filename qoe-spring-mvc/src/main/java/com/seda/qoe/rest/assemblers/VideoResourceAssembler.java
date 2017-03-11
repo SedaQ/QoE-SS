@@ -10,8 +10,8 @@ import com.seda.qoe.rest.controllers.hateos.VideosRestHateosController;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
 /**
- * 
- * @author Pavel Šeda
+ * @author Pavel Šeda (441048)
+ *
  */
 @Component
 public class VideoResourceAssembler implements ResourceAssembler<VideoDTO, Resource<VideoDTO>>{

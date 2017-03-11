@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 /**
  * I would like to use this class but I canno't cuz I'm using java 7 (canno't moved to java 8 because on openshift tomcat7 server is installed java 7)
+ * 
  * @author Pavel Šeda (441048)
  *
  */

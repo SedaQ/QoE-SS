@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Pavel Šeda
+ * @author Pavel Šeda (441048)
  *
  */
 public  class RsqlSpecification<T> implements Specification<T> {

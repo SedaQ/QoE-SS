@@ -5,6 +5,10 @@ import java.util.List;
 import com.seda.qoe.dto.mos.MosCreateDTO;
 import com.seda.qoe.dto.mos.MosDTO;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public interface MosFacade {
 
 	/**

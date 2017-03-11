@@ -5,6 +5,10 @@ import java.util.List;
 import com.seda.qoe.dto.user.UserCreateDTO;
 import com.seda.qoe.dto.user.UserDTO;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public interface UserFacade {
 
 	/**

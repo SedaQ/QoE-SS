@@ -6,6 +6,10 @@ import java.util.List;
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class VideoDTO {
 
 	private Long id;

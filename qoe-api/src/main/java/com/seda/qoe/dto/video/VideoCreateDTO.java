@@ -10,6 +10,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class VideoCreateDTO {
 
 	private Long id;

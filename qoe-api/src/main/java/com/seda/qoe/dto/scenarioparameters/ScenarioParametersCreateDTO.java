@@ -9,6 +9,10 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class ScenarioParametersCreateDTO {
 	private Long id;
 	@NotEmpty(message="It's required to fill time in scenario parameters")

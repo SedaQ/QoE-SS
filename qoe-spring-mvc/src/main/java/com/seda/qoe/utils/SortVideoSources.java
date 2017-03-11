@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 /**
  * @author Pavel Šeda (441048)
- * 
+ *
  */
 public class SortVideoSources {
 

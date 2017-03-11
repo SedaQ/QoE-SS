@@ -4,9 +4,10 @@ import java.util.List;
 
 import com.seda.qoe.entity.Mos;
 
+
 /**
- * @author Pavel Šeda
- * 
+ * @author Pavel Šeda (441048)
+ *
  */
 public interface MosService {
 

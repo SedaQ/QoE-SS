@@ -16,9 +16,10 @@ import com.seda.qoe.specification.RsqlVisitor;
 import cz.jirutka.rsql.parser.RSQLParser;
 import cz.jirutka.rsql.parser.ast.Node;
 
+
 /**
- * @author Pavel Šeda
- * 
+ * @author Pavel Šeda (441048)
+ *
  */
 @Service
 public class VideoServiceImpl implements VideoService {

@@ -10,6 +10,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @Entity
 @Table(name = "mos")
 public class Mos {

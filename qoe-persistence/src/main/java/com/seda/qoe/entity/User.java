@@ -18,6 +18,10 @@ import javax.persistence.Table;
 
 import com.seda.qoe.enums.UserRole;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @Entity
 @Table(name = "[user]")
 public class User {

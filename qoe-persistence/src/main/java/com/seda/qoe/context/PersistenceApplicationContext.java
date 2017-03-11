@@ -13,6 +13,10 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = { "com.seda.qoe.dao" })

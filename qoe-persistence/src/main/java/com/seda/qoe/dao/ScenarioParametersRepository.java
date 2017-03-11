@@ -5,10 +5,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-import com.seda.qoe.entity.Mos;
-import com.seda.qoe.entity.Questionary;
 import com.seda.qoe.entity.ScenarioParameters;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public interface ScenarioParametersRepository extends JpaRepository<ScenarioParameters, Long>, JpaSpecificationExecutor<ScenarioParameters> {
 
 	@Override

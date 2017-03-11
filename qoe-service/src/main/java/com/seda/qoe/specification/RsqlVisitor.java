@@ -7,7 +7,7 @@ import cz.jirutka.rsql.parser.ast.RSQLVisitor;
 import org.springframework.data.jpa.domain.Specification;
 
 /**
- * Created by Pavel Šeda
+ * @author Pavel Šeda (441048)
  *
  */
 public class RsqlVisitor<T> implements RSQLVisitor<Specification<T>, Void> {

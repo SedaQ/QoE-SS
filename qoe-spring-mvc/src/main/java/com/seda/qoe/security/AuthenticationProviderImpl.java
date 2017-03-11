@@ -1,6 +1,5 @@
 package com.seda.qoe.security;
 
-import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -18,6 +17,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.seda.qoe.dto.user.UserDTO;
 import com.seda.qoe.facade.UserFacade;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @Component
 public class AuthenticationProviderImpl implements AuthenticationProvider {
 

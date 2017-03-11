@@ -21,8 +21,8 @@ import com.seda.qoe.entity.Video;
  * getRandomVideo() cannot be tested because it is dependend on MySQL dialect so
  * it dont fit with Embedded Derby DB.
  * 
- * @author Seda
- * 
+ * @author Pavel Šeda (441048)
+ *
  */
 @ContextConfiguration(classes = com.seda.qoe.test.context.PersistenceApplicationContextTest.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)

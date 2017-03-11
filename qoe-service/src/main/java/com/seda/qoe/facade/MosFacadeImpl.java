@@ -15,6 +15,10 @@ import com.seda.qoe.exceptions.ServiceLayerException;
 import com.seda.qoe.mapping.BeanMapping;
 import com.seda.qoe.service.MosService;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @Service
 @Transactional
 public class MosFacadeImpl implements MosFacade {

@@ -5,6 +5,10 @@ import java.util.List;
 import com.seda.qoe.dto.questionary.QuestionaryCreateDTO;
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public interface QuestionaryFacade {
 
 	/**

@@ -4,7 +4,7 @@ import cz.jirutka.rsql.parser.ast.ComparisonOperator;
 import cz.jirutka.rsql.parser.ast.RSQLOperators;
 
 /**
- * Created by Pavel Šeda
+ * @author Pavel Šeda (441048)
  *
  */
 public enum RsqlSearchOperation {

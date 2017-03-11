@@ -26,6 +26,10 @@ import com.seda.qoe.entity.Scenario;
 import com.seda.qoe.entity.ScenarioParameters;
 import com.seda.qoe.entity.Video;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @ContextConfiguration(classes = com.seda.qoe.test.context.PersistenceApplicationContextTest.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional

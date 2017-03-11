@@ -9,10 +9,9 @@ import org.springframework.stereotype.Component;
 import com.seda.qoe.dto.scenarioparameters.ScenarioParametersDTO;
 import com.seda.qoe.rest.controllers.hateos.ScenarioParametersRestHateosController;
 
-
 /**
- * 
- * @author Pavel Šeda
+ * @author Pavel Šeda (441048)
+ *
  */
 @Component
 public class ScenarioParametersResourceAssembler implements ResourceAssembler<ScenarioParametersDTO, Resource<ScenarioParametersDTO>>{

@@ -5,6 +5,10 @@ import java.util.List;
 import com.seda.qoe.dto.video.VideoCreateDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public interface VideoFacade {
 
 	/**

@@ -7,6 +7,10 @@ import org.springframework.data.repository.query.Param;
 
 import com.seda.qoe.entity.Questionary;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public interface QuestionaryRepository extends
 		JpaRepository<Questionary, Long>, JpaSpecificationExecutor<Questionary> {
 

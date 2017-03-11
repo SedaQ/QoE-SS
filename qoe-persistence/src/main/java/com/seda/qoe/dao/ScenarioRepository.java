@@ -6,8 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.seda.qoe.entity.Scenario;
-import com.seda.qoe.entity.ScenarioParameters;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public interface ScenarioRepository extends JpaRepository<Scenario, Long>, JpaSpecificationExecutor<Scenario>{
 
 	@Override

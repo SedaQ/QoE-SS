@@ -1,5 +1,9 @@
 package com.seda.qoe.dto.questionary;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class QuestionarySearchDTO {
 
 	private String questionarySearchAttribute;

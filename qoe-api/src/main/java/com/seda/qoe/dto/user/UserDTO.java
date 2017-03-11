@@ -3,6 +3,10 @@ package com.seda.qoe.dto.user;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class UserDTO {
 
 	protected Long id;

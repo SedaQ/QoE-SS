@@ -15,6 +15,10 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @Entity
 @Table(name = "video")
 public class Video {

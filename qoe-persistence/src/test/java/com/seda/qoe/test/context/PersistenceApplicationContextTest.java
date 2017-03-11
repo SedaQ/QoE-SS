@@ -17,6 +17,10 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = { "com.seda.qoe.dao" })
@@ -47,10 +51,8 @@ public class PersistenceApplicationContextTest {
 		jpaFactoryBean.setLoadTimeWeaver(instrumentationLoadTimeWeaver());
 		jpaFactoryBean
 				.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-		jpaFactoryBean.setPersistenceXmlLocation("classpath*:META-INF/persistence-test.xml");
+		jpaFactoryBean.setPersistenceXmlLocation("classpath:META-INF/persistence-test.xml");
 		jpaFactoryBean.setPersistenceUnitName("persistenceTest");
-//		jpaFactoryBean.setPackagesToScan("com.seda.qoe.entity",
-//				"com.seda.qoe.dao");
 		return jpaFactoryBean;
 	}
 

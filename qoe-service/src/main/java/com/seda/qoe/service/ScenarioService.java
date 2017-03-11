@@ -4,8 +4,9 @@ import java.util.List;
 
 import com.seda.qoe.entity.Scenario;
 
+
 /**
- * @author Pavel Šeda
+ * @author Pavel Šeda (441048)
  *
  */
 public interface ScenarioService {

@@ -1,5 +1,9 @@
 package com.seda.qoe.enums;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public enum VideoQuality {
 	TINY_144("144p"), 
 	SMALL_240("240p"), 

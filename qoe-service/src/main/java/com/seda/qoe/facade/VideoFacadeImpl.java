@@ -15,6 +15,10 @@ import com.seda.qoe.exceptions.ServiceLayerException;
 import com.seda.qoe.mapping.BeanMapping;
 import com.seda.qoe.service.VideoService;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @Service
 @Transactional
 public class VideoFacadeImpl implements VideoFacade {

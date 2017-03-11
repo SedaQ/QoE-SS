@@ -5,6 +5,10 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 import javax.servlet.Filter;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class StartInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override

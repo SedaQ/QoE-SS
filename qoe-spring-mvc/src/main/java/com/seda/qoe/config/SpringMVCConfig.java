@@ -44,6 +44,10 @@ import com.seda.qoe.rest.mixin.UserDTOMixin;
 import com.seda.qoe.rest.mixin.VideoDTOMixin;
 import com.seda.qoe.security.WebSecurityConfig;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @EnableWebMvc
 @Configuration
 @Import({BeanMappingConfiguration.class, WebSecurityConfig.class})

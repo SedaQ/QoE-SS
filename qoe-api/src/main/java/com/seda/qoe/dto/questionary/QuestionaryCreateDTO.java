@@ -5,6 +5,10 @@ import java.util.Date;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class QuestionaryCreateDTO {
 
 	private Long id;

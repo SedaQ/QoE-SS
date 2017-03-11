@@ -17,6 +17,10 @@ import org.testng.annotations.Test;
 import com.seda.qoe.dao.UserRepository;
 import com.seda.qoe.entity.User;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @ContextConfiguration(classes = com.seda.qoe.test.context.PersistenceApplicationContextTest.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional

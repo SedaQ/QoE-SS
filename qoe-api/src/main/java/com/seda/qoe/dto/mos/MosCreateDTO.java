@@ -8,6 +8,10 @@ import com.seda.qoe.dto.questionary.QuestionaryDTO;
 import com.seda.qoe.dto.scenario.ScenarioDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class MosCreateDTO {
 	private Long id;
 

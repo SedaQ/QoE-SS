@@ -2,6 +2,10 @@ package com.seda.qoe.dto.mos;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class MosCreateDTOValue {
 	private Long id;
 

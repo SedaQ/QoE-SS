@@ -12,6 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @Entity
 @Table(name = "questionary")
 public class Questionary {
@@ -38,10 +42,10 @@ public class Questionary {
 	@Column(nullable = false)
 	private Date date;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(optional = true, fetch = FetchType.EAGER)
 	private User user;
 
-	@OneToOne(mappedBy = "questionary", fetch = FetchType.EAGER)
+	@OneToOne(optional = true, mappedBy = "questionary", fetch = FetchType.EAGER)
 	private Mos mos;
 
 	public Questionary() {

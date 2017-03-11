@@ -7,6 +7,10 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class UserCreateDTO {
 	protected Long id;
 	@NotEmpty(message="email haven't be empty")

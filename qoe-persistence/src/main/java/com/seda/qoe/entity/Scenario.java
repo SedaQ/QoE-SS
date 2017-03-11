@@ -15,7 +15,10 @@ import javax.persistence.Table;
 
 import com.seda.qoe.entity.ScenarioParameters;
 
-
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 @Entity
 @Table(name = "scenario")
 public class Scenario {
@@ -35,7 +38,7 @@ public class Scenario {
 	//@Mapping("scenarioparameters")
 	private Set<ScenarioParameters> scenarioparameters = new HashSet<ScenarioParameters>();
 	
-	@OneToOne(mappedBy="scenario", fetch = FetchType.EAGER)
+	@OneToOne(optional = true, mappedBy="scenario", fetch = FetchType.EAGER)
 	private Mos mos;
 
 	public Scenario() {

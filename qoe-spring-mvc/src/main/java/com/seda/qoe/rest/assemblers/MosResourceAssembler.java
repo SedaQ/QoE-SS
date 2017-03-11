@@ -10,8 +10,8 @@ import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.rest.controllers.hateos.MosRestHateosController;
 
 /**
- * 
- * @author Pavel Šeda
+ * @author Pavel Šeda (441048)
+ *
  */
 @Component
 public class MosResourceAssembler implements ResourceAssembler<MosDTO, Resource<MosDTO>>{

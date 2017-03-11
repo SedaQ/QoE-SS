@@ -10,8 +10,8 @@ import com.seda.qoe.dto.scenario.ScenarioDTO;
 import com.seda.qoe.rest.controllers.hateos.ScenariosRestHateosController;
 
 /**
- * 
- * @author Pavel Šeda
+ * @author Pavel Šeda (441048)
+ *
  */
 @Component
 public class ScenarioResourceAssembler implements ResourceAssembler<ScenarioDTO, Resource<ScenarioDTO>>{

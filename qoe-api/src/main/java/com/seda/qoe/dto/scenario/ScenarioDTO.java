@@ -7,6 +7,10 @@ import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.scenarioparameters.ScenarioParametersDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class ScenarioDTO {
 	private Long id;
 	private String scenario;

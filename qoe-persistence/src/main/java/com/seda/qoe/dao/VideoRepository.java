@@ -6,9 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 
-import com.seda.qoe.entity.User;
 import com.seda.qoe.entity.Video;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public interface VideoRepository extends JpaRepository<Video, Long>, JpaSpecificationExecutor<Video> {
 
 //	/**

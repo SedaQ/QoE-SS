@@ -5,6 +5,10 @@ import java.util.List;
 import com.seda.qoe.dto.scenarioparameters.ScenarioParametersCreateDTO;
 import com.seda.qoe.dto.scenarioparameters.ScenarioParametersDTO;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public interface ScenarioParametersFacade {
 
 	/**

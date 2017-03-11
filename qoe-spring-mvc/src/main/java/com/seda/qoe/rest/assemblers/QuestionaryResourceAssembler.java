@@ -10,8 +10,8 @@ import com.seda.qoe.dto.questionary.QuestionaryDTO;
 import com.seda.qoe.rest.controllers.hateos.QuestionariesRestHateosController;
 
 /**
- * 
- * @author Pavel Šeda
+ * @author Pavel Šeda (441048)
+ *
  */
 @Component
 public class QuestionaryResourceAssembler implements ResourceAssembler<QuestionaryDTO, Resource<QuestionaryDTO>>{

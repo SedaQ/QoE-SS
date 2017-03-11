@@ -11,6 +11,10 @@ import com.seda.qoe.dto.mos.MosDTO;
 import com.seda.qoe.dto.scenarioparameters.ScenarioParametersDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class ScenarioCreateDTO {
 	private Long id;
 	@NotEmpty(message="It's required to set name for scenario")

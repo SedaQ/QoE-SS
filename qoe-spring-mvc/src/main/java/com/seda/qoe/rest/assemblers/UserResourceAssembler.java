@@ -10,8 +10,8 @@ import com.seda.qoe.dto.user.UserDTO;
 import com.seda.qoe.rest.controllers.hateos.UsersRestHateosController;
 
 /**
- * 
- * @author Pavel Šeda
+ * @author Pavel Šeda (441048)
+ *
  */
 @Component
 public class UserResourceAssembler implements ResourceAssembler<UserDTO, Resource<UserDTO>>{

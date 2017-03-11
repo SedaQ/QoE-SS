@@ -33,7 +33,6 @@ import com.seda.qoe.rest.exceptions.ResourceAlreadyExistingException;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
 import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
 
-
 /**
  * REST Hateos Controller for Questionary
  * 

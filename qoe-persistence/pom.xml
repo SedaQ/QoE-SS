@@ -53,11 +53,6 @@
 			<artifactId>hibernate-c3p0</artifactId>
 			<version>4.3.11.Final</version>
 		</dependency>
-
-		<!-- Should prevent recursion with @JsonBackReference annotations in entity 
-			classes <dependency> <groupId>com.fasterxml.jackson.core</groupId> <artifactId>jackson-core</artifactId> 
-			</dependency> <dependency> <groupId>com.fasterxml.jackson.core</groupId> 
-			<artifactId>jackson-annotations</artifactId> </dependency> -->
 		<dependency>
 			<groupId>net.sf.dozer</groupId>
 			<artifactId>dozer</artifactId>
@@ -79,7 +74,20 @@
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
 		</dependency>
-		<!-- Mapping <dependency> <groupId>net.sf.dozer</groupId> <artifactId>dozer</artifactId> 
-			</dependency> -->
 	</dependencies>
+
+	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<testSourceDirectory>src/test/java</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+			</testResource>
+		</testResources>
+	</build>
 </project>

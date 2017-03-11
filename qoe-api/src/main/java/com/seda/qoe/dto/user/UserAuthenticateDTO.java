@@ -1,5 +1,9 @@
 package com.seda.qoe.dto.user;
 
+/**
+ * @author Pavel Šeda (441048)
+ *
+ */
 public class UserAuthenticateDTO {
 
 	private Long userId;
