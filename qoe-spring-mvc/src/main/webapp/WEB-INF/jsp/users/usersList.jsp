@@ -4,6 +4,8 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	
 
 <my:pagetemplate title="QoE">
 	<jsp:attribute name="body">
@@ -18,10 +20,12 @@
 			      <th>Věk</th>
 			      <th>Dosažené vzdělání</th>
 			      <th>Typ připojení</th>
+			      <th>Datum a čas vyplnění dotazníku</th>
 			    </tr>
 			  </thead>
 			  <tbody>
-			  <c:forEach items="${questionaries}" var="questionary" varStatus="loop">
+			  <c:forEach items="${questionaries}" var="questionary"
+					varStatus="loop">
 			    <tr>
 			      <th scope="row">${loop.count}</th>
 			      <td><c:out value="${questionary.email}" />
@@ -31,6 +35,8 @@
 			      <td><c:out value="${questionary.school}" />
 						</td>
 			      <td><c:out value="${questionary.userConnection}" />
+						</td>
+						<td><fmt:formatDate value="${questionary.date}" pattern="yyyy-MM-dd HH:mm:ss" />
 						</td>
 			    </tr>
 		      </c:forEach>

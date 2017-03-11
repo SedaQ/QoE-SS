@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dto.questionary.QuestionaryCreateDTO;
@@ -89,14 +90,13 @@ public class QuestionaryFacadeImpl implements QuestionaryFacade {
 	}
 
 	@Override
-	public QuestionaryDTO findByEqualsMethod(String email, String gender,
-			String age, String school, String userConnection) {
-		if(email == null || gender == null || age == null || userConnection == null)
-			throw new IllegalArgumentException("findByEqualsMethod some parameters is null");
-		try {
-			return beanMapping.mapTo(questionaryService.findByEqualsMethod(email, gender, age, school, userConnection), QuestionaryDTO.class);
-		} catch(ServiceLayerException ex){
-			throw new RuntimeException("exception.." + ex);
+	public List<QuestionaryDTO> findBySearchTerm(String searchTerm) {
+		if(searchTerm == null)
+			throw new IllegalArgumentException("searchTerm parameters is null");
+		try{
+			return beanMapping.mapTo(questionaryService.findBySearchTerm(searchTerm), QuestionaryDTO.class);
+		}catch(DataAccessException ex){
+			throw new ServiceLayerException("Problem with findBySearchTerm search.", ex);
 		}
 	}
 

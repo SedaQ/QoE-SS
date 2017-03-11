@@ -74,8 +74,11 @@
 			<artifactId>testng</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<!-- For embedded usage <dependency> <groupId>org.apache.derby</groupId> 
-			<artifactId>derby</artifactId> </dependency> -->
+		<!-- For embedded usage -->
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+		</dependency>
 		<!-- Mapping <dependency> <groupId>net.sf.dozer</groupId> <artifactId>dozer</artifactId> 
 			</dependency> -->
 	</dependencies>

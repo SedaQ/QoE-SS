@@ -1,4 +1,6 @@
-package com.seda.qoe.context;
+package com.seda.qoe.test.context;
+
+import javax.sql.DataSource;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
@@ -8,6 +10,8 @@ import org.springframework.dao.annotation.PersistenceExceptionTranslationPostPro
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver;
 import org.springframework.instrument.classloading.LoadTimeWeaver;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -16,9 +20,8 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = { "com.seda.qoe.dao" })
-// @EnableSpringDataWebSupport
 @ComponentScan(basePackages = { "com.seda.qoe.entity", "com.seda.qoe.dao" })
-public class PersistenceApplicationContext {
+public class PersistenceApplicationContextTest {
 
 	/**
 	 * Enables automatic translation of exceptions to DataAccessExceptions.
@@ -40,9 +43,14 @@ public class PersistenceApplicationContext {
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 		LocalContainerEntityManagerFactoryBean jpaFactoryBean = new LocalContainerEntityManagerFactoryBean();
+		jpaFactoryBean.setDataSource(db());
 		jpaFactoryBean.setLoadTimeWeaver(instrumentationLoadTimeWeaver());
 		jpaFactoryBean
 				.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+		jpaFactoryBean.setPersistenceXmlLocation("classpath*:META-INF/persistence-test.xml");
+		jpaFactoryBean.setPersistenceUnitName("persistenceTest");
+//		jpaFactoryBean.setPackagesToScan("com.seda.qoe.entity",
+//				"com.seda.qoe.dao");
 		return jpaFactoryBean;
 	}
 
@@ -54,6 +62,12 @@ public class PersistenceApplicationContext {
 	@Bean
 	public LoadTimeWeaver instrumentationLoadTimeWeaver() {
 		return new InstrumentationLoadTimeWeaver();
+	}
+
+	@Bean
+	public DataSource db() {
+		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
+		return builder.setType(EmbeddedDatabaseType.DERBY).build();
 	}
 
 }

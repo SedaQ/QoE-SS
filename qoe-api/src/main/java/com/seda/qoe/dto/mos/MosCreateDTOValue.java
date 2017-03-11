@@ -42,7 +42,7 @@ public class MosCreateDTOValue {
 			return true;
 		if (obj == null)
 			return false;
-		if (obj instanceof MosCreateDTOValue)
+		if (!(obj instanceof MosCreateDTOValue))
 			return false;
 		MosCreateDTOValue other = (MosCreateDTOValue) obj;
 		if (id == null) {

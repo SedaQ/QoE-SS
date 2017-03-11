@@ -7,11 +7,11 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.seda.qoe.dto.questionary.QuestionaryCreateDTO;
 import com.seda.qoe.dto.questionary.QuestionaryDTO;
 import com.seda.qoe.facade.QuestionaryFacade;
-import com.seda.qoe.facade.VideoFacade;
 
 /**
  * @author Pavel Šeda (441048)
@@ -35,8 +35,8 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="/searchtesters")
-	public String searchTesters(Model model){
-		List<QuestionaryDTO> questionaries = questionariesFacade.getAllQuestionary("");
+	public String searchTesters(@RequestParam("searchTerm") String searchTerm, Model model){
+		List<QuestionaryDTO> questionaries = questionariesFacade.findBySearchTerm(searchTerm.trim());
 		model.addAttribute("questionaries", questionaries);
 		return "users/usersList";
 	}

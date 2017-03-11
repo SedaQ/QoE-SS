@@ -79,7 +79,7 @@ public class MosCreateDTO {
 			return true;
 		if (obj == null)
 			return false;
-		if (obj instanceof MosCreateDTO)
+		if (!(obj instanceof MosCreateDTO))
 			return false;
 		MosCreateDTO other = (MosCreateDTO) obj;
 		if (id == null) {

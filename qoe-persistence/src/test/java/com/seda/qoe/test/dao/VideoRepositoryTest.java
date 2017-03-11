@@ -1,4 +1,4 @@
-package com.seda.qoe.dao;
+package com.seda.qoe.test.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,9 +14,17 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.seda.qoe.dao.VideoRepository;
 import com.seda.qoe.entity.Video;
 
-@ContextConfiguration(classes = com.seda.qoe.context.PersistenceApplicationContext.class)
+/**
+ * getRandomVideo() cannot be tested because it is dependend on MySQL dialect so
+ * it dont fit with Embedded Derby DB.
+ * 
+ * @author Seda
+ * 
+ */
+@ContextConfiguration(classes = com.seda.qoe.test.context.PersistenceApplicationContextTest.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class VideoRepositoryTest extends AbstractTestNGSpringContextTests {
@@ -27,8 +35,8 @@ public class VideoRepositoryTest extends AbstractTestNGSpringContextTests {
 	@Autowired
 	private VideoRepository videoDao;
 
-	Video video;
-	Video video2;
+	private Video video;
+	private Video video2;
 
 	@BeforeMethod
 	public void beforeMethod() {
@@ -46,12 +54,7 @@ public class VideoRepositoryTest extends AbstractTestNGSpringContextTests {
 
 	@AfterMethod
 	public void afterMethod() {
-
-	}
-
-	@Test
-	public void testGetAll() {
-		Assert.assertNotNull(videoDao.findAll());
+		videoDao.deleteAll();
 	}
 
 	@Test
@@ -61,9 +64,24 @@ public class VideoRepositoryTest extends AbstractTestNGSpringContextTests {
 	}
 
 	@Test
-	public void testGetRandomVideo() {
-		Video returnRandomVideo = videoDao.getRandomVideo();
-		Assert.assertTrue(videoDao.findAll().contains(returnRandomVideo));
+	public void testGetAll() {
+		Assert.assertEquals(videoDao.findAll().size(), 2);
+	}
+
+	@Test
+	public void testUpdate() {
+		video.setName("anotherName");
+		videoDao.save(video);
+		Assert.assertEquals(em.find(Video.class, video.getId()).getName(),
+				video.getName());
+	}
+
+	@Test
+	public void testRemove() {
+		em.persist(video);
+		Assert.assertNotNull(em.find(Video.class, video.getId()));
+		videoDao.delete(video);
+		Assert.assertNull(em.find(Video.class, video.getId()));
 	}
 
 }

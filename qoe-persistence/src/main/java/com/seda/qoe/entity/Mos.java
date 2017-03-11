@@ -10,8 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.dozer.Mapping;
-
 @Entity
 @Table(name = "mos")
 public class Mos {
@@ -24,13 +22,13 @@ public class Mos {
 	@Column(nullable = false, name = "mos_value")
 	private String mosValue;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(optional = false, fetch = FetchType.EAGER)
 	private Questionary questionary;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(optional = false, fetch = FetchType.EAGER)
 	private Video video;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(optional = false, fetch = FetchType.EAGER)
 	private Scenario scenario;
 
 	public Mos() {

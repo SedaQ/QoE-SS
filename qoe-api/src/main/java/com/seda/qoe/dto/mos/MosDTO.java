@@ -74,7 +74,7 @@ public class MosDTO {
 			return true;
 		if (obj == null)
 			return false;
-		if (obj instanceof MosDTO)
+		if (!(obj instanceof MosDTO))
 			return false;
 		MosDTO other = (MosDTO) obj;
 		if (id == null) {

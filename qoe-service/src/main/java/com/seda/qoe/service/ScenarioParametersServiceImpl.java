@@ -9,7 +9,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.ScenarioParametersRepository;
-import com.seda.qoe.entity.Questionary;
 import com.seda.qoe.entity.ScenarioParameters;
 import com.seda.qoe.exceptions.ServiceLayerException;
 import com.seda.qoe.specification.RsqlVisitor;

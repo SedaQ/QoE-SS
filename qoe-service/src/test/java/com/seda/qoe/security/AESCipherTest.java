@@ -24,7 +24,7 @@ import com.seda.qoe.config.BeanMappingConfiguration;
  *
  */
 @ContextConfiguration(classes = BeanMappingConfiguration.class)
-public class AESCipherTest extends AbstractTestNGSpringContextTests{
+public class AESCipherTest extends AbstractTestNGSpringContextTests {
 
 	@Inject
 	private AESCipher userPwdEncryption;
@@ -37,7 +37,6 @@ public class AESCipherTest extends AbstractTestNGSpringContextTests{
 		password = "testPassword";
 	}
 	
-
 	@Test
 	public void testCreateHash() throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, IOException {
 		passwordHash = userPwdEncryption.encrypt(password);

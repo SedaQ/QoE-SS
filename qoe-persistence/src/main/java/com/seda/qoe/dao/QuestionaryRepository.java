@@ -5,10 +5,23 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.seda.qoe.entity.Mos;
 import com.seda.qoe.entity.Questionary;
 
-public interface QuestionaryRepository extends JpaRepository<Questionary, Long>, JpaSpecificationExecutor<Questionary> {
+public interface QuestionaryRepository extends
+		JpaRepository<Questionary, Long>, JpaSpecificationExecutor<Questionary> {
+
+	/**
+	 * 
+	 * @param searchTerm search by email, gender, age, school or userConnection
+	 * @return List of questionaries matches criteria above
+	 */
+	@Query(value = "SELECT * FROM questionary q WHERE "
+			+ "LOWER (q.email) LIKE LOWER(CONCAT('%',:searchTerm, '%')) OR "
+			+ "LOWER (q.gender) LIKE LOWER(CONCAT('%',:searchTerm, '%')) OR "
+			+ "LOWER (q.age) LIKE LOWER(CONCAT(:searchTerm, '%')) OR "
+			+ "LOWER (q.school) LIKE LOWER(CONCAT('%',:searchTerm, '%')) OR "
+			+ "LOWER (q.user_connection) LIKE LOWER(CONCAT('%',:searchTerm, '%'))", nativeQuery = true)
+	public java.util.List<Questionary> findAllBySearchTerm(@Param("searchTerm") String searchTerm);
 
 	/**
 	 * Find specific questionary by email
@@ -19,15 +32,5 @@ public interface QuestionaryRepository extends JpaRepository<Questionary, Long>,
 	 */
 	@Query("SELECT q FROM #{#entityName} q WHERE q.email=:email")
 	public Questionary findByEmail(@Param("email") String email);
-
-	/**
-	 * 
-	 * Find specific questionary by more attributes {it is usefull when
-	 * nonUniqueException is invoked
-	 */
-	@Query("SELECT q FROM #{#entityName} q WHERE q.id IS NOT NULL AND q.email=:email AND q.gender=:gender AND q.age=:age AND q.school=:school AND q.userConnection=:userConnection")
-	public Questionary findByEqualsMethod(@Param("email") String email,
-			@Param("gender") String gender, @Param("age") String age, @Param("school") String school,
-			@Param("userConnection") String userConnection);
 
 }

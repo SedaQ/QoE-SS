@@ -13,8 +13,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.dozer.Mapping;
-
 import com.seda.qoe.entity.ScenarioParameters;
 
 

@@ -34,7 +34,7 @@ public class Questionary {
 
 	@Column(nullable = false, name = "user_connection")
 	private String userConnection;
-	
+
 	@Column(nullable = false)
 	private Date date;
 
@@ -102,7 +102,7 @@ public class Questionary {
 	public void setUserConnection(String userConnection) {
 		this.userConnection = userConnection;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
@@ -143,10 +143,10 @@ public class Questionary {
 		if (obj instanceof Questionary)
 			return false;
 		Questionary other = (Questionary) obj;
-		if(id == null){
-			if(other.getId() !=null)
+		if (id == null) {
+			if (other.getId() != null)
 				return false;
-		} else if(!id.equals(other.getId()))
+		} else if (!id.equals(other.getId()))
 			return false;
 		if (age == null) {
 			if (other.getAge() != null)
@@ -180,6 +180,5 @@ public class Questionary {
 			return false;
 		return true;
 	}
-	
 
 }

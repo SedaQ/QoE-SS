@@ -1,4 +1,4 @@
-package com.seda.qoe.dao;
+package com.seda.qoe.test.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,10 +14,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.seda.qoe.entity.Mos;
+import com.seda.qoe.dao.ScenarioRepository;
+import com.seda.qoe.entity.Questionary;
 import com.seda.qoe.entity.Scenario;
 
-@ContextConfiguration(classes = com.seda.qoe.context.PersistenceApplicationContext.class)
+@ContextConfiguration(classes = com.seda.qoe.test.context.PersistenceApplicationContextTest.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class ScenarioRepositoryTest extends AbstractTestNGSpringContextTests {
@@ -39,7 +40,7 @@ public class ScenarioRepositoryTest extends AbstractTestNGSpringContextTests {
 
 	@AfterMethod
 	public void afterMethod() {
-
+		scenarioDao.deleteAll();
 	}
 
 	@Test
@@ -50,6 +51,26 @@ public class ScenarioRepositoryTest extends AbstractTestNGSpringContextTests {
 	@Test
 	public void testFindAll() {
 		Assert.assertNotNull(scenarioDao.findAll());
+	}
+
+	@Test
+	public void testFindById() {
+		Assert.assertNotNull(scenarioDao.findOne(scenario.getId()));
+	}
+
+	@Test
+	public void testUpdate() {
+		scenario.setScenario("scenarioupdated2");
+		scenarioDao.save(scenario);
+		Assert.assertEquals(scenario.getScenario(),
+				scenarioDao.findOne(scenario.getId()).getScenario());
+	}
+
+	@Test
+	public void testRemove() {
+		Assert.assertNotNull(em.find(Scenario.class, scenario.getId()));
+		scenarioDao.delete(scenario);
+		Assert.assertNull(em.find(Scenario.class, scenario.getId()));
 	}
 
 }

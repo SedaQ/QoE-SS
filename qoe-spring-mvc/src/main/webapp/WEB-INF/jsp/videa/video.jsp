@@ -46,6 +46,7 @@
 		<div id="video_wrapper">
 			  <video id="video" controls="true" controls
 				class="img img-responsive" preload="auto"
+				poster="${pageContext.request.contextPath}/assets/videa/loading.gif"
 				data-setup="{}">
 			    <source id="videoSource"
 				src="${pageContext.request.contextPath}/assets/videa/${videoSources.get(0)}"
@@ -91,10 +92,10 @@
 					var source = document.getElementById("videoSource");
 					
 					var wait = function() {
-						//$(".playpause").fadeOut();
+						$(".playpause").fadeOut();
 						isPause++;
 						video.src = "/assets/videa/" + "${videoObj.name}" + "_" + pauseVideoQuality[nextIndex]+".mp4";
-						//source.
+						video.load();
 						console.log("Src videa je: " + video.src);
 						video.currentTime = pausedCurrTime;
 						//source.setAttribute('src', "/assets/videa/" + videoSources[videoSources.length-1]);
@@ -104,6 +105,7 @@
 					};
 					
 					video.addEventListener('timeupdate', function() {
+						
 						if ((jQuery.inArray(this.currentTime.toString().split(
 								'.')[0].trim(), pauseLength) > -1)) {
 							console.log("Čas, v který se děje něco s videem:" + this.currentTime.toString().split('.')[0].trim());
@@ -111,7 +113,7 @@
 							this.currentTime = this.currentTime + 1;
 							pausedCurrTime = this.currentTime;
 							this.pause();
-							//$(".playpause").fadeIn();
+							$(".playpause").fadeIn();
 							setTimeout(wait, pauseTime[nextIndex]);
 						}
 						if(this.ended){

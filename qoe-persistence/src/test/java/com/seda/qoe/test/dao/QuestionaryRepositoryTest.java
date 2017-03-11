@@ -1,5 +1,4 @@
-package com.seda.qoe.dao;
-
+package com.seda.qoe.test.dao;
 
 import java.util.Date;
 
@@ -13,12 +12,14 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.seda.qoe.dao.QuestionaryRepository;
 import com.seda.qoe.entity.Questionary;
 
-@ContextConfiguration(classes = com.seda.qoe.context.PersistenceApplicationContext.class)
+@ContextConfiguration(classes = com.seda.qoe.test.context.PersistenceApplicationContextTest.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class QuestionaryRepositoryTest extends AbstractTestNGSpringContextTests {
@@ -43,6 +44,11 @@ public class QuestionaryRepositoryTest extends AbstractTestNGSpringContextTests 
 		questionaryDao.save(questionary);
 	}
 
+	@AfterMethod
+	public void afterMethod() {
+		questionaryDao.deleteAll();
+	}
+
 	@Test
 	public void testCreate() {
 		Assert.assertNotNull(em.find(Questionary.class, questionary.getId()));
@@ -51,6 +57,26 @@ public class QuestionaryRepositoryTest extends AbstractTestNGSpringContextTests 
 	@Test
 	public void testFindAll() {
 		Assert.assertNotNull(questionaryDao.findAll());
+	}
+
+	@Test
+	public void testFindById() {
+		Assert.assertNotNull(questionaryDao.findOne(questionary.getId()));
+	}
+
+	@Test
+	public void testUpdate() {
+		questionary.setEmail("pavelsedaupdatedemail@seznam.cz");
+		questionaryDao.save(questionary);
+		Assert.assertEquals(questionary.getEmail(),
+				questionaryDao.findOne(questionary.getId()).getEmail());
+	}
+
+	@Test
+	public void testRemove() {
+		Assert.assertNotNull(em.find(Questionary.class, questionary.getId()));
+		questionaryDao.delete(questionary);
+		Assert.assertNull(em.find(Questionary.class, questionary.getId()));
 	}
 
 }

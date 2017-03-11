@@ -51,13 +51,9 @@ public interface QuestionaryFacade {
 	public List<QuestionaryDTO> getAllQuestionary(String search);
 	
 	/**
-	 * find Questionary by equals method attributes
-	 * @param email
-	 * @param gender
-	 * @param age
-	 * @param school
-	 * @param userConnection
+	 * 
+	 * @param searchTerm
+	 * @return
 	 */
-	public QuestionaryDTO findByEqualsMethod(String email, String gender, String age, String school,
-			String userConnection);
+	public List<QuestionaryDTO> findBySearchTerm(String searchTerm);
 }

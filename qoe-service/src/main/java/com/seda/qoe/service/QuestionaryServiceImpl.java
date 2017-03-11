@@ -2,7 +2,6 @@ package com.seda.qoe.service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import javax.inject.Inject;
 
@@ -11,7 +10,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.QuestionaryRepository;
-import com.seda.qoe.entity.Mos;
 import com.seda.qoe.entity.Questionary;
 import com.seda.qoe.exceptions.ServiceLayerException;
 import com.seda.qoe.specification.RsqlVisitor;
@@ -95,16 +93,17 @@ public class QuestionaryServiceImpl implements QuestionaryService {
 	}
 
 	@Override
-	public Questionary findByEqualsMethod(String email, String gender, String age, String school,
-			String userConnection) {
-		if(email == null || gender == null || age == null || school == null || userConnection == null)
-			throw new IllegalArgumentException("findByEqualsMethod some parameters is null");
-		try {
-			return questionaryDao.findByEqualsMethod(email, gender, age, school, userConnection);
-		} catch(DataAccessException ex){
+	public List<Questionary> findBySearchTerm(String searchTerm) {
+		if(searchTerm == null)
+			throw new IllegalArgumentException("searchTerm parameters is null");
+		try{
+			if(searchTerm.isEmpty())
+				return questionaryDao.findAll();
+			else
+				return questionaryDao.findAllBySearchTerm(searchTerm);
+		}catch(DataAccessException ex){
 			throw new ServiceLayerException("Problem with findByEqualsMethod search.", ex);
 		}
-		
 	}
 
 }

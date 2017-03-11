@@ -15,12 +15,10 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.seda.qoe.dao.UserRepository;
-import com.seda.qoe.entity.Scenario;
 import com.seda.qoe.entity.User;
 import com.seda.qoe.enums.UserRoles;
 import com.seda.qoe.exceptions.ServiceLayerException;
 import com.seda.qoe.security.AESCipher;
-import com.seda.qoe.security.UserPasswordEncryption;
 import com.seda.qoe.specification.RsqlVisitor;
 
 import cz.jirutka.rsql.parser.RSQLParser;
@@ -39,9 +37,8 @@ public class UserServiceImpl implements UserService {
 	//private UserPasswordEncryption userPasswordEncryption;
 	
 	@Inject
-	public UserServiceImpl(UserRepository userDao, UserPasswordEncryption userPasswordEncryption, AESCipher encryptDecrypt) {
+	public UserServiceImpl(UserRepository userDao, AESCipher encryptDecrypt) {
 		this.userDao = userDao;
-		//this.userPasswordEncryption = userPasswordEncryption;
 		this.encryptDecrypt = encryptDecrypt;
 	}
 

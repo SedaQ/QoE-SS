@@ -103,7 +103,7 @@ public class QuestionaryCreateDTO {
 			return true;
 		if (obj == null)
 			return false;
-		if (obj instanceof QuestionaryCreateDTO)
+		if (!(obj instanceof QuestionaryCreateDTO))
 			return false;
 		QuestionaryCreateDTO other = (QuestionaryCreateDTO) obj;
 		if (id == null) {

@@ -6,7 +6,7 @@ import com.seda.qoe.entity.Mos;
 
 /**
  * @author Pavel Šeda
- *
+ * 
  */
 public interface MosService {
 
@@ -18,7 +18,7 @@ public interface MosService {
 	 * @return created mos
 	 */
 	public Mos create(Mos mos);
-	
+
 	/**
 	 * finds specific mos by id
 	 * 
@@ -51,5 +51,5 @@ public interface MosService {
 	 *            mos that has to be removed
 	 */
 	public void remove(Mos c);
-	
+
 }
