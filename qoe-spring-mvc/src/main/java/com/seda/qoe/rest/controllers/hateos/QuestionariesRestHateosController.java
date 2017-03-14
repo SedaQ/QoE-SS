@@ -28,7 +28,7 @@ import com.seda.qoe.dto.questionary.QuestionaryDTO;
 import com.seda.qoe.dto.user.UserDTO;
 import com.seda.qoe.facade.QuestionaryFacade;
 import com.seda.qoe.rest.assemblers.QuestionaryResourceAssembler;
-import com.seda.qoe.rest.endpoints.ApiHateosEndPoints;
+import com.seda.qoe.rest.endpoints.ApiEndPoints;
 import com.seda.qoe.rest.exceptions.ResourceAlreadyExistingException;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
 import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
@@ -39,7 +39,7 @@ import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
  * @author Pavel Šeda
  */
 @RestController
-@RequestMapping(ApiHateosEndPoints.ROOT_URI_QUESTIONARY_HATEOS)
+@RequestMapping(ApiEndPoints.ROOT_URI_QUESTIONARY_HATEOS)
 public class QuestionariesRestHateosController {
 
 	@Inject

@@ -28,7 +28,7 @@ import com.seda.qoe.enums.UserRoles;
 import com.seda.qoe.enums.UserRoles;
 import com.seda.qoe.facade.UserFacade;
 import com.seda.qoe.rest.assemblers.UserResourceAssembler;
-import com.seda.qoe.rest.endpoints.ApiHateosEndPoints;
+import com.seda.qoe.rest.endpoints.ApiEndPoints;
 import com.seda.qoe.rest.exceptions.ResourceAlreadyExistingException;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
 import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
@@ -39,7 +39,7 @@ import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
  * @author Pavel Šeda
  */
 @RestController
-@RequestMapping(ApiHateosEndPoints.ROOT_URI_USERS_HATEOS)
+@RequestMapping(ApiEndPoints.ROOT_URI_USERS_HATEOS)
 public class UsersRestHateosController {
 
 	@Inject

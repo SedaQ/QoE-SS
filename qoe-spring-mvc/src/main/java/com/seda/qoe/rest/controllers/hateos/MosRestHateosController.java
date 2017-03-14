@@ -29,7 +29,7 @@ import com.seda.qoe.dto.scenario.ScenarioDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 import com.seda.qoe.facade.MosFacade;
 import com.seda.qoe.rest.assemblers.MosResourceAssembler;
-import com.seda.qoe.rest.endpoints.ApiHateosEndPoints;
+import com.seda.qoe.rest.endpoints.ApiEndPoints;
 import com.seda.qoe.rest.exceptions.InvalidParameterException;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
 import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
@@ -40,7 +40,7 @@ import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
  * @author Pavel Šeda
  */
 @RestController
-@RequestMapping(ApiHateosEndPoints.ROOT_URI_MOS_HATEOS)
+@RequestMapping(ApiEndPoints.ROOT_URI_MOS_HATEOS)
 public class MosRestHateosController {
 
 	@Inject

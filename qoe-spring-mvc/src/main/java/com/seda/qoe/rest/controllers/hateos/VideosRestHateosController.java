@@ -29,7 +29,7 @@ import com.seda.qoe.dto.video.VideoCreateDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 import com.seda.qoe.facade.VideoFacade;
 import com.seda.qoe.rest.assemblers.VideoResourceAssembler;
-import com.seda.qoe.rest.endpoints.ApiHateosEndPoints;
+import com.seda.qoe.rest.endpoints.ApiEndPoints;
 import com.seda.qoe.rest.exceptions.ResourceAlreadyExistingException;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
 import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
@@ -40,7 +40,7 @@ import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
  * @author Pavel Šeda
  */
 @RestController
-@RequestMapping(ApiHateosEndPoints.ROOT_URI_VIDEOS_HATEOS)
+@RequestMapping(ApiEndPoints.ROOT_URI_VIDEOS_HATEOS)
 public class VideosRestHateosController {
 
 	@Inject

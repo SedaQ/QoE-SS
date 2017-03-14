@@ -36,19 +36,14 @@
 			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- Could be used when implementing searchParamCriteria  -->
-		<!-- 
-		<dependency>
-			<groupId>cz.jirutka.rsql</groupId>
-			<artifactId>rsql-parser</artifactId>
-			<version>2.0.0</version>
-		</dependency> -->
+		<!-- Could be used when implementing searchParamCriteria -->
+		<!-- <dependency> <groupId>cz.jirutka.rsql</groupId> <artifactId>rsql-parser</artifactId> 
+			<version>2.0.0</version> </dependency> -->
 		<!-- jsp-api could be removed only for removing errors in eclipse IDE after 
 			cleaning project -->
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
-			<version>2.2</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -95,6 +90,11 @@
 			<artifactId>spring-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<scope>test</scope>
+		</dependency>
 		<!-- spring secutiry packages -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -107,16 +107,6 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-library</artifactId>
-			<version>2.11.0</version>
 		</dependency>
 		<!-- REST dependencies -->
 		<dependency>
@@ -151,7 +141,8 @@
 						<artifactId>maven-war-plugin</artifactId>
 						<version>2.5</version>
 						<configuration>
-							<outputDirectory>C:\Skola\Škola VUT FEKT\moje_Seda\diplomka\Appka\openshift pro appku\qoe\webapps</outputDirectory>
+							<outputDirectory>C:\Skola\Škola VUT
+								FEKT\moje_Seda\diplomka\Appka\openshift pro appku\qoe\webapps</outputDirectory>
 							<warName>ROOT</warName>
 						</configuration>
 					</plugin>

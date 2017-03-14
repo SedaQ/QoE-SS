@@ -49,6 +49,12 @@
 			</dependency>
 			<!-- please check version of these taglibs and tomcat -->
 			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.2</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
 				<groupId>org.apache.taglibs</groupId>
 				<artifactId>taglibs-standard-spec</artifactId>
 				<version>1.2.5</version>
@@ -83,10 +89,10 @@
 	</build>
 
 	<modules>
-		<module>qoe-spring-mvc</module>
 		<module>qoe-persistence</module>
 		<module>qoe-service</module>
 		<module>qoe-api</module>
 		<module>qoe-rest</module>
+		<module>qoe-spring-mvc</module>
 	</modules>
 </project>

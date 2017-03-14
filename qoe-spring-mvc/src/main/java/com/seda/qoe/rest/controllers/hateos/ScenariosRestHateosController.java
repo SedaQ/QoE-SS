@@ -29,7 +29,7 @@ import com.seda.qoe.dto.scenarioparameters.ScenarioParametersDTO;
 import com.seda.qoe.dto.video.VideoDTO;
 import com.seda.qoe.facade.ScenarioFacade;
 import com.seda.qoe.rest.assemblers.ScenarioResourceAssembler;
-import com.seda.qoe.rest.endpoints.ApiHateosEndPoints;
+import com.seda.qoe.rest.endpoints.ApiEndPoints;
 import com.seda.qoe.rest.exceptions.ResourceAlreadyExistingException;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
 import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
@@ -40,7 +40,7 @@ import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
  * @author Pavel Šeda
  */
 @RestController
-@RequestMapping(ApiHateosEndPoints.ROOT_URI_SCENARIOS_HATEOS)
+@RequestMapping(ApiEndPoints.ROOT_URI_SCENARIOS_HATEOS)
 public class ScenariosRestHateosController {
 	@Inject
 	private ScenarioFacade scenarioFacade;

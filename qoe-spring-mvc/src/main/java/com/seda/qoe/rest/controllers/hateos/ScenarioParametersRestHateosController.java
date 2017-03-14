@@ -24,7 +24,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.seda.qoe.dto.scenarioparameters.ScenarioParametersDTO;
 import com.seda.qoe.facade.ScenarioParametersFacade;
 import com.seda.qoe.rest.assemblers.ScenarioParametersResourceAssembler;
-import com.seda.qoe.rest.endpoints.ApiHateosEndPoints;
+import com.seda.qoe.rest.endpoints.ApiEndPoints;
 import com.seda.qoe.rest.exceptions.ResourceNotFoundException;
 import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
 
@@ -34,7 +34,7 @@ import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
  * @author Pavel Šeda
  */
 @RestController
-@RequestMapping(ApiHateosEndPoints.ROOT_URI_SCENARIO_PARAMETERS_HATEOS)
+@RequestMapping(ApiEndPoints.ROOT_URI_SCENARIO_PARAMETERS_HATEOS)
 public class ScenarioParametersRestHateosController {
 	@Inject
 	private ScenarioParametersFacade scenarioParametersFacade;
