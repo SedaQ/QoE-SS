@@ -37,6 +37,11 @@ public class VideoController {
 	@Inject
 	private VideoFacade videoFacade;
 
+	@RequestMapping(value = "videotest", method = RequestMethod.GET)
+	public String videoTest() {
+		return "testvidea/videotest";
+	}
+
 	@RequestMapping(value = "/questionnairefilled", method = RequestMethod.POST)
 	public String startTesting(
 			@Valid @ModelAttribute("questionaryCreate") QuestionaryCreateDTO formBean,
@@ -59,15 +64,8 @@ public class VideoController {
 				SortVideoSources.sortVideoSources(video.getVideoSource()));
 		model.addAttribute("videoScenarioParameters",
 				scenario.getScenarioparameters());
-		// System.out.println("Sourted video sources are..: " +
-		// Arrays.toString(SortVideoSources.sortVideoSources(video.getVideoSource()).toArray()));
-		// System.out.println("Questionary id:" + questionary.getId());
-		// System.out.println("ID videa je: " + video.getId());
-		// System.out.println("Scenario id je: "
-		// + video.getScenario()
-		// .get((int) Math.random() * video.getScenario().size())
-		// .getId());
 		return "testvidea/video";
+		//return "testvidea/videotestparameters";
 	}
 
 	@RequestMapping(value = "/retesting", method = RequestMethod.GET)

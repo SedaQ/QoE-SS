@@ -2,6 +2,10 @@ package com.seda.qoe.rest.controllers.hateos;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -25,7 +29,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.seda.qoe.dto.user.UserCreateDTO;
 import com.seda.qoe.dto.user.UserDTO;
 import com.seda.qoe.enums.UserRoles;
-import com.seda.qoe.enums.UserRoles;
 import com.seda.qoe.facade.UserFacade;
 import com.seda.qoe.rest.assemblers.UserResourceAssembler;
 import com.seda.qoe.rest.endpoints.ApiEndPoints;
@@ -39,6 +42,7 @@ import com.seda.qoe.rest.exceptions.ResourceNotModifiedException;
  * @author Pavel Šeda
  */
 @RestController
+@Api(value = ApiEndPoints.ROOT_URI_USERS_HATEOS, consumes="application/json")
 @RequestMapping(ApiEndPoints.ROOT_URI_USERS_HATEOS)
 public class UsersRestHateosController {
 
@@ -54,8 +58,14 @@ public class UsersRestHateosController {
 	 * @return list of UserDTOs
 	 * @throws JsonProcessingException
 	 */
+	@ApiOperation(value = "Get information about specific users", 
+			notes = "aditional notes",
+			httpMethod = "GET",
+			produces = "application/json",
+			response = UserDTO.class)
 	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public final HttpEntity<Resources<Resource<UserDTO>>> getUsers(@RequestParam(value = "search", required = false) String search)
+	public final HttpEntity<Resources<Resource<UserDTO>>> getUsers(
+			@RequestParam(value = "search", required = false) String search)
 			throws JsonProcessingException {
 
 		Collection<UserDTO> userDTO = userFacade.getAllUsers(search);
@@ -101,9 +111,16 @@ public class UsersRestHateosController {
 	 * @param webRequest
 	 * @return
 	 */
+	@ApiOperation(value = "Get information about specific user", 
+			notes = "aditional notes",
+			httpMethod = "GET",
+			response = UserDTO.class)
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public final HttpEntity<Resource<UserDTO>> getUserById(
-			@PathVariable("id") long id, WebRequest webRequest) {
+			@ApiParam(name = "id", 
+					value = "the id of the users resource to be retrieved", 
+					required = true) @PathVariable("id") long id,
+			WebRequest webRequest) {
 		try {
 			UserDTO UserDTO = userFacade.getUserById(id);
 			if (UserDTO == null)

@@ -12,41 +12,50 @@
 		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 		
 		<style>
-			.video {
-				border: 1px solid black;
-				position: relative;
-			}
-			
-			.video_wrapper { /*display: table;*/
-				
-			}
-			
-			.playpause {
-				background-image: url(../assets/videa/loading2.gif);
-				background-repeat: no-repeat;
-				width: 50%;
-				height: 50%;
-				position: absolute;
-				left: 0%;
-				right: 0%;
-				top: 0%;
-				bottom: 0%;
-				margin: auto;
-				background-size: contain;
-				background-position: center;
-			}
-		</style>
+.video {
+	border: 1px solid black;
+	position: relative;
+	display: block;
+	visibility: ;
+}
+
+.videoToCover {
+	border: 1px solid black;
+	position: relative;
+	display: none;
+	z-index:300000;
+	visibility: ;
+}
+
+.video_wrapper { /*display: table;*/
+	
+}
+
+.playpause {
+	background-image: url(../assets/videa/loading2.gif);
+	background-repeat: no-repeat;
+	width: 20%;
+	height: 20%;
+	position: absolute;
+	left: 0%;
+	right: 0%;
+	top: 0%;
+	bottom: 0%;
+	margin: auto;
+	background-size: cover;
+	background-position: center;
+}
+</style>
 	</jsp:attribute>
 	<jsp:attribute name="body">
 		<h1 class="page-header">
 			Spusťe video a po přehrání video ohodnoťte na stupnici MOS <small></small>
 		</h1>
 
-		<div id="video_wrapper">
+
+		  <div id="video_wrapper">
 			  <video id="video" controls="true" controls
-				class="img img-responsive" preload="auto"
-				poster="${pageContext.request.contextPath}/assets/videa/loading.gif"
-				data-setup="{}">
+				class="img img-responsive" preload="auto" data-setup="{}">
 			    <source id="videoSource"
 				src="${pageContext.request.contextPath}/assets/videa/${videoSources.get(0)}"
 				type='video/mp4' />
@@ -54,8 +63,19 @@
 			      To view this video please enable JavaScript, and consider upgrading to a web browser that
 			    </p>
 			  </video>
+			  <!-- 
+  			  <video id="videoToCover" controls="true" controls
+				style="display:none" class="img img-responsive" preload="auto"
+				data-setup="{}"
+				src="${pageContext.request.contextPath}/assets/videa/${videoSources.get(0)}"
+				type='video/mp4'>
+				<p>
+			      To view this video please enable JavaScript, and consider upgrading to a web browser that
+			    </p>
+			  </video> -->
 		  </div>
-	      <div class="playpause"></div>
+		  <div class="playpause"></div>
+	      
       		<form:form id="submitVideoFormToEvaluateMos" method="post"
 			action="${pageContext.request.contextPath}/mos/evaluate"
 			enctype="multipart/form-data;charset=UTF-8">
@@ -87,33 +107,44 @@
 					
 					var pausedCurrTime = video.currentTime;
 					$(".playpause").fadeOut();
-
-					var source = document.getElementById("videoSource");
+					//$(".playpause").fadeIn();
 					
-					var wait = function() {
-						//$(".playpause").fadeOut();
+					//var videoToCover = document.getElementById("videoToCover");
+					//var video = document.getElementById("video");
+
+					function wait() {
 						isPause++;
 						video.src = "/assets/videa/" + "${videoObj.name}" + "_" + pauseVideoQuality[nextIndex]+".mp4";
 						video.load();
-						//source.
 						console.log("Src videa je: " + video.src);
 						video.currentTime = pausedCurrTime;
-						//source.setAttribute('src', "/assets/videa/" + videoSources[videoSources.length-1]);
 						video.play();
 						//pauseLength.shift();
 						nextIndex = nextIndex + 1;
+						$(".playpause").fadeOut();
 					};
 					
 					video.addEventListener('timeupdate', function() {
+						console.log(this.currentTime);
 						if ((jQuery.inArray(this.currentTime.toString().split(
 								'.')[0].trim(), pauseLength) > -1)) {
-							console.log("Čas, v který se děje něco s videem:" + this.currentTime.toString().split('.')[0].trim());
-							console.log("Čas loadingu pro tento případ je:" + pauseTime[nextIndex] + " sekund");
-							this.currentTime = this.currentTime + 1;
-							pausedCurrTime = this.currentTime;
-							this.pause();
-							//$(".playpause").fadeIn();
-							setTimeout(wait, pauseTime[nextIndex]);
+							if(true){
+								console.log("Čas, v který se děje něco s videem:" + this.currentTime.toString().split('.')[0].trim());
+								console.log("Čas loadingu pro tento případ je:" + pauseTime[nextIndex] + " sekund");
+								this.currentTime = this.currentTime + 1;
+								pausedCurrTime = this.currentTime;
+								//videoToCover.currentTime = pausedCurrTime;
+								//video overlays video now;
+								this.pause();
+								$(".playpause").show();
+								//$('#video').css("display","none");
+								//$('#video').css("visibility","hidden");
+								//$('#videoToCover').css("display","block");
+								setTimeout(wait, pauseTime[nextIndex]);
+								//$('#videoToCover').css("display","none");
+								//$('#video').css("visibility","");
+								//$('#video').css("display","block");
+							}
 						}
 						if(this.ended){
 							document.getElementById("submitVideoFormToEvaluateMos").submit();
@@ -123,7 +154,7 @@
 					video.addEventListener('click', function() {
 						if (this.paused) {
 							this.play();
-							toggleFullScreen();
+							//toggleFullScreen();
 						} else if (this.play) {
 							this.pause();
 						}

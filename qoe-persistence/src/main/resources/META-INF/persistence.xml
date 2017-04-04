@@ -9,8 +9,26 @@
 	<persistence-unit name="persistenceProduction" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
-
-			<!-- For local usage -->
+			<!--  
+			<property name="hibernate.connection.provider_class"
+				value="org.hibernate.connection.C3P0ConnectionProvider" />
+			<property name="hibernate.connection.url" value="jdbc:mysql://127.10.36.130:3306/qoe" />
+			<property name="hibernate.connection.username" value="adminX8RC7kH" />
+			<property name="hibernate.connection.password" value="AuvGLX-qQnbj" />
+			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="validate" />
+			
+			<property name="hibernate.c3p0.acquire_increment" value="1"/>
+			<property name="hibernate.c3p0.min_size" value="4"/> 
+			<property name="hibernate.c3p0.max_size"  value="100"/>
+			<property name="hibernate.c3p0.idle_test_period"  value="100"/>
+			<property name="hibernate.c3p0.max_statements" value="100"/>
+			<property name="hibernate.c3p0.timeout" value="100"/>
+			<property name="hibernate.c3p0.preferredTestQuery" value="SELECT 1"/>
+			<property name="hibernate.c3p0.testConnectionOnCheckout" value="true"/>-->
+			
+			<!-- For local usage  -->
 			<property name="hibernate.connection.provider_class"
 				value="org.hibernate.connection.C3P0ConnectionProvider" />
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/qoe" />

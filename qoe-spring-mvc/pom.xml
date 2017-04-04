@@ -14,6 +14,7 @@
 
 	<properties>
 		<tomcat.version>7.0.47</tomcat.version>
+		<swagger.version>2.2.2</swagger.version>
 	</properties>
 
 	<dependencies>
@@ -24,6 +25,11 @@
 			<groupId>${project.parent.groupId}</groupId>
 			<artifactId>qoe-service</artifactId>
 			<version>${project.parent.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-codegen-maven-plugin</artifactId>
+			<version>${swagger.version}</version>
 		</dependency>
 		<!-- For using @Inject annotation -->
 		<dependency>
