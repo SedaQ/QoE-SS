@@ -13,30 +13,31 @@
 		<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 		
 		<style>
-			.video {
-				border: 1px solid black;
-				position: relative;
-			}
-			
-			.video_wrapper { /*display: table;*/
-				
-			}
-			
-			.playpause {
-				background-image: url(../assets/videa/loading2.gif);
-				background-repeat: no-repeat;
-				width: 50%;
-				height: 50%;
-				position: absolute;
-				left: 0%;
-				right: 0%;
-				top: 0%;
-				bottom: 0%;
-				margin: auto;
-				background-size: contain;
-				background-position: center;
-			}
-		</style>
+.video {
+	border: 1px solid black;
+	position: relative;
+}
+
+.video_wrapper { /*display: table;*/
+	
+}
+
+.playpause {
+	background: url(../assets/videa/loading2.gif) no-repeat;
+	/*background-repeat: no-repeat;*/
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	left: 0%;
+	right: 0%;
+	top: 0%;
+	bottom: 0%;
+	margin: auto;
+	background-size: contain;
+	background-position: center;
+	z-index: 2;
+}
+</style>
 	</jsp:attribute>
 	<jsp:attribute name="body">
 		<h1 class="page-header">
@@ -65,80 +66,87 @@
 	      
 	      <br />
 		  <script type="text/javascript">
-		  			var pauseTime = [];
-		  			var pauseLength = [];
-		  			var pauseVideoQuality = [];
-		  			var videoSources = [];
-		  			var nextIndex = 0;
-					<c:forEach items="${videoScenarioParameters}" var="scenarioParameter" varStatus="pauseTimeStatus">
-						pauseTime.push(${scenarioParameter.time}*1000);
-						pauseLength.push("${scenarioParameter.length}");
-						pauseVideoQuality.push("${scenarioParameter.videoQuality}");
-					</c:forEach>
-					
-					<c:forEach items="${videoSources}" var="videoSource">
-						videoSources.push("${videoSource}");
-					</c:forEach>
-					
-					var isPause = 0;
-					console.log("Časy na jak dlouho se video zastaví: " + pauseTime);
-					console.log("Časy, v kterých se video zastaví: " + pauseLength);
-					console.log(pauseVideoQuality);
-					console.log(videoSources);
-					
-					var pausedCurrTime = video.currentTime;
+			  	var pauseTime = [];
+				var pauseLength = [];
+				var pauseVideoQuality = [];
+				var videoSources = [];
+				var nextIndex = 0;
+				<c:forEach items="${videoScenarioParameters}" var="scenarioParameter" varStatus="pauseTimeStatus">
+					pauseTime.push(${scenarioParameter.time}*1000);
+					pauseLength.push("${scenarioParameter.length}");
+					pauseVideoQuality.push("${scenarioParameter.videoQuality}");
+				</c:forEach>
+				
+				<c:forEach items="${videoSources}" var="videoSource">
+					videoSources.push("${videoSource}");
+				</c:forEach>
+				
+				console.log("Časy na jak dlouho se video zastaví: " + pauseTime);
+				console.log("Časy, v kterých se video zastaví: " + pauseLength);
+				console.log(pauseVideoQuality);
+				console.log(videoSources);
+				var alreadyStopped = false;
+				
+				var pausedCurrTime = video.currentTime;
+				$(".playpause").fadeOut();
+				//$(".playpause").fadeIn();
+				
+				//var videoToCover = document.getElementById("videoToCover");
+				//var video = document.getElementById("video");
+	
+				function wait() {
+					video.play();
+					//pauseLength.shift();
+					nextIndex = nextIndex + 1;
 					$(".playpause").fadeOut();
-
-					var source = document.getElementById("videoSource");
-					
-					var wait = function() {
-						$(".playpause").fadeOut();
-						isPause++;
-						video.src = "/assets/videa/" + "${videoObj.name}" + "_" + pauseVideoQuality[nextIndex]+".mp4";
-						video.load();
-						console.log("Src videa je: " + video.src);
-						video.currentTime = pausedCurrTime;
-						//source.setAttribute('src', "/assets/videa/" + videoSources[videoSources.length-1]);
-						video.play();
-						//pauseLength.shift();
-						nextIndex = nextIndex + 1;
-					};
-					
-					video.addEventListener('timeupdate', function() {
-						
-						if ((jQuery.inArray(this.currentTime.toString().split(
-								'.')[0].trim(), pauseLength) > -1)) {
-							console.log("Čas, v který se děje něco s videem:" + this.currentTime.toString().split('.')[0].trim());
-							console.log("Čas loadingu pro tento případ je:" + pauseTime[nextIndex] + " sekund");
-							this.currentTime = this.currentTime + 1;
+				};
+				
+				video.addEventListener('timeupdate', function() {
+					//console.log(this.currentTime);
+					var currTime = this.currentTime.toString().split('.')[0].trim();
+					if ((jQuery.inArray(currTime, pauseLength) > -1)) {
+						if(alreadyStopped == false){
+							//console.log("Čas, v který se děje něco s videem:" + this.currentTime.toString().split('.')[0].trim());
+							//console.log("Čas loadingu pro tento případ je:" + pauseTime[nextIndex] + " sekund");
 							pausedCurrTime = this.currentTime;
 							this.pause();
-							$(".playpause").fadeIn();
+							$(".playpause").show();
+							
+							video.src = "/assets/videa/" + "${videoObj.name}" + "_" + pauseVideoQuality[nextIndex]+".mp4";
+							video.load();
+							console.log("Src videa je: " + video.src);
+							video.currentTime = pausedCurrTime;
 							setTimeout(wait, pauseTime[nextIndex]);
-						}
-						if(this.ended){
-							document.getElementById("submitVideoFormToEvaluateMos").submit();
-						}
-					});
-					
-					video.addEventListener('click', function() {
-						if (this.paused) {
-							this.play();
-							toggleFullScreen();
-						} else if (this.play) {
-							this.pause();
-						}
-					});
-					
-					function toggleFullScreen(){
-						if(video.requestFullScreen){
-							video.requestFullScreen();
-						} else if(video.webkitRequestFullScreen){
-							video.webkitRequestFullScreen();
-						} else if(video.mozRequestFullScreen){
-							video.mozRequestFullScreen();
+							alreadyStopped = true;
 						}
 					}
+					var pausCurrTime = pausedCurrTime.toString().split('.')[0].trim();
+					if(currTime != pausCurrTime){
+						alreadyStopped = false;
+					}
+					if(this.ended){
+						document.getElementById("submitVideoFormToEvaluateMos").submit();
+					}
+				});
+				
+				video.addEventListener('click', function() {
+					if (this.paused) {
+						this.play();
+						//toggleFullScreen();
+					} else if (this.play) {
+						this.pause();
+					}
+				});
+				
+				function toggleFullScreen(){
+					if(video.requestFullScreen){
+						video.requestFullScreen();
+					} else if(video.webkitRequestFullScreen){
+						video.webkitRequestFullScreen();
+					} else if(video.mozRequestFullScreen){
+						video.mozRequestFullScreen();
+					}
+				}
 
 					var $video = $('video'), $window = $(window);
 

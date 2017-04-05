@@ -1,4 +1,4 @@
-package com.seda.qoe.test.context;
+package com.seda.qoe.context;
 
 import javax.sql.DataSource;
 

@@ -147,8 +147,7 @@
 						<artifactId>maven-war-plugin</artifactId>
 						<version>2.5</version>
 						<configuration>
-							<outputDirectory>C:\Skola\Škola VUT
-								FEKT\moje_Seda\diplomka\Appka\openshift pro appku\qoe\webapps</outputDirectory>
+							<outputDirectory>C:\Skola\Škola VUT FEKT\moje_Seda\diplomka\Appka\openshift pro appku\qoe\webapps</outputDirectory>
 							<warName>ROOT</warName>
 						</configuration>
 					</plugin>

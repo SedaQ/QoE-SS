@@ -24,7 +24,7 @@ import com.seda.qoe.entity.Video;
  * @author Pavel Šeda (441048)
  *
  */
-@ContextConfiguration(classes = com.seda.qoe.test.context.PersistenceApplicationContextTest.class)
+@ContextConfiguration(classes = com.seda.qoe.context.PersistenceApplicationContextTest.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class VideoRepositoryTest extends AbstractTestNGSpringContextTests {

@@ -9,7 +9,7 @@
 	<persistence-unit name="persistenceProduction" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
-			<!--  
+			<!--  -->
 			<property name="hibernate.connection.provider_class"
 				value="org.hibernate.connection.C3P0ConnectionProvider" />
 			<property name="hibernate.connection.url" value="jdbc:mysql://127.10.36.130:3306/qoe" />
@@ -26,9 +26,9 @@
 			<property name="hibernate.c3p0.max_statements" value="100"/>
 			<property name="hibernate.c3p0.timeout" value="100"/>
 			<property name="hibernate.c3p0.preferredTestQuery" value="SELECT 1"/>
-			<property name="hibernate.c3p0.testConnectionOnCheckout" value="true"/>-->
+			<property name="hibernate.c3p0.testConnectionOnCheckout" value="true"/>
 			
-			<!-- For local usage  -->
+			<!-- For local usage 
 			<property name="hibernate.connection.provider_class"
 				value="org.hibernate.connection.C3P0ConnectionProvider" />
 			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/qoe" />
@@ -47,8 +47,8 @@
 			<property name="hibernate.c3p0.testConnectionOnCheckout"
 				value="true" />
 			<property name="show_sql" value="true" />
-			<property name="format_sql" value="true" />
-
+			<property name="format_sql" value="true" />-->
+			
 		</properties>
 	</persistence-unit>
 </persistence>

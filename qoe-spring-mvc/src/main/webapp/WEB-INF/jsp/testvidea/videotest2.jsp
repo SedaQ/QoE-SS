@@ -28,21 +28,21 @@
 			}
 			
 			#styled_video_container1{
-				width: 50%;
+				width: 60%;
 				height: 50%;
 			}
 			#styled_video_container2{
-				width: 50%;
+				width: 60%;
 				height: 50%;
 				display:none;
 			}
 			#styled_video_container3{
-				width: 50%;
+				width: 60%;
 				height: 50%;
 				display:none;
 			}
 			#styled_video_container4{
-				width: 50%;
+				width: 75%;
 				height: 50%;
 				display:none;
 			}
@@ -54,7 +54,7 @@
 			Spusťe video a po přehrání video ohodnoťte na stupnici MOS <small></small>
 		</h1>
 			<div id="styled_video_container1">
-				<video id="video1"  src="${pageContext.request.contextPath}/assets/videa/aspen_1080p.mp4" autoplay controls="true" controls
+				<video id="video1"  src="${pageContext.request.contextPath}/assets/videa/aspen_1080p.mp4" controls="true" controls
 					class="img img-responsive" preload="auto"></video>
 			</div>
 			<div id="styled_video_container2">
@@ -66,7 +66,7 @@
 					class="img img-responsive" preload="auto" ></video>
 			</div>
 			<div id="styled_video_container4">
-				<video id="video4"  src="${pageContext.request.contextPath}/assets/videa/aspen_360.mp4" controls="true" controls
+				<video id="video4"  src="${pageContext.request.contextPath}/assets/videa/aspen_360p.mp4" controls="true" controls
 					class="img img-responsive" preload="auto"></video>
 			</div>
 		
@@ -83,54 +83,51 @@
 			  //$('#styled_video_container3').fadeOut();
 			  //$('#styled_video_container4').fadeOut();
 		  
-			  
-		  	video1.addEventListener('click', function() {
+			video1.addEventListener('click', function() {
 				if (this.paused) {
+					video1.play();
+					toggleFullScreen();
+				} else if (this.play) {
+					this.pause();
+				}
+			});  
+			  
+		  	video1.addEventListener('timeupdate', function() {
+		  		var currTime = this.currentTime.toString().split('.')[0].trim();
+		  		if(currTime == 5){
 					video2.currentTime = this.currentTime;
 					video2.play();
+					//video1.stop();
 					$('#styled_video_container1').css("display","none");
 					$('#styled_video_container2').css("display","block");
 					toggleFullScreen();
-				} else if (this.play) {
-					this.pause();
-				}
+		  		}
 			});
 		  	
-		  	video2.addEventListener('click', function() {
-				if (this.paused) {
+		  	video2.addEventListener('timeupdate', function() {
+		  		var currTime = this.currentTime.toString().split('.')[0].trim();
+		  		if(currTime == 9){
 					video3.currentTime = this.currentTime;
 					video3.play();
+					//video2.stop();
 					$('#styled_video_container2').css("display","none");
 					$('#styled_video_container3').css("display","block");
 					toggleFullScreen();
-				} else if (this.play) {
-					this.pause();
 				}
 			});
 		  	
-		  	video3.addEventListener('click', function() {
-				if (this.paused) {
+		  	video3.addEventListener('timeupdate', function() {
+		  		var currTime = this.currentTime.toString().split('.')[0].trim();
+		  		if(currTime == 14){
 					video4.currentTime = this.currentTime;
 					video4.play();
+					//video3.stop();
 					$('#styled_video_container3').css("display","none");
 					$('#styled_video_container4').css("display","block");
 					toggleFullScreen();
-				} else if (this.play) {
-					this.pause();
 				}
 			});
 		  	
-		  	video4.addEventListener('click', function() {
-				if (this.paused) {
-					video1.currentTime = this.currentTime;
-					video1.play();
-					$('#styled_video_container4').css("display","none");
-					$('#styled_video_container1').css("display","block");
-					toggleFullScreen();
-				} else if (this.play) {
-					this.pause();
-				}
-			});
 		  </script>
 	</jsp:attribute>
 </my:pagetemplate>

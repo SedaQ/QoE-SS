@@ -13,12 +13,16 @@
 		
 		<style>
 .video {
+	background: ;
+	background-size: cover; 
 	border: 1px solid black;
 	position: relative;
 	display: block;
+	z-index: 1;
 	visibility: ;
 }
 
+/*
 .videoToCover {
 	border: 1px solid black;
 	position: relative;
@@ -26,25 +30,28 @@
 	z-index:300000;
 	visibility: ;
 }
+*/
 
 .video_wrapper { /*display: table;*/
 	
 }
 
 .playpause {
-	background-image: url(../assets/videa/loading2.gif);
-	background-repeat: no-repeat;
-	width: 20%;
-	height: 20%;
+	background: url(../assets/videa/loading2.gif) no-repeat;
+	/*background-repeat: no-repeat;*/
 	position: absolute;
+	width: 50%;
+	height: 50%;
 	left: 0%;
 	right: 0%;
 	top: 0%;
 	bottom: 0%;
 	margin: auto;
-	background-size: cover;
+	background-size: contain;
 	background-position: center;
+	z-index: 2;
 }
+
 </style>
 	</jsp:attribute>
 	<jsp:attribute name="body">
@@ -73,8 +80,8 @@
 			      To view this video please enable JavaScript, and consider upgrading to a web browser that
 			    </p>
 			  </video> -->
-		  </div>
-		  <div class="playpause"></div>
+			  <div class="playpause"></div>
+		 </div>
 	      
       		<form:form id="submitVideoFormToEvaluateMos" method="post"
 			action="${pageContext.request.contextPath}/mos/evaluate"
@@ -99,11 +106,11 @@
 						videoSources.push("${videoSource}");
 					</c:forEach>
 					
-					var isPause = 0;
 					console.log("Časy na jak dlouho se video zastaví: " + pauseTime);
 					console.log("Časy, v kterých se video zastaví: " + pauseLength);
 					console.log(pauseVideoQuality);
 					console.log(videoSources);
+					var alreadyStopped = false;
 					
 					var pausedCurrTime = video.currentTime;
 					$(".playpause").fadeOut();
@@ -113,11 +120,7 @@
 					//var video = document.getElementById("video");
 
 					function wait() {
-						isPause++;
-						video.src = "/assets/videa/" + "${videoObj.name}" + "_" + pauseVideoQuality[nextIndex]+".mp4";
-						video.load();
-						console.log("Src videa je: " + video.src);
-						video.currentTime = pausedCurrTime;
+						
 						video.play();
 						//pauseLength.shift();
 						nextIndex = nextIndex + 1;
@@ -125,26 +128,27 @@
 					};
 					
 					video.addEventListener('timeupdate', function() {
-						console.log(this.currentTime);
-						if ((jQuery.inArray(this.currentTime.toString().split(
-								'.')[0].trim(), pauseLength) > -1)) {
-							if(true){
-								console.log("Čas, v který se děje něco s videem:" + this.currentTime.toString().split('.')[0].trim());
-								console.log("Čas loadingu pro tento případ je:" + pauseTime[nextIndex] + " sekund");
-								this.currentTime = this.currentTime + 1;
+						//console.log(this.currentTime);
+						var currTime = this.currentTime.toString().split('.')[0].trim();
+						if ((jQuery.inArray(currTime, pauseLength) > -1)) {
+							if(alreadyStopped == false){
+								//console.log("Čas, v který se děje něco s videem:" + this.currentTime.toString().split('.')[0].trim());
+								//console.log("Čas loadingu pro tento případ je:" + pauseTime[nextIndex] + " sekund");
 								pausedCurrTime = this.currentTime;
-								//videoToCover.currentTime = pausedCurrTime;
-								//video overlays video now;
 								this.pause();
 								$(".playpause").show();
-								//$('#video').css("display","none");
-								//$('#video').css("visibility","hidden");
-								//$('#videoToCover').css("display","block");
+								
+								video.src = "/assets/videa/" + "${videoObj.name}" + "_" + pauseVideoQuality[nextIndex]+".mp4";
+								video.load();
+								console.log("Src videa je: " + video.src);
+								video.currentTime = pausedCurrTime;
 								setTimeout(wait, pauseTime[nextIndex]);
-								//$('#videoToCover').css("display","none");
-								//$('#video').css("visibility","");
-								//$('#video').css("display","block");
+								alreadyStopped = true;
 							}
+						}
+						var pausCurrTime = pausedCurrTime.toString().split('.')[0].trim();
+						if(currTime != pausCurrTime){
+							alreadyStopped = false;
 						}
 						if(this.ended){
 							document.getElementById("submitVideoFormToEvaluateMos").submit();

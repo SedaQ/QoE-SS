@@ -41,6 +41,11 @@ public class VideoController {
 	public String videoTest() {
 		return "testvidea/videotest";
 	}
+	
+	@RequestMapping(value = "videotest2", method = RequestMethod.GET)
+	public String videoTest2() {
+		return "testvidea/videotest2";
+	}
 
 	@RequestMapping(value = "/questionnairefilled", method = RequestMethod.POST)
 	public String startTesting(
